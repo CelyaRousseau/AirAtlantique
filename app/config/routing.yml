@@ -1,0 +1,4 @@
+AirAtlantiqueCore:
+    resource: "@AirAtlantiqueCoreBundle/Resources/config/routing.yml"
+    prefix:  /
+
