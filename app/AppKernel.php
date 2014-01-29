@@ -21,6 +21,12 @@ class AppKernel extends Kernel
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new AirAtlantique\CoreBundle\AirAtlantiqueCoreBundle(),
+            new AirAtlantique\UserBundle\UserBundle(),
+            new AirAtlantique\PaymentBundle\PaymentBundle(),
+            new AirAtlantique\BasketBundle\BasketBundle(),
+            new AirAtlantique\FlightBundle\FlightBundle(),
+            new AirAtlantique\AdminBundle\AdminBundle(),
+            new AirAtlantique\MailingBundle\MailingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

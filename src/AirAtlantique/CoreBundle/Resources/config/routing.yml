@@ -1,0 +1,3 @@
+AirAtlantiqueCore_homepage:
+    pattern:  /
+    defaults: { _controller: AirAtlantiqueCoreBundle:Home:index }

@@ -1,0 +1,16 @@
+{# src/AirAtlantique/CoreBundle/Resources/views/layout.html.twig #}
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+    AirAtlantique - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+{% include 'menu.html' %}
+    {# On définit un sous-titre commun à toute les pages du bundle, par exemple #}
+
+    {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
+    {% block AirAtlantique_body %}
+    {% endblock %}
+
+{% endblock %}

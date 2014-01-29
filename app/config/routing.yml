@@ -1,3 +1,27 @@
+mailing:
+    resource: "@MailingBundle/Resources/config/routing.yml"
+    prefix:   /
+
+admin:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+flight:
+    resource: "@FlightBundle/Resources/config/routing.yml"
+    prefix:   /
+
+basket:
+    resource: "@BasketBundle/Resources/config/routing.yml"
+    prefix:   /
+
+payment:
+    resource: "@PaymentBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+
 AirAtlantiqueCore:
     resource: "@AirAtlantiqueCoreBundle/Resources/config/routing.yml"
     prefix:  /
