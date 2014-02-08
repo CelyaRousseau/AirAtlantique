@@ -1,16 +1,16 @@
 <?php
-//src/AirAtlantique/CoreBundle/Entity/BilletAvion.php
+//src/AirAtlantique/CoreBundle/Entity/PlaneTicket.php
 namespace AirAtlantique\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="BilletAvion")
- * @ORM\Entity(repositoryClass="AirAtlantique\CoreBundle\Entity\BilletAvionRepository")
+ * @ORM\Table(name="PlaneTicket")
+ * @ORM\Entity(repositoryClass="AirAtlantique\CoreBundle\Entity\PlaneTicketRepository")
  */
 
-class BilletAvion
+class PlaneTicket
 {
 	/**
      * @ORM\Id
@@ -18,15 +18,15 @@ class BilletAvion
      * @ORM\GeneratedValue(strategy="AUTO")
      * @var int
      */
-    private $numeroBillet;
+    private $numberBillet;
 
     /**
-     * Get numeroBillet
+     * Get numberBillet
      *
      * @return integer 
      */
-    public function getNumeroBillet()
+    public function getnumberBillet()
     {
-        return $this->numeroBillet;
+        return $this->numberBillet;
     }
 }

@@ -1,5 +1,5 @@
-# Bootstrap
-app/bootstrap*
+# Gumby
+web/Gumby*
 
 # Symfony directories
 vendor/*

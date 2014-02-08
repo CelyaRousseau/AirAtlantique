@@ -1,16 +1,16 @@
 <?php
-//src/AirAtlantique/CoreBundle/Entity/Place.php
+//src/AirAtlantique/CoreBundle/Entity/Seat.php
 namespace AirAtlantique\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="Place")
- * @ORM\Entity(repositoryClass="AirAtlantique\CoreBundle\Entity\PlaceRepository")
+ * @ORM\Table(name="Seat")
+ * @ORM\Entity(repositoryClass="AirAtlantique\CoreBundle\Entity\SeatRepository")
  */
 
-class Place
+class Seat
 {	
          /**
      * @ORM\Id
@@ -24,25 +24,25 @@ class Place
 	* @ORM\Column(type="integer",options={"default":0})
     * @var int
     */
-    private $PremiumPlace;
+    private $PremiumSeat;
 
     /**
 	* @ORM\Column(type="integer",options={"default":0})
     * @var int
     */
-    private $BusinessPlace;
+    private $BusinessSeat;
 
     /**
 	* @ORM\Column(type="integer",options={"default":0})
     * @var int
     */
-    private $PremEcoPlace;
+    private $PremEcoSeat;
 
     /**
 	* @ORM\Column(type="integer",options={"default":0})
     * @var int
     */
-    private $EconomiquePlace;
+    private $economicSeat;
 
     /**
      * Get id
@@ -55,94 +55,94 @@ class Place
     }
 
     /**
-     * Set PremiumPlace
+     * Set PremiumSeat
      *
-     * @param integer $premiumPlace
-     * @return Place
+     * @param integer $premiumSeat
+     * @return Seat
      */
-    public function setPremiumPlace($premiumPlace)
+    public function setPremiumSeat($premiumSeat)
     {
-        $this->PremiumPlace = $premiumPlace;
+        $this->PremiumSeat = $premiumSeat;
 
         return $this;
     }
 
     /**
-     * Get PremiumPlace
+     * Get PremiumSeat
      *
      * @return integer 
      */
-    public function getPremiumPlace()
+    public function getPremiumSeat()
     {
-        return $this->PremiumPlace;
+        return $this->PremiumSeat;
     }
 
     /**
-     * Set BusinessPlace
+     * Set BusinessSeat
      *
-     * @param integer $businessPlace
-     * @return Place
+     * @param integer $businessSeat
+     * @return Seat
      */
-    public function setBusinessPlace($businessPlace)
+    public function setBusinessSeat($businessSeat)
     {
-        $this->BusinessPlace = $businessPlace;
+        $this->BusinessSeat = $businessSeat;
 
         return $this;
     }
 
     /**
-     * Get BusinessPlace
+     * Get BusinessSeat
      *
      * @return integer 
      */
-    public function getBusinessPlace()
+    public function getBusinessSeat()
     {
-        return $this->BusinessPlace;
+        return $this->BusinessSeat;
     }
 
     /**
-     * Set PremEcoPlace
+     * Set PremEcoSeat
      *
-     * @param integer $premEcoPlace
-     * @return Place
+     * @param integer $premEcoSeat
+     * @return Seat
      */
-    public function setPremEcoPlace($premEcoPlace)
+    public function setPremEcoSeat($premEcoSeat)
     {
-        $this->PremEcoPlace = $premEcoPlace;
+        $this->PremEcoSeat = $premEcoSeat;
 
         return $this;
     }
 
     /**
-     * Get PremEcoPlace
+     * Get PremEcoSeat
      *
      * @return integer 
      */
-    public function getPremEcoPlace()
+    public function getPremEcoSeat()
     {
-        return $this->PremEcoPlace;
+        return $this->PremEcoSeat;
     }
 
     /**
-     * Set EconomiquePlace
+     * Set economicSeat
      *
-     * @param integer $economiquePlace
-     * @return Place
+     * @param integer $economicSeat
+     * @return Seat
      */
-    public function setEconomiquePlace($economiquePlace)
+    public function seteconomicSeat($economicSeat)
     {
-        $this->EconomiquePlace = $economiquePlace;
+        $this->economicSeat = $economicSeat;
 
         return $this;
     }
 
     /**
-     * Get EconomiquePlace
+     * Get economicSeat
      *
      * @return integer 
      */
-    public function getEconomiquePlace()
+    public function geteconomicSeat()
     {
-        return $this->EconomiquePlace;
+        return $this->economicSeat;
     }
 }

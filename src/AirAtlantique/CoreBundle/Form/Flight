@@ -1,0 +1,34 @@
+<?php
+// src/Sdz/BlogBundle/Form/Flight.php
+
+namespace AirAtlantique\CoreBundle\Form;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+class Flight extends AbstractType
+{
+  public function buildForm(FormBuilderInterface $builder, array $options)
+  {
+    $builder
+      ->add('date',        'date')
+      ->add('titre',       'text')
+      ->add('contenu',     'textarea')
+      ->add('auteur',      'text')
+      ->add('publication', 'checkbox', array('required' => false))
+    ;
+  }
+
+  public function setDefaultOptions(OptionsResolverInterface $resolver)
+  {
+    $resolver->setDefaults(array(
+      'data_class' => 'AirAtlantique\CoreBundle\Entity\Flight'
+    ));
+  }
+
+  public function getName()
+  {
+    return 'airatlantique_corebundle_flight';
+  }
+}
