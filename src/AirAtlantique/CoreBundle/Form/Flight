@@ -12,12 +12,14 @@ class Flight extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder
-      ->add('date',        'date')
-      ->add('titre',       'text')
-      ->add('contenu',     'textarea')
-      ->add('auteur',      'text')
-      ->add('publication', 'checkbox', array('required' => false))
-    ;
+      ->add('Choices' => array('Aller simple' => 'as', 'Aller-retour' => 'ar'),'required'  => true)),
+      ->add('DepartureCity',          'text')
+      ->add('DestinationCity',       'text')
+      ->add('DepartureDay',     'date')
+      ->add('DestinationDay',      'date')
+      ->add('TicketNumber', 'text')
+      ->add('Subscription', 'entity',array('class' =>'', 'property' =>'name'))
+      ->add('Class', 'entity', array('class' =>'', 'property' =>'name'));
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)

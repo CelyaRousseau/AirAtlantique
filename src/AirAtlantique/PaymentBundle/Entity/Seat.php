@@ -1,13 +1,13 @@
 <?php
-//src/AirAtlantique/CoreBundle/Entity/Seat.php
-namespace AirAtlantique\CoreBundle\Entity;
+//src/AirAtlantique/PaymentBundle/Entity/Seat.php
+namespace AirAtlantique\PaymentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="Seat")
- * @ORM\Entity(repositoryClass="AirAtlantique\CoreBundle\Entity\SeatRepository")
+ * @ORM\Entity(repositoryClass="AirAtlantique\PaymentBundle\Entity\SeatRepository")
  */
 
 class Seat
@@ -21,128 +21,37 @@ class Seat
     private $id;
     
     /**
-	* @ORM\Column(type="integer",options={"default":0})
-    * @var int
+	* @ORM\Column(type="string")
+    * @var string
     */
-    private $PremiumSeat;
+    private $name;
 
-    /**
-	* @ORM\Column(type="integer",options={"default":0})
-    * @var int
-    */
-    private $BusinessSeat;
-
-    /**
-	* @ORM\Column(type="integer",options={"default":0})
-    * @var int
-    */
-    private $PremEcoSeat;
-
-    /**
-	* @ORM\Column(type="integer",options={"default":0})
-    * @var int
-    */
-    private $economicSeat;
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
+ 
     public function getId()
     {
         return $this->id;
     }
 
     /**
-     * Set PremiumSeat
+     * Set name
      *
-     * @param integer $premiumSeat
+     * @param string $name
      * @return Seat
      */
-    public function setPremiumSeat($premiumSeat)
+    public function setName($name)
     {
-        $this->PremiumSeat = $premiumSeat;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get PremiumSeat
+     * Get name
      *
-     * @return integer 
+     * @return string 
      */
-    public function getPremiumSeat()
+    public function getName()
     {
-        return $this->PremiumSeat;
-    }
-
-    /**
-     * Set BusinessSeat
-     *
-     * @param integer $businessSeat
-     * @return Seat
-     */
-    public function setBusinessSeat($businessSeat)
-    {
-        $this->BusinessSeat = $businessSeat;
-
-        return $this;
-    }
-
-    /**
-     * Get BusinessSeat
-     *
-     * @return integer 
-     */
-    public function getBusinessSeat()
-    {
-        return $this->BusinessSeat;
-    }
-
-    /**
-     * Set PremEcoSeat
-     *
-     * @param integer $premEcoSeat
-     * @return Seat
-     */
-    public function setPremEcoSeat($premEcoSeat)
-    {
-        $this->PremEcoSeat = $premEcoSeat;
-
-        return $this;
-    }
-
-    /**
-     * Get PremEcoSeat
-     *
-     * @return integer 
-     */
-    public function getPremEcoSeat()
-    {
-        return $this->PremEcoSeat;
-    }
-
-    /**
-     * Set economicSeat
-     *
-     * @param integer $economicSeat
-     * @return Seat
-     */
-    public function seteconomicSeat($economicSeat)
-    {
-        $this->economicSeat = $economicSeat;
-
-        return $this;
-    }
-
-    /**
-     * Get economicSeat
-     *
-     * @return integer 
-     */
-    public function geteconomicSeat()
-    {
-        return $this->economicSeat;
+        return $this->name;
     }
 }

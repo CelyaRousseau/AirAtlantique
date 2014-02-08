@@ -1,13 +1,13 @@
 <?php
-//src/AirAtlantique/CoreBundle/Entity/Airport.php
-namespace AirAtlantique\CoreBundle\Entity;
+//src/AirAtlantique/FlightBundle/Entity/Airport.php
+namespace AirAtlantique\FlightBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="Airport")
- * @ORM\Entity(repositoryClass="AirAtlantique\CoreBundle\Entity\AirportRepository")
+ * @ORM\Entity(repositoryClass="AirAtlantique\FlightBundle\Entity\AirportRepository")
  */
 
 class Airport
