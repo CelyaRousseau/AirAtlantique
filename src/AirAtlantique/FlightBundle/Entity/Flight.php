@@ -1,37 +1,68 @@
 <?php
-// src/AirAtlantique/FlightBundle/Entity/Flight.php
+
 namespace AirAtlantique\FlightBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name ="Flight")
+ * Flight
+ *
+ * @ORM\Table()
  * @ORM\Entity(repositoryClass="AirAtlantique\FlightBundle\Entity\FlightRepository")
- **/
-
-class Flight 
+ */
+class Flight
 {
-	/**
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @var int
      */
     private $id;
 
-	/**
-	* @ORM\Column(type="integer", length=100, unique=true, nullable=false)
-	* @var int
-	*/
-	private $numFlight;
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="Choices", type="boolean")
+     */
+    private $choices;
 
-	/**
-    * @ORM\Column(type="integer", nullable=false)
-    * @var int
-    */
-    private $duration;
-	
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DepartureCity", type="string", length=255)
+     */
+    private $departureCity;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DestinationCity", type="string", length=255)
+     */
+    private $destinationCity;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="departureDate", type="datetime")
+     */
+    private $departureDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="returnDate", type="datetime")
+     */
+    private $returnDate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="TicketNumber", type="integer")
+     */
+    private $ticketNumber;
+
 
     /**
      * Get id
@@ -44,48 +75,140 @@ class Flight
     }
 
     /**
-     * Set numFlight
+     * Set choices
      *
-     * @param integer $numFlight
+     * @param boolean $choices
      * @return Flight
      */
-    public function setNumFlight($numFlight)
+    public function setChoices($choices)
     {
-        $this->numFlight = $numFlight;
+        $this->choices = $choices;
 
         return $this;
     }
 
     /**
-     * Get numFlight
+     * Get choices
      *
-     * @return integer 
+     * @return boolean 
      */
-    public function getNumFlight()
+    public function getChoices()
     {
-        return $this->numFlight;
+        return $this->choices;
     }
 
     /**
-     * Set duration
+     * Set departureCity
      *
-     * @param integer $duration
+     * @param string $departureCity
      * @return Flight
      */
-    public function setduration($duration)
+    public function setDepartureCity($departureCity)
     {
-        $this->duration = $duration;
+        $this->departureCity = $departureCity;
 
         return $this;
     }
 
     /**
-     * Get duration
+     * Get departureCity
+     *
+     * @return string 
+     */
+    public function getDepartureCity()
+    {
+        return $this->departureCity;
+    }
+
+    /**
+     * Set destinationCity
+     *
+     * @param string $destinationCity
+     * @return Flight
+     */
+    public function setDestinationCity($destinationCity)
+    {
+        $this->destinationCity = $destinationCity;
+
+        return $this;
+    }
+
+    /**
+     * Get destinationCity
+     *
+     * @return string 
+     */
+    public function getDestinationCity()
+    {
+        return $this->destinationCity;
+    }
+
+    /**
+     * Set departureDate
+     *
+     * @param \DateTime $departureDate
+     * @return Flight
+     */
+    public function setdepartureDate($departureDate)
+    {
+        $this->departureDate = $departureDate;
+
+        return $this;
+    }
+
+    /**
+     * Get departureDate
+     *
+     * @return \DateTime 
+     */
+    public function getdepartureDate()
+    {
+        return $this->departureDate;
+    }
+
+    /**
+     * Set returnDate
+     *
+     * @param \DateTime $returnDate
+     * @return Flight
+     */
+    public function setreturnDate($returnDate)
+    {
+        $this->returnDate = $returnDate;
+
+        return $this;
+    }
+
+    /**
+     * Get returnDate
+     *
+     * @return \DateTime 
+     */
+    public function getreturnDate()
+    {
+        return $this->returnDate;
+    }
+
+    /**
+     * Set ticketNumber
+     *
+     * @param integer $ticketNumber
+     * @return Flight
+     */
+    public function setTicketNumber($ticketNumber)
+    {
+        $this->ticketNumber = $ticketNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get ticketNumber
      *
      * @return integer 
      */
-    public function getduration()
+    public function getTicketNumber()
     {
-        return $this->duration;
+        return $this->ticketNumber;
     }
 }
