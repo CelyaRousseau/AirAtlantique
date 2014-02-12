@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new AirAtlantique\FlightBundle\FlightBundle(),
             new AirAtlantique\AdminBundle\AdminBundle(),
             new AirAtlantique\MailingBundle\MailingBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

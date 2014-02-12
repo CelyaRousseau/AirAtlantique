@@ -1,4 +1,14 @@
 {% extends '::base.html.twig' %}
 {% block body %}
-{{ form_widget(form)}}
+  {{ form_start(form) }}
+      {{ form_errors(form) }}
+      
+      {{ form_row(form.tripChoices) }}
+      {{ form_row(form.departureCity) }}
+      {{ form_row(form.destinationCity) }}
+      {{ form_row(form.departureDate) }}
+      {{ form_row(form.returnDate) }}
+      {{ form_row(form.ticketNumber) }}
+      <input type="submit" value="Envoyez le formulaire"/>
+  {{ form_end(form) }}
 {% endblock %}

@@ -24,9 +24,9 @@ class Flight
     /**
      * @var boolean
      *
-     * @ORM\Column(name="Choices", type="boolean")
+     * @ORM\Column(name="tripChoices", type="boolean")
      */
-    private $choices;
+    private $tripChoices;
 
     /**
      * @var string
@@ -75,26 +75,26 @@ class Flight
     }
 
     /**
-     * Set choices
+     * Set tripChoices
      *
-     * @param boolean $choices
+     * @param boolean $tripChoices
      * @return Flight
      */
-    public function setChoices($choices)
+    public function settripChoices($tripChoices)
     {
-        $this->choices = $choices;
+        $this->tripChoices = $tripChoices;
 
         return $this;
     }
 
     /**
-     * Get choices
+     * Get tripChoices
      *
      * @return boolean 
      */
-    public function getChoices()
+    public function gettripChoices()
     {
-        return $this->choices;
+        return $this->tripChoices;
     }
 
     /**

@@ -3,13 +3,19 @@
 namespace AirAtlantique\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AirAtlantique\UserBundle\Entity\User;
+use AirAtlantique\UserBundle\Form\UserType;
 
-class DefaultController extends Controller
+class UserController extends Controller
 {
 
     /*----------------------Actions spécifiques aux comptes-------------------------*/
-    public function CreateAccountAction(){
+    public function SignUpAction(){
+        $user = new User();
+        $form = $this->createForm(new UserType(), $user);
 
+        return $this->render('UserBundle:user:signup.html.twig', array('form'=>$form->createView()
+            ));
     }
 
     public function ConnectAction(){
@@ -20,7 +26,7 @@ class DefaultController extends Controller
       //Afficher son compte
     }
 
-    public function MModifyAccountAction(){
+    public function ModifyAccountAction(){
 
     }
 

@@ -1,0 +1,15 @@
+# app/Resources/translations/messages.fr.yml
+form:
+  search:
+    tripChoice:
+      type:  Type de trajet :
+      as:  Aller simple
+      ar:  Aller-retour
+    departure:
+      city:  Ville de départ :
+      date:  Date aller :
+    destination:
+      city:  Ville d'arrivée :
+      date:  Date retour :
+    returnDate:  Date de retour :
+    ticketNumber:  Nombre de ticket :

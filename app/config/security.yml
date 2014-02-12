@@ -4,7 +4,7 @@ jms_security_extra:
 
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        AirAtlantique\UserBundle\Entity\User: sha512
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
@@ -16,8 +16,22 @@ security:
                 users:
                     user:  { password: userpass, roles: [ 'ROLE_USER' ] }
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        main:
+            id:  fos_user.user_provider.username
 
     firewalls:
+        main:
+            pattern:  ^/
+            anonymous: true
+            provider:  main
+            form_login:
+                login_path:  for_user_security_login
+                check_path:  for_user_security_check
+            logout:
+                path:  for_user_security_logout
+            remember_me:
+                key:  %secret%
+
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false

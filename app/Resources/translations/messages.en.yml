@@ -1,0 +1,15 @@
+# app/Resources/translations/messages.en.yml
+form:
+  search:
+    tripChoice: 
+      type:  Trip choice
+      as:  One-way
+      ar:  Roundtrip
+    departure:
+      city: Departure city blop
+      date: Departure date
+    destination:
+      city: Destination city
+      date: Destination date blop
+    returnDate: Return date
+    ticketNumber: Number of passengers
