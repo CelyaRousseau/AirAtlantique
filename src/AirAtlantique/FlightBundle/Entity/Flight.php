@@ -24,28 +24,7 @@ class Flight
     /**
      * @var boolean
      *
-     * @ORM\Column(name="tripChoices", type="boolean")
-     */
-    private $tripChoices;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="DepartureCity", type="string", length=255)
-     */
-    private $departureCity;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="DestinationCity", type="string", length=255)
-     */
-    private $destinationCity;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="departureDate", type="datetime")
+     * @ORM\Column(name="departureDate", type="boolean")
      */
     private $departureDate;
 
@@ -55,6 +34,46 @@ class Flight
      * @ORM\Column(name="returnDate", type="datetime")
      */
     private $returnDate;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AirAtlantique\FlightBundle\Entity\Airport")
+     */
+    private $departureAirport;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AirAtlantique\FlightBundle\Entity\Airport")
+     */
+    private $destinationAirtport;
+
+    /**
+    * @ORM\Column(name="flightName", type="string")
+    * @var string
+    */
+    private $flightName;
+
+    /**
+    * @ORM\Column(name="duration", type="time")
+    * @var time
+    */
+    private $duration;
+
+    /**
+    * @ORM\Column(name="reference", type="string",length=28, unique=true)
+    * @var string
+    */
+    private $reference;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AirAtlantique\FlightBundle\Entity\Airport")
+     * @ORM\JoinColumn(name="name")
+     */
+    private $planeId;
+
+    /**
+    * @ORM\Column(name="tripChoices", type="string")
+    * @var string
+    */
+    private $tripChoices;
 
     /**
      * @var integer
@@ -75,81 +94,12 @@ class Flight
     }
 
     /**
-     * Set tripChoices
-     *
-     * @param boolean $tripChoices
-     * @return Flight
-     */
-    public function settripChoices($tripChoices)
-    {
-        $this->tripChoices = $tripChoices;
-
-        return $this;
-    }
-
-    /**
-     * Get tripChoices
-     *
-     * @return boolean 
-     */
-    public function gettripChoices()
-    {
-        return $this->tripChoices;
-    }
-
-    /**
-     * Set departureCity
-     *
-     * @param string $departureCity
-     * @return Flight
-     */
-    public function setDepartureCity($departureCity)
-    {
-        $this->departureCity = $departureCity;
-
-        return $this;
-    }
-
-    /**
-     * Get departureCity
-     *
-     * @return string 
-     */
-    public function getDepartureCity()
-    {
-        return $this->departureCity;
-    }
-
-    /**
-     * Set destinationCity
-     *
-     * @param string $destinationCity
-     * @return Flight
-     */
-    public function setDestinationCity($destinationCity)
-    {
-        $this->destinationCity = $destinationCity;
-
-        return $this;
-    }
-
-    /**
-     * Get destinationCity
-     *
-     * @return string 
-     */
-    public function getDestinationCity()
-    {
-        return $this->destinationCity;
-    }
-
-    /**
      * Set departureDate
      *
-     * @param \DateTime $departureDate
+     * @param boolean $departureDate
      * @return Flight
      */
-    public function setdepartureDate($departureDate)
+    public function setDepartureDate($departureDate)
     {
         $this->departureDate = $departureDate;
 
@@ -159,9 +109,9 @@ class Flight
     /**
      * Get departureDate
      *
-     * @return \DateTime 
+     * @return boolean 
      */
-    public function getdepartureDate()
+    public function getDepartureDate()
     {
         return $this->departureDate;
     }
@@ -172,7 +122,7 @@ class Flight
      * @param \DateTime $returnDate
      * @return Flight
      */
-    public function setreturnDate($returnDate)
+    public function setReturnDate($returnDate)
     {
         $this->returnDate = $returnDate;
 
@@ -184,9 +134,101 @@ class Flight
      *
      * @return \DateTime 
      */
-    public function getreturnDate()
+    public function getReturnDate()
     {
         return $this->returnDate;
+    }
+
+    /**
+     * Set flightName
+     *
+     * @param string $flightName
+     * @return Flight
+     */
+    public function setFlightName($flightName)
+    {
+        $this->flightName = $flightName;
+
+        return $this;
+    }
+
+    /**
+     * Get flightName
+     *
+     * @return string 
+     */
+    public function getFlightName()
+    {
+        return $this->flightName;
+    }
+
+    /**
+     * Set duration
+     *
+     * @param \DateTime $duration
+     * @return Flight
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Get duration
+     *
+     * @return \DateTime 
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * Set reference
+     *
+     * @param string $reference
+     * @return Flight
+     */
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Get reference
+     *
+     * @return string 
+     */
+    public function getReference()
+    {
+        return $this->reference;
+    }
+
+    /**
+     * Set tripChoices
+     *
+     * @param string $tripChoices
+     * @return Flight
+     */
+    public function setTripChoices($tripChoices)
+    {
+        $this->tripChoices = $tripChoices;
+
+        return $this;
+    }
+
+    /**
+     * Get tripChoices
+     *
+     * @return string 
+     */
+    public function getTripChoices()
+    {
+        return $this->tripChoices;
     }
 
     /**
@@ -210,5 +252,74 @@ class Flight
     public function getTicketNumber()
     {
         return $this->ticketNumber;
+    }
+
+    /**
+     * Set departureAirport
+     *
+     * @param \AirAtlantique\FlightBundle\Entity\Airport $departureAirport
+     * @return Flight
+     */
+    public function setDepartureAirport(\AirAtlantique\FlightBundle\Entity\Airport $departureAirport = null)
+    {
+        $this->departureAirport = $departureAirport;
+
+        return $this;
+    }
+
+    /**
+     * Get departureAirport
+     *
+     * @return \AirAtlantique\FlightBundle\Entity\Airport 
+     */
+    public function getDepartureAirport()
+    {
+        return $this->departureAirport;
+    }
+
+    /**
+     * Set destinationAirtport
+     *
+     * @param \AirAtlantique\FlightBundle\Entity\Airport $destinationAirtport
+     * @return Flight
+     */
+    public function setDestinationAirtport(\AirAtlantique\FlightBundle\Entity\Airport $destinationAirtport = null)
+    {
+        $this->destinationAirtport = $destinationAirtport;
+
+        return $this;
+    }
+
+    /**
+     * Get destinationAirtport
+     *
+     * @return \AirAtlantique\FlightBundle\Entity\Airport 
+     */
+    public function getDestinationAirtport()
+    {
+        return $this->destinationAirtport;
+    }
+
+    /**
+     * Set planeId
+     *
+     * @param \AirAtlantique\FlightBundle\Entity\Airport $planeId
+     * @return Flight
+     */
+    public function setPlaneId(\AirAtlantique\FlightBundle\Entity\Airport $planeId = null)
+    {
+        $this->planeId = $planeId;
+
+        return $this;
+    }
+
+    /**
+     * Get planeId
+     *
+     * @return \AirAtlantique\FlightBundle\Entity\Airport 
+     */
+    public function getPlaneId()
+    {
+        return $this->planeId;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace AirAtlantique\CoreBundle\Entity;
+namespace AirAtlantique\PaymentBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
