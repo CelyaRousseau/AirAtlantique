@@ -1,0 +1,9 @@
+parameters:
+#    service.example.class: AirAtlantique\GeneratorBundle\Example
+
+services:
+    utilFlight:
+        class: AirAtlantique\GeneratorBundle\Service\UtilFlight
+#    service.example:
+#        class: %service.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
