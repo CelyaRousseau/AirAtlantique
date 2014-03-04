@@ -20,7 +20,6 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            new AirAtlantique\CoreBundle\AirAtlantiqueCoreBundle(),
             new AirAtlantique\UserBundle\UserBundle(),
             new AirAtlantique\PaymentBundle\PaymentBundle(),
             new AirAtlantique\BasketBundle\BasketBundle(),

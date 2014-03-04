@@ -1,7 +1,0 @@
-parameters:
-#    air_atlantique_core.example.class: AirAtlantique\CoreBundle\Example
-
-services:
-#    air_atlantique_core.example:
-#        class: %air_atlantique_core.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
