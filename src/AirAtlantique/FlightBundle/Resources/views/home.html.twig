@@ -9,6 +9,6 @@
       {{ form_row(form.departureDate) }}
       {{ form_row(form.returnDate) }}
       {{ form_row(form.ticketNumber) }}
-      <input type="submit" value="Envoyez le formulaire"/>
+      <input type="submit" value="{{'form.search.submit'|trans }}" />
   {{ form_end(form) }}
 {% endblock %}
