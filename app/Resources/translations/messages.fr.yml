@@ -1,6 +1,7 @@
 # app/Resources/translations/messages.fr.yml
 form:
   search:
+    submit: Rechercher
     tripChoice:
       type:  Type de trajet :
       as:  Aller simple

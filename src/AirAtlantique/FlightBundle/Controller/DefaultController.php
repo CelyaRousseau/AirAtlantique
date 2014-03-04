@@ -12,7 +12,7 @@ class DefaultController extends Controller
     public function indexAction(){
       $flight = new Flight;
       $form = $this->createForm(new FlightType(), $flight);
-      return $this->render('FlightBundle::home.html.twig', array('form'=>$form->createView(),));
+      return $this->render('FlightBundle::home.html.twig', array('form'=>$form->createView()));
     }
 
     public function SearchFlightAction(){

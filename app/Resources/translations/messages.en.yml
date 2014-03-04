@@ -1,6 +1,7 @@
 # app/Resources/translations/messages.en.yml
 form:
   search:
+    submit: Search
     tripChoice: 
       type:  Trip choice
       as:  One-way

@@ -9,8 +9,6 @@
 		</title>
 
 		{% block stylesheets %}
-			<link rel="stylesheet" type="text/css" href="{{ asset('Gumby/css/gumby.css')}}">
-			<link rel="stylesheet" type="text/css" href="{{ asset('Gumby/css/style.css')}}">
 			<link rel="stylesheet" type="text/css" href="{{ asset('bundles/AirAtlantique/css/index.css')}}">
 		{% endblock %}
 
@@ -23,18 +21,6 @@
 		{% block javascripts %}
 			{# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
 			<script src="{{ asset('bundles/AirAtlantique/js/jquery-1.10.2.js') }}"></script>
-			<script gumby-init="true" gumby-touch="js/libs" src="{{ asset('Gumby/js/libs/gumby.js') }}"></script>
-			<script src="{{ asset('Gumby/js/libs/ui/gumby.retina.js') }}"></script>
-			<script src="{{ asset('Gumby/js/libs/ui/gumby.fixed.js') }}"></script>
-			<script src="{{ asset('Gumby/js/libs/ui/gumby.skiplink.js') }}"></script>
-			<script src="{{ asset('Gumby/js/libs/ui/gumby.toggleswitch.js') }}"></script>
-			<script src="{{ asset('Gumby/js/libs/ui/gumby.checkbox.js') }}"></script>
-			<script src="{{ asset('Gumby/js/libs/ui/gumby.radiobtn.js') }}"></script>
-			<script src="{{ asset('Gumby/js/libs/ui/gumby.tabs.js') }}"></script>
-			<script src="{{ asset('Gumby/js/libs/ui/gumby.navbar.js') }}"></script>
-			<script src="{{ asset('Gumby/js/libs/ui/gumby.fittext.js') }}"></script>
-			<script src="{{ asset('Gumby/js/libs/ui/jquery.validation.js') }}"></script>
-			<script src="{{ asset('Gumby/js/libs/gumby.init.js') }}"></script>
 		{% endblock %}
 	</body>
 	{% include '::footer.html.twig' %}

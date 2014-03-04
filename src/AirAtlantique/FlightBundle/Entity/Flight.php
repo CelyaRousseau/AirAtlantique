@@ -38,12 +38,12 @@ class Flight
     /**
      * @ORM\ManyToOne(targetEntity="AirAtlantique\FlightBundle\Entity\Airport")
      */
-    private $departureAirport;
+    private $departureCity;
 
     /**
      * @ORM\ManyToOne(targetEntity="AirAtlantique\FlightBundle\Entity\Airport")
      */
-    private $destinationAirtport;
+    private $destinationCity;
 
     /**
     * @ORM\Column(name="flightName", type="string")
@@ -255,49 +255,49 @@ class Flight
     }
 
     /**
-     * Set departureAirport
+     * Set departureCity
      *
-     * @param \AirAtlantique\FlightBundle\Entity\Airport $departureAirport
+     * @param \AirAtlantique\FlightBundle\Entity\Airport $departureCity
      * @return Flight
      */
-    public function setDepartureAirport(\AirAtlantique\FlightBundle\Entity\Airport $departureAirport = null)
+    public function setDepartureCity(\AirAtlantique\FlightBundle\Entity\Airport $departureCity = null)
     {
-        $this->departureAirport = $departureAirport;
+        $this->departureCity = $departureCity;
 
         return $this;
     }
 
     /**
-     * Get departureAirport
+     * Get departureCity
      *
      * @return \AirAtlantique\FlightBundle\Entity\Airport 
      */
-    public function getDepartureAirport()
+    public function getDepartureCity()
     {
-        return $this->departureAirport;
+        return $this->departureCity;
     }
 
     /**
-     * Set destinationAirtport
+     * Set destinationCity
      *
-     * @param \AirAtlantique\FlightBundle\Entity\Airport $destinationAirtport
+     * @param \AirAtlantique\FlightBundle\Entity\Airport $destinationCity
      * @return Flight
      */
-    public function setDestinationAirtport(\AirAtlantique\FlightBundle\Entity\Airport $destinationAirtport = null)
+    public function setDestinationCity(\AirAtlantique\FlightBundle\Entity\Airport $destinationCity = null)
     {
-        $this->destinationAirtport = $destinationAirtport;
+        $this->destinationCity = $destinationCity;
 
         return $this;
     }
 
     /**
-     * Get destinationAirtport
+     * Get destinationCity
      *
-     * @return \AirAtlantique\FlightBundle\Entity\Airport 
+     * @return \AirAtlantique\FlightBundle\Entity\City 
      */
-    public function getDestinationAirtport()
+    public function getDestinationCity()
     {
-        return $this->destinationAirtport;
+        return $this->destinationCity;
     }
 
     /**
