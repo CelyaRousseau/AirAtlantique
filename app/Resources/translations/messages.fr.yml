@@ -14,3 +14,16 @@ form:
       date:  Date retour :
     returnDate:  Date de retour :
     ticketNumber:  Nombre de ticket :
+footer:
+    about: A propos d'AirAtlantique
+    legal_disclaimer: Mentions légales
+    service: Service Client
+    news: Actualité
+    company: La compagnie
+    photo: La phototèque
+    contact_us: Nous contacter
+    legal_info: Informations légales
+    terms: Conditions générales de vente
+    engage: Nos engagements
+    lost: Objets manquants ou perdu
+    suggest: Réclamations et Suggestions

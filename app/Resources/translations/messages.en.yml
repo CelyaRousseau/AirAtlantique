@@ -14,3 +14,16 @@ form:
       date: Destination date blop
     returnDate: Return date
     ticketNumber: Number of passengers
+footer:
+    about: About AirAtlantique
+    legal_disclaimer: Legal Disclaimer
+    service: Customer Service
+    news: News
+    company: The company
+    photo: Photos - Gallery
+    contact_us: Contact Us
+    legal: Legal Conditions
+    terms: Terms and Conditions
+    engage: Our Commitments
+    lost: Lost or missing items
+    suggest: Complaints and Suggestions

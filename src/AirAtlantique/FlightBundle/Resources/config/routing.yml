@@ -1,5 +1,11 @@
+# Static Routes
+static:
+    path: /{slug}
+    defaults: { _controller: FlightBundle:Static:index, slug: slug}
+
+# Flight routes
 flight_index:
-    pattern: /{_locale}/
-    defaults: {_controller: FlightBundle:Default:index}
+    pattern: /{_locale}/home
+    defaults: { _controller: FlightBundle:Default:index }
     requirements:
         _locale: en|fr

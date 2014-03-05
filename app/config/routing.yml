@@ -9,7 +9,7 @@ admin:
 
 flight:
     resource: "@FlightBundle/Resources/config/routing.yml"
-    prefix:   /home
+    prefix:   /
 
 basket:
     resource: "@BasketBundle/Resources/config/routing.yml"
@@ -22,6 +22,10 @@ payment:
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
     prefix:   /user
+
+generator:
+    resource: "@GeneratorBundle/Resources/config/routing.yml"
+    prefix:  /
 
 # Routing of FOSUserBundle
 fos_user_security:

@@ -15,7 +15,8 @@ class DefaultController extends Controller
       return $this->render('FlightBundle::home.html.twig', array('form'=>$form->createView()));
     }
 
-    public function SearchFlightAction(){
-
-    }
+    // public function SearchFlightAction($form){
+    //   $flightfiltered =$this-filterFlight($form);
+    //   return $this->render('FlightBundle::home.html.twig', array('flightfiltered'=>$flightfiltered->createView()));
+    // }
 }

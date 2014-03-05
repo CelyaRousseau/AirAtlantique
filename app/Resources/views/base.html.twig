@@ -10,18 +10,23 @@
 
 		{% block stylesheets %}
 			<link rel="stylesheet" type="text/css" href="{{ asset('bundles/AirAtlantique/css/index.css')}}">
+			<link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/bootstrap-responsive.min.css')}}">
 		{% endblock %}
 
 	</head>
 
 	<body>
+	<div class ='row-fluid span12'>
 		{% block body %}
+
 		{% endblock %}
 
 		{% block javascripts %}
 			{# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
 			<script src="{{ asset('bundles/AirAtlantique/js/jquery-1.10.2.js') }}"></script>
+			<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 		{% endblock %}
+	</div>
 	</body>
 	{% include '::footer.html.twig' %}
 </html>

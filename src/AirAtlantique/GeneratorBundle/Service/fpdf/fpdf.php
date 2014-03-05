@@ -1,5 +1,5 @@
 <?php
-namespace AirAtlantique\ServiceBundle\Service\fpdf;
+namespace AirAtlantique\GeneratorBundle\Service\fpdf;
 /*******************************************************************************
 * FPDF                                                                         *
 *                                                                              *
