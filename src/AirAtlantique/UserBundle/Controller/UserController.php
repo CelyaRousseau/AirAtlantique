@@ -45,9 +45,9 @@ class UserController extends Controller
     public function createAction(Request $request)
     {
         // // On récupère le service
-        // $utilFlight = $this->container->get('utilFlight');
-        // $utilFlight->flightConstruct($this->container);
-        // $utilFlight->ruleEngine();
+        $utilFlight = $this->container->get('utilFlight');
+        $utilFlight->flightConstruct();
+        $utilFlight->ruleEngine();
 
         // Je pars du principe que $text contient le texte d'un message quelconque
         

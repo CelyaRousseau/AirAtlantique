@@ -9,12 +9,14 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class UtilFlight
 {
 
-    private $container;
+    private $path;
 
-    public function flightConstruct(ContainerInterface $containerInterface)
+    function __construct($kernel) {
+        $this->path = $kernel->locateResource('@GeneratorBundle/Resources/public/json');
+    }
+
+    public function flightConstruct()
     {
-        $this->container = $containerInterface;
-
         $count = 1;
         $max = 500;
         $parsed_duration = $this->unstore('durations.json');
@@ -256,14 +258,12 @@ class UtilFlight
 
     private function store($file,$datas)
     {
-        $path = $this->container->get('kernel')->locateResource('@GeneratorBundle/Resources/public/json');
-        file_put_contents($path."/".$file,json_encode($datas));
+        file_put_contents($this->path."/".$file,json_encode($datas));
     }
 
     private function unstore($file)
     {
-        $path = $this->container->get('kernel')->locateResource('@GeneratorBundle/Resources/public/json');
-        $content = json_decode(file_get_contents($path."/".$file));
+        $content = json_decode(file_get_contents($this->path."/".$file));
 
         return $content;
     }

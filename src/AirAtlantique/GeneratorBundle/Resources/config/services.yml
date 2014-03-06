@@ -4,6 +4,7 @@ parameters:
 services:
     utilFlight:
         class: AirAtlantique\GeneratorBundle\Service\UtilFlight
+        arguments: ["@kernel"]
 #    service.example:
 #        class: %service.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
