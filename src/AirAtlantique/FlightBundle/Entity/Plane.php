@@ -18,31 +18,31 @@ class Plane{
 	private $name;
 
     /**
-    * @ORM\Column(type="integer")
+    * @ORM\Column(type="integer", nullable=true)
     * @var int
     */
     private $number;
 
     /**
-    * @ORM\Column(type="integer")
+    * @ORM\Column(type="integer", nullable=true)
     * @var int
     */
     private $first;
 
     /**
-    * @ORM\Column(type="integer")
+    * @ORM\Column(type="integer", nullable=true)
     * @var int
     */
     private $business;
 
     /**
-    * @ORM\Column(type="integer")
+    * @ORM\Column(type="integer", nullable=true)
     * @var int
     */
     private $premiumEconomy;
 
     /**
-    * @ORM\Column(type="integer")
+    * @ORM\Column(type="integer", nullable=true)
     * @var int
     */
     private $economy;

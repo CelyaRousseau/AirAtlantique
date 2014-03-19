@@ -42,13 +42,6 @@ class Airport
     */
     private $numrunway;
 
-    /**
-    * @ORM\ManyToOne(targetEntity="AirAtlantique\FlightBundle\Entity\Flight")
-    * @ORM\JoinColumn(name="id")
-    * @var int
-    */
-    private $flightId;
-
 
     /**
      * Get id
@@ -150,28 +143,5 @@ class Airport
     public function getNumrunway()
     {
         return $this->numrunway;
-    }
-
-    /**
-     * Set flightId
-     *
-     * @param \AirAtlantique\FlightBundle\Entity\Flight $flightId
-     * @return Airport
-     */
-    public function setFlightId(\AirAtlantique\FlightBundle\Entity\Flight $flightId = null)
-    {
-        $this->flightId = $flightId;
-
-        return $this;
-    }
-
-    /**
-     * Get flightId
-     *
-     * @return \AirAtlantique\FlightBundle\Entity\Flight 
-     */
-    public function getFlightId()
-    {
-        return $this->flightId;
     }
 }

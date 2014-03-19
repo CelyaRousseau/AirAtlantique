@@ -457,12 +457,6 @@
       "runwayNumber": "1"
     },
     {
-      "city": "Seattle/Tacoma",
-      "abbreviation": "SEA",
-      "name": "A\u00e9roport international de Seattle-Tacoma",
-      "runwayNumber": "1"
-    },
-    {
       "city": "Tampa",
       "abbreviation": "TPA",
       "name": "A\u00e9roport international de Tampa",
@@ -538,12 +532,6 @@
       "city": "Puerto Vallarta",
       "abbreviation": "PVR",
       "name": "Puerto Vallarta",
-      "runwayNumber": "1"
-    },
-    {
-      "city": "Philipsburg",
-      "abbreviation": "SXM",
-      "name": "A\u00e9roport International Princess Juliana",
       "runwayNumber": "1"
     },
     {
@@ -1654,12 +1642,6 @@
       "city": "Aarhus",
       "abbreviation": "AAR",
       "name": "A\u00e9roport d'Arhus",
-      "runwayNumber": "1"
-    },
-    {
-      "city": "Aruba",
-      "abbreviation": "AUA",
-      "name": "A\u00e9roport international Reine Beatrix",
       "runwayNumber": "1"
     },
     {

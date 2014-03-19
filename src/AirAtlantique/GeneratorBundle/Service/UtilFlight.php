@@ -5,14 +5,21 @@ use AirAtlantique\GeneratorBundle\Service\PdfGenerator;
 use AirAtlantique\GeneratorBundle\Service\FlightException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\ORM\EntityManager;
+use AirAtlantique\FlightBundle\Entity\Plane;
+use AirAtlantique\FlightBundle\Entity\Airport;
+use AirAtlantique\FlightBundle\Entity\Flight;
 
 class UtilFlight
 {
+    protected $path;
+    protected $em;
 
-    private $path;
-
-    function __construct($kernel) {
+    public function __construct($kernel, EntityManager $entityManager)
+    {
+        $this->em = $entityManager;
         $this->path = $kernel->locateResource('@GeneratorBundle/Resources/public/json');
+        
     }
 
     public function flightConstruct()
@@ -21,8 +28,8 @@ class UtilFlight
         $max = 500;
         $parsed_duration = $this->unstore('durations.json');
         $parsed_airports = $this->unstore('airports.json');
-        $parsed_model = $this->unstore('models.json');
-        $size = sizeof($parsed_duration->{'durations'});
+        $parsed_model    = $this->unstore('models.json');
+        $size            = sizeof($parsed_duration->{'durations'});
         
         $sizeC;
         $format = "Y-m-d H:i";
@@ -32,8 +39,8 @@ class UtilFlight
                 $flight["IdFlight"]=(double)$count;
         ### Random Airport ###
                 $startArriveAirport = $parsed_duration->{'durations'}[rand(0,$size-1)];
-                $startAirport=null;
-                $arriveAirport=null;
+                $startAirport       = null;
+                $arriveAirport      = null;
                 foreach ($parsed_airports->{"airports"} as $value) {
                     if($value->{"city"}==$startArriveAirport->{"start"})
                     {
@@ -49,13 +56,14 @@ class UtilFlight
                     }
                 }
         ### Time start/arrive ###
-                $start = \DateTime::createFromFormat($date." H:i", date($date." H:i",rand(0,time())));
+                $start               = \DateTime::createFromFormat($date." H:i", date($date." H:i",rand(0,time())));
                 $start->add(new \DateInterval('P'.$i.'D'));
-                $flight["startTime"]=$start->format($format);
-                $timeexplode = explode(":", $startArriveAirport->{"duration"});
-                $end=$start;
+                
+                $flight["startTime"] =$start->format($format);
+                $timeexplode         = explode(":", $startArriveAirport->{"duration"});
+                $end                 =$start;
                 $end->add(new \DateInterval('PT'.$timeexplode[0].'H'.$timeexplode[1].'M'));
-                $flight["endTime"]=$end->format($format);
+                $flight["endTime"]   =$end->format($format);
                 if($j<($max/2))
                 {
                     $flight["startAirport"]=$startAirport;
@@ -93,23 +101,105 @@ class UtilFlight
         }
         $this->store("flight.json",$flights);
     }
+    public function persistPlanes()
+    {
+        $parsed_model   = $this->unstore('models.json');
+        foreach ($parsed_model as $type_courrier) {
+            
+            foreach ($type_courrier as $value) {
+                $plane = new Plane();
+
+                $name            = $value->{'name'};
+                $number          = $value->{'number'};
+                $first           = $value->{'organisation'}->{'first'};
+                $business        = $value->{'organisation'}->{'business'};
+                $premium_economy = $value->{'organisation'}->{'premium_economy'};
+                $economy         = $value->{'organisation'}->{'economy'};
+
+                $plane->setName($name);
+                $plane->setNumber($number);
+                $plane->setFirst($first);
+                $plane->setBusiness($business);
+                $plane->setPremiumEconomy($premium_economy);
+                $plane->setEconomy($economy);
+
+                
+                $this->em->persist($plane);
+                $this->em->flush();
+            }
+        }
+    }
+
+    public function persistAirports(){
+        $parsed_airport = $this->unstore('airports.json');
+
+        foreach ($parsed_airport->{"airports"} as $value) {
+            $airport = new Airport();
+
+            $city         = $value->{'city'};
+            $abbreviation = $value->{'abbreviation'};
+            $name         = $value->{'name'};
+            $runwayNumber = $value->{'runwayNumber'};
+
+            $airport->setCity($city);
+            $airport->setAbbreviation($abbreviation);
+            $airport->setNameAirport($name);
+            $airport->setNumrunway($runwayNumber);
+
+            $this->em->persist($airport);
+            $this->em->flush();
+        }
+    }
+    public function persistsFlight()
+    {
+        $parsed_flight = $this->unstore('flight.json');
+        foreach ($parsed_flight->{"flights"} as $value) {
+            $flight = new Flight();
+            
+            $departureDate   = $value->{'departureDate'};
+            $returnDate      = $value->{'returnDate'};
+            $departureCity   = $value->{'departureCity'};
+            $destinationCity = $value->{'destinationCity'};
+            $flightName      = $value->{'flightName'};
+            $duration        = $value->{'duration'};
+            $reference       = $value->{'reference'};
+            $planeId         = $value->{'planeId'};
+            $tripChoices     = $value->{'tripChoices'};
+            $ticketNumber    = $value->{'ticketNumber'};
+
+            $flight->setDepartureDate($departureDate);
+            $flight->setReturnDate($returnDate);
+            $flight->setDepartureCity($departureCity);
+            $flight->setDestinationCity($destinationCity);
+            $flight->setFlightName($flightName);
+            $flight->setDuration($duration);
+            $flight->setReference($reference);
+            $flight->setPlaneId($planeId);
+            $flight->setTripChoices($tripChoices);
+            $flight->setTicketNumber($ticketNumber);
+
+            $this->em->persist($flight);
+            $this->em->flush();
+        }   
+
+    }
 
     public function ruleEngine()
     {
-        $validFlight=null;
-        $parsed_flight = $this->unstore("flight.json");
-        $parsed_airport = $this->unstore("airports.json");
-        $parsed_model = $this->unstore("models.json");
+        $validFlight    =null;
+        $parsed_flight  = $this->unstore('flight.json');
+        $parsed_airport = $this->unstore('airports.json');
+        $parsed_model   = $this->unstore('models.json');
 
         foreach ($parsed_airport->{"airports"} as $value) {
-            $city=$value->{"city"};
-            $airports[$city]["runwayNumber"]=intval($value->{"runwayNumber"});
+            $city                            =$value->{"city"};
+            $airports[$city]["runwayNumber"] =intval($value->{"runwayNumber"});
         }
 
         foreach ($parsed_flight->{"flights"} as $value) {
-            $success = true;
-
-            $startAirport = $value->{"startAirport"};
+            $success       = true;
+            
+            $startAirport  = $value->{"startAirport"};
             $arriveAirport = $value->{"arriveAirport"};
             if(!$this->validateDate($value->{"startTime"}) || !$this->validateDate($value->{"endTime"}))
             {
@@ -190,6 +280,10 @@ class UtilFlight
 
         $this->store("rule.json",$validFlight);
         //new PdfGenerator("name");
+
+        $this->persistAirports();
+        $this->persistPlanes();
+        $this->persistsFlight();
     }
 
     private function validateDate($date, $format = 'Y-m-d H:i')

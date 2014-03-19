@@ -22,19 +22,19 @@ class User extends BaseUser
     protected $id;
     
 	/**
-     * @ORM\Column(type="string", length=100, unique=true, nullable=false)
+     * @ORM\Column(type="string", length=100, nullable=false)
      * @var string
      */
     private $lastName;
 
     /**
-     * @ORM\Column(type="string", length=100, unique=true, nullable=false)
+     * @ORM\Column(type="string", length=100, nullable=false)
      * @var string
      */
     private $firstName;
 
     /**
-     * @ORM\Column(type="string", length=100, unique=true, nullable=false)
+     * @ORM\Column(type="string", length=100, nullable=false)
      * @var string
      */
     private $gender;
@@ -46,19 +46,19 @@ class User extends BaseUser
     private $phoneNumber;
 
         /**
-     * @ORM\Column(type="string", length=100, unique=true, nullable=false)
+     * @ORM\Column(type="string", length=100, nullable=false)
      * @var string
      */
     private $address;
 
         /**
-     * @ORM\Column(type="string", length=100, unique=true, nullable=false)
+     * @ORM\Column(type="string", length=100, nullable=false)
      * @var string
      */
     private $city;
 
         /**
-     * @ORM\Column(type="string", length=100, unique=true, nullable=false)
+     * @ORM\Column(type="string", length=100, nullable=false)
      * @var string
      */
     private $country;

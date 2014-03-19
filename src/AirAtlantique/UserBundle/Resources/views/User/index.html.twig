@@ -6,23 +6,9 @@
     <table class="records_list">
         <thead>
             <tr>
-                <th>Username</th>
-                <th>Usernamecanonical</th>
                 <th>Email</th>
-                <th>Emailcanonical</th>
                 <th>Enabled</th>
-                <th>Salt</th>
-                <th>Password</th>
                 <th>Lastlogin</th>
-                <th>Locked</th>
-                <th>Expired</th>
-                <th>Expiresat</th>
-                <th>Confirmationtoken</th>
-                <th>Passwordrequestedat</th>
-                <th>Roles</th>
-                <th>Credentialsexpired</th>
-                <th>Credentialsexpireat</th>
-                <th>Id</th>
                 <th>Lastname</th>
                 <th>Firstname</th>
                 <th>Gender</th>
@@ -36,23 +22,9 @@
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('user_show', { 'id': entity.id }) }}">{{ entity.username }}</a></td>
-                <td>{{ entity.usernameCanonical }}</td>
-                <td>{{ entity.email }}</td>
-                <td>{{ entity.emailCanonical }}</td>
+                <td>{{ entity.email }}</td>          
                 <td>{{ entity.enabled }}</td>
-                <td>{{ entity.salt }}</td>
-                <td>{{ entity.password }}</td>
                 <td>{% if entity.lastLogin %}{{ entity.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ entity.locked }}</td>
-                <td>{{ entity.expired }}</td>
-                <td>{% if entity.expiresAt %}{{ entity.expiresAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ entity.confirmationToken }}</td>
-                <td>{% if entity.passwordRequestedAt %}{{ entity.passwordRequestedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ entity.roles }}</td>
-                <td>{{ entity.credentialsExpired }}</td>
-                <td>{% if entity.credentialsExpireAt %}{{ entity.credentialsExpireAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ entity.id }}</td>
                 <td>{{ entity.lastName }}</td>
                 <td>{{ entity.firstName }}</td>
                 <td>{{ entity.gender }}</td>
@@ -60,7 +32,6 @@
                 <td>{{ entity.address }}</td>
                 <td>{{ entity.city }}</td>
                 <td>{{ entity.country }}</td>
-                <td>
                 <ul>
                     <li>
                         <a href="{{ path('user_show', { 'id': entity.id }) }}">show</a>
