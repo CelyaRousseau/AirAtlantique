@@ -25,7 +25,8 @@ class UtilFlight
     public function flightConstruct()
     {
         $count = 1;
-        $max = 500;
+        $max = 10;
+        $dayNumber = 10;
         $parsed_duration = $this->unstore('durations.json');
         $parsed_airports = $this->unstore('airports.json');
         $parsed_model    = $this->unstore('models.json');
@@ -34,7 +35,7 @@ class UtilFlight
         $sizeC;
         $format = "Y-m-d H:i";
         $date = date("Y-m-d");
-        for ($i=1; $i <= 60; $i++) {
+        for ($i=1; $i <= $dayNumber; $i++) {
             for ($j=1; $j <= $max; $j++) {
                 $flight["IdFlight"]=(double)$count;
         ### Random Airport ###
@@ -152,20 +153,32 @@ class UtilFlight
     }
     public function persistsFlight()
     {
-        $parsed_flight = $this->unstore('flight.json');
+        $parsed_flight = $this->unstore('rule.json');
         foreach ($parsed_flight->{"flights"} as $value) {
             $flight = new Flight();
             
-            $departureDate   = $value->{'departureDate'};
-            $returnDate      = $value->{'returnDate'};
-            $departureCity   = $value->{'departureCity'};
-            $destinationCity = $value->{'destinationCity'};
+            $departureDate   = $value->{'startTime'};
+            $returnDate      = $value->{'endTime'};
+            //$departureCity   = $value->{'startAirport'}->{"city"};
+            //$destinationCity = $value->{'arriveAirport'}->{"city"};
             $flightName      = $value->{'flightName'};
             $duration        = $value->{'duration'};
             $reference       = $value->{'reference'};
-            $planeId         = $value->{'planeId'};
-            $tripChoices     = $value->{'tripChoices'};
-            $ticketNumber    = $value->{'ticketNumber'};
+            //$planeId         = $value->{'planeId'};
+            // $tripChoices     = $value->{'tripChoices'};
+            // $ticketNumber    = $value->{'ticketNumber'};
+            $startAirport = $value->{'startAirport'};
+            $arriveAirport = $value->{'arriveAirport'};
+            $repoAirport = $this->em->getRepository('FlightBundle:Airport');
+
+            $departureCity = $repoAirport->findOneBy(array('abbreviation' => $startAirport->{'abbreviation'}));
+
+            $destinationCity = $repoAirport->findOneBy(array('abbreviation' => $arriveAirport->{'abbreviation'}));
+
+            $plane = $value->{'planeModel'};
+            $repoPlane = $this->em->getRepository('FlightBundle:Plane');
+
+            $planeId = $repoPlane->findOneBy(array('name' => $plane->{'name'}));
 
             $flight->setDepartureDate($departureDate);
             $flight->setReturnDate($returnDate);
@@ -175,8 +188,6 @@ class UtilFlight
             $flight->setDuration($duration);
             $flight->setReference($reference);
             $flight->setPlaneId($planeId);
-            $flight->setTripChoices($tripChoices);
-            $flight->setTicketNumber($ticketNumber);
 
             $this->em->persist($flight);
             $this->em->flush();
@@ -270,7 +281,6 @@ class UtilFlight
 
             $airports[$startAirport->{"city"}][$value->{"startTime"}]=1;
             $airports[$arriveAirport->{"city"}][$value->{"endTime"}]=1;
-
 
             if($success)
             {
