@@ -64,23 +64,10 @@ class Flight
     private $reference;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AirAtlantique\FlightBundle\Entity\Airport")
-     * @ORM\JoinColumn(name="name")
+     * @ORM\ManyToOne(targetEntity="AirAtlantique\FlightBundle\Entity\Plane")
+     * @ORM\JoinColumn(name="name", referencedColumnName="name")
      */
     private $planeId;
-
-    /**
-    * @ORM\Column(name="tripChoices", type="string")
-    * @var string
-    */
-    private $tripChoices;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="TicketNumber", type="integer")
-     */
-    private $ticketNumber;
 
 
     /**
@@ -209,52 +196,6 @@ class Flight
     }
 
     /**
-     * Set tripChoices
-     *
-     * @param string $tripChoices
-     * @return Flight
-     */
-    public function setTripChoices($tripChoices)
-    {
-        $this->tripChoices = $tripChoices;
-
-        return $this;
-    }
-
-    /**
-     * Get tripChoices
-     *
-     * @return string 
-     */
-    public function getTripChoices()
-    {
-        return $this->tripChoices;
-    }
-
-    /**
-     * Set ticketNumber
-     *
-     * @param integer $ticketNumber
-     * @return Flight
-     */
-    public function setTicketNumber($ticketNumber)
-    {
-        $this->ticketNumber = $ticketNumber;
-
-        return $this;
-    }
-
-    /**
-     * Get ticketNumber
-     *
-     * @return integer 
-     */
-    public function getTicketNumber()
-    {
-        return $this->ticketNumber;
-    }
-
-    /**
      * Set departureCity
      *
      * @param \AirAtlantique\FlightBundle\Entity\Airport $departureCity
@@ -303,10 +244,10 @@ class Flight
     /**
      * Set planeId
      *
-     * @param \AirAtlantique\FlightBundle\Entity\Airport $planeId
+     * @param \AirAtlantique\FlightBundle\Entity\Plane $planeId
      * @return Flight
      */
-    public function setPlaneId(\AirAtlantique\FlightBundle\Entity\Airport $planeId = null)
+    public function setPlaneId(\AirAtlantique\FlightBundle\Entity\Plane $planeId = null)
     {
         $this->planeId = $planeId;
 
@@ -316,7 +257,7 @@ class Flight
     /**
      * Get planeId
      *
-     * @return \AirAtlantique\FlightBundle\Entity\Airport 
+     * @return \AirAtlantique\FlightBundle\Entity\Plane 
      */
     public function getPlaneId()
     {
