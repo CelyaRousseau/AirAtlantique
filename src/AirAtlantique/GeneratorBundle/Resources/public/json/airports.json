@@ -535,6 +535,12 @@
       "runwayNumber": "1"
     },
     {
+      "city": "Philipsburg",
+      "abbreviation": "SXM",
+      "name": "A\u00e9roport International Princess Juliana",
+      "runwayNumber": "1"
+    },
+    {
       "city": "Oranjestad",
       "abbreviation": "AUA",
       "name": "A\u00e9roport international Reine Beatrix",
@@ -556,12 +562,6 @@
       "city": "Bridgetown",
       "abbreviation": "BGI",
       "name": "A\u00e9roport international Grantley-Adams",
-      "runwayNumber": "1"
-    },
-    {
-      "city": "Saint-Martin",
-      "abbreviation": "SXM",
-      "name": "A\u00e9roport International Princess Juliana",
       "runwayNumber": "1"
     },
     {
