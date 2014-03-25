@@ -25,8 +25,8 @@ class UtilFlight
     public function flightConstruct()
     {
         $count = 1;
-        $max = 10;
-        $dayNumber = 10;
+        $max = 500;
+        $dayNumber = 60;
         $parsed_duration = $this->unstore('durations.json');
         $parsed_airports = $this->unstore('airports.json');
         $parsed_model    = $this->unstore('models.json');
@@ -154,15 +154,19 @@ class UtilFlight
     public function persistsFlight()
     {
         $parsed_flight = $this->unstore('rule.json');
+        $formatDateTime = 'Y-m-d H:i';
+        $formatTime = 'H:i';
+
         foreach ($parsed_flight->{"flights"} as $value) {
             $flight = new Flight();
             
-            $departureDate   = $value->{'startTime'};
-            $returnDate      = $value->{'endTime'};
+            $departureDate   = \DateTime::createFromFormat($formatDateTime, $value->{'startTime'});
+            $returnDate      = \DateTime::createFromFormat($formatDateTime, $value->{'endTime'});
             //$departureCity   = $value->{'startAirport'}->{"city"};
             //$destinationCity = $value->{'arriveAirport'}->{"city"};
             $flightName      = $value->{'flightName'};
-            $duration        = $value->{'duration'};
+
+            $duration        = \DateTime::createFromFormat($formatTime, $value->{'duration'});
             $reference       = $value->{'reference'};
             //$planeId         = $value->{'planeId'};
             // $tripChoices     = $value->{'tripChoices'};
@@ -363,6 +367,7 @@ class UtilFlight
     private function store($file,$datas)
     {
         file_put_contents($this->path."/".$file,json_encode($datas));
+        chmod($this->path."/".$file,0775);
     }
 
     private function unstore($file)
