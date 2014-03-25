@@ -22,9 +22,9 @@ class Flight
     private $id;
 
     /**
-     * @var boolean
+     * @var \DateTime
      *
-     * @ORM\Column(name="departureDate", type="boolean")
+     * @ORM\Column(name="departureDate", type="datetime")
      */
     private $departureDate;
 
