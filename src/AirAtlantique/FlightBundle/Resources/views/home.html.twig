@@ -1,14 +1,15 @@
 {% extends '::base.html.twig' %}
 {% block body %}
+  <div class='well form-actions'>
   {{ form_start(form) }}
       {{ form_errors(form) }}
-      
       {{ form_row(form.tripChoices) }}
       {{ form_row(form.departureCity) }}
       {{ form_row(form.destinationCity) }}
       {{ form_row(form.departureDate) }}
-      {{ form_row(form.returnDate) }}
+      {# {{ form_row(form.returnDate) }} #}
       {{ form_row(form.ticketNumber) }}
-      <input type="submit" value="{{'form.search.submit'|trans }}" />
+      <input type="submit" class='btn btn-primary' value="{{'form.search.submit'|trans }}" />
   {{ form_end(form) }}
+  </div>
 {% endblock %}
