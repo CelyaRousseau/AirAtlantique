@@ -8,3 +8,5 @@ web/bundles/*
 # Configuration files
 app/config/parameters.ini
 app/config/parameters.yml
+src/AirAtlantique/GeneratorBundle/Ressources/public/json/flight.json
+src/AirAtlantique/GeneratorBundle/Ressources/public/json/rule.json
