@@ -310,7 +310,7 @@ class UtilFlight
     {
         $count=0;
         $city=$airport->{"city"};
-        $dateTime = \DateTime::createFromFormat("Y-m-d H:i",$time);
+        $dateTime = \DateTime::createFromFormat("Y-m-d H:ie ",$time);
         $dateTime->sub(new \DateInterval('PT30M'));
 
         for($i=0;$i<=60;++$i)
