@@ -18,26 +18,19 @@ class FlightRepository extends EntityRepository
 
         $query->where('myflights.departureCity = :departureCity ')
             ->andWhere('myflights.destinationCity = :destinationCity')
-            // ->andWhere('myflights.departureDate > :departureDate')
+            ->andWhere('myflights.departureDate > :departureDate')
             ->setParameters(array(
-                'departureCity' => $data['departureCity'],
-                'destinationCity' => $data['destinationCity']));
-            
-                // 'departureDate' => $data['departureDate']));
+                'departureCity'   => $data['departureCity'],
+                'destinationCity' => $data['destinationCity'],            
+                'departureDate'   => $data['departureDate'],
+            ));
 
         // if($data['tripChoices'] = 'ar')
         // {
         //     $query->andWhere('myflights.returnDate = :returnDate')
         //         ->setParameter('returnDate', $data['returnDate']);
         // }
-        // Si la recherche porte sur toutes les villes de départ
-        // if($data['ticketNumber'] != '')
-        // {
-        //     $query->andWhere('myflights.departureCity = :departureCity')
-        //         ->setParameter('departureCity', $data['departureCity']);
-        // }
-
-       
+             
         return $query->getQuery()->getResult();
     }
 }

@@ -15,18 +15,18 @@ class FlightType extends AbstractType {
     $builder
       ->add('tripChoices','choice',
           array(
-            'choices'  =>array('as'=>'form.search.tripChoice.as','ar'=>'form.search.tripChoice.ar'), 
-            'expanded' =>true, 
-            'multiple' =>false,
-            'required' =>true,
-            'label' => 'form.search.tripChoice.type'
+            'choices'  => array('as'=>'form.search.tripChoice.as','ar'=>'form.search.tripChoice.ar'), 
+            'expanded' => true, 
+            'multiple' => false,
+            'required' => true,
+            'label'    => 'form.search.tripChoice.type'
             ))
       ->add('departureCity','entity', 
           array(
-            'class'=>'FlightBundle:Airport',
-            'property' => 'city',
-            'required' =>true,
-            'label' => 'form.search.departure.city',
+            'class'         => 'FlightBundle:Airport',
+            'property'      => 'city',
+            'required'      => true,
+            'label'         => 'form.search.departure.city',
             'query_builder' => function(EntityRepository $er) {
               return $er->createQueryBuilder('u')
               ->orderBy('u.city', 'ASC');
@@ -34,22 +34,38 @@ class FlightType extends AbstractType {
           ))
       ->add('destinationCity', 'entity',
           array(
-            'class'=>'FlightBundle:Airport',
-            'property' => 'city',
-            'required' =>true,
-            'label' => 'form.search.destination.city',
+            'class'         => 'FlightBundle:Airport',
+            'property'      => 'city',
+            'required'      => true,
+            'label'         => 'form.search.destination.city',
             'query_builder' => function(EntityRepository $er) {
               return $er->createQueryBuilder('u')
               ->orderBy('u.city', 'ASC');
             }
           ))
-      ->add('departureDate', 'datetime', array('required' =>true, 'label' => 'form.search.departure.date'))
-      ->add('returnDate', 'datetime', array('required' =>true, 'label' => 'form.search.returnDate'))
+      ->add('departureDate', 'date', 
+          array(
+            'required' => true, 
+            'widget'   => 'single_text',
+            'input'    => 'datetime',
+            'format'   => 'dd/MM/yyyy',
+            'attr'     => array('class' => 'datepicker'),
+            'label'    => 'form.search.departure.date'
+          ))
+      ->add('returnDate', 'date', 
+          array(
+            'required' => true, 
+            'widget'   => 'single_text',
+            'input'    => 'datetime',
+            'format'   => 'dd-MM-yyyy',
+            'attr'     => array('class' => 'datepicker'),
+            'label'    => 'form.search.returnDate'
+            ))
       ->add('ticketNumber', 'choice',
           array(
-            'choices' =>$ticketNumber,
-            'required' =>true,
-            'label' => 'form.search.ticketNumber',
+            'choices'  => $ticketNumber,
+            'required' => true,
+            'label'    => 'form.search.ticketNumber'
             ));
   }
 

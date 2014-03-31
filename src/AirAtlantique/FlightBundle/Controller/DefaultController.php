@@ -34,7 +34,7 @@ class DefaultController extends Controller
                 $flightList = $em->getRepository('FlightBundle:Flight')->findFlightByParameters($data);
 
                 //Puis on redirige vers la page de visualisation de cette liste d'annonces
-                return $this->render('FlightBundle::showFlights.html.twig', array('flightList' => $flightList));
+                return $this->redirect($this->generateUrl('flight_result', array('flightList' => $flightList)));
             }
         }
 
@@ -43,8 +43,8 @@ class DefaultController extends Controller
         // - Soit la requête est de type POST, mais le formulaire n'est pas valide, donc on l'affiche de nouveau
       return $this->render('FlightBundle::home.html.twig', array('form'=>$form->createView()));
     }
-    // public function SearchFlightAction($form){
-    //   $flightfiltered =$this-filterFlight($form);
-    //   return $this->render('FlightBundle::home.html.twig', array('flightfiltered'=>$flightfiltered->createView()));
-    // }
+
+    public function chooseAction(){
+        return $this->render('FlightBundle::showFlights.html.twig', array('flightList' => $flightList));
+    }
 }

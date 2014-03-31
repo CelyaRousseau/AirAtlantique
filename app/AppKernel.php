@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new AirAtlantique\MailingBundle\MailingBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new AirAtlantique\GeneratorBundle\GeneratorBundle(),
+            new Bmatzner\JQueryUIBundle\BmatznerJQueryUIBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

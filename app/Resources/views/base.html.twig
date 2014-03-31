@@ -3,13 +3,23 @@
 <html>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-
-		{% stylesheets 'bundles/flight/css/*' filter='cssrewrite' %}
-				<link rel="stylesheet" type="text/css" href="{{ asset_url }}">
-				<link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/bootstrap.css')}}">
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	  <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+	  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+		{% javascripts 
+			'bootstrap/js/*'
+	 	%}
+			<script src='{{ asset_url }}' type="text/javascript"></script>
+		{% endjavascripts %}
+		{% stylesheets 
+			'bundles/AirAtlantique/css/*'
+			'bootstrap/css/*'
+	  	filter='cssrewrite' 
+	  %}
+			<link rel="stylesheet" type="text/css" href="{{ asset_url }}">
 		{% endstylesheets %}
-		{% block stylesheets %}{% endblock %}
 
+		{% block stylesheets %}{% endblock %}
 		
 		<title>
 			{% block title %}AirAtlantique{% endblock %}
@@ -18,22 +28,18 @@
 	</head>
 
 	<body>
-	<div class='container-fluid'>
-		<div class ='row-fluid span12'>
+		<div class='container-fluid'>
+			<div class='row-fluid span12'>
 
-			{% include '::header.html.twig' %}
-			{% block body %}{% endblock %}
-			{% include '::footer.html.twig' %}
-			
-			{% block javascripts %}
-				 {% javascripts '/bundles/flight/js/*' %}
-      			<script src='{{ asset_url }}' type="text/javascript"></script>
-      			<script src="{{ asset('bundles/AirAtlantique/js/jquery-1.10.2.js') }}"></script>
-						<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-    			{% endjavascripts %}
-			{% endblock %}
+				{% include '::header.html.twig' %}
+				{% block body %}{% endblock %}
+				{% include '::footer.html.twig' %}
+				
 
+				
+
+				{% block script %}{% endblock %}
+			</div>
 		</div>
-	</div>
 	</body>
 </html>

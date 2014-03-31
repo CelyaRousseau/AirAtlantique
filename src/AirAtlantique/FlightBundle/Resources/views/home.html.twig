@@ -7,9 +7,17 @@
       {{ form_row(form.departureCity) }}
       {{ form_row(form.destinationCity) }}
       {{ form_row(form.departureDate) }}
-      {# {{ form_row(form.returnDate) }} #}
+      {{ form_row(form.returnDate) }}
       {{ form_row(form.ticketNumber) }}
       <input type="submit" class='btn btn-primary' value="{{'form.search.submit'|trans }}" />
   {{ form_end(form) }}
   </div>
+{% endblock %}
+{% block script %}
+  <script>
+    $("form input.datepicker").datepicker({
+        dateFormat: 'dd/mm/yy', 
+        firstDay:1
+    }).attr("readonly","readonly");
+  </script>
 {% endblock %}
