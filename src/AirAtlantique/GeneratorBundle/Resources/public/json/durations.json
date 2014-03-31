@@ -193,10 +193,6 @@
         "duration": "1:45"
     }, {
         "start": "New York",
-        "arrive": "Aruba",
-        "duration": "4:42"
-    }, {
-        "start": "New York",
         "arrive": "Asheville",
         "duration": "1:51"
     }, {
@@ -1206,7 +1202,7 @@
     }, {
         "start": "Londres",
         "arrive": "Guangzhou",
-        "duration": "12:0"
+        "duration": "12:00"
     }, {
         "start": "Paris",
         "arrive": "Guangzhou",
@@ -2166,7 +2162,7 @@
     }, {
         "start": "New York",
         "arrive": "Rio de Janeiro",
-        "duration": "10:2"
+        "duration": "10:02"
     }, {
         "start": "Londres",
         "arrive": "Rio de Janeiro",
@@ -2228,14 +2224,6 @@
         "arrive": "Saint John's",
         "duration": "1:36"
     }, {
-        "start": "New York",
-        "arrive": "Saint-Martin",
-        "duration": "4:04"
-    }, {
-        "start": "Paris",
-        "arrive": "Saint-Martin",
-        "duration": "8:45"
-    }, {
         "start": "Londres",
         "arrive": "Saint-P\u00e9tersbourg",
         "duration": "3:20"
@@ -2270,7 +2258,7 @@
     }, {
         "start": "Londres",
         "arrive": "San Francisco",
-        "duration": "11:3"
+        "duration": "11:03"
     }, {
         "start": "Paris",
         "arrive": "San Francisco",
