@@ -3,8 +3,145 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "3cc19ebaf94f25178feb3ea7b91cc09f",
+    "hash": "cc0a79588aad99325790fa79363ea677",
     "packages": [
+        {
+            "name": "bmatzner/jquery-bundle",
+            "version": "2.1.0",
+            "target-dir": "Bmatzner/JQueryBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bmatzner/BmatznerJQueryBundle.git",
+                "reference": "cb1890ae9724bf2814f127f6d44ebb2efe382001"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bmatzner/BmatznerJQueryBundle/zipball/cb1890ae9724bf2814f127f6d44ebb2efe382001",
+                "reference": "cb1890ae9724bf2814f127f6d44ebb2efe382001",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/framework-bundle": ">=2.1"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Bmatzner\\JQueryBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT",
+                "GPLv2"
+            ],
+            "authors": [
+                {
+                    "name": "Bernd Matzner",
+                    "email": "bernd@matznermatzner.de",
+                    "homepage": "http://berndmatzner.de"
+                }
+            ],
+            "description": "jQuery Bundle for Symfony2",
+            "homepage": "http://jquery.com/",
+            "keywords": [
+                "javascript",
+                "jquery",
+                "symfony"
+            ],
+            "time": "2014-02-28 15:35:16"
+        },
+        {
+            "name": "bmatzner/jquery-ui-bundle",
+            "version": "dev-master",
+            "target-dir": "Bmatzner/JQueryUIBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bmatzner/BmatznerJQueryUIBundle.git",
+                "reference": "ad6a6e442923571b26b84ea9ff4f49a48b4cc91e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bmatzner/BmatznerJQueryUIBundle/zipball/ad6a6e442923571b26b84ea9ff4f49a48b4cc91e",
+                "reference": "ad6a6e442923571b26b84ea9ff4f49a48b4cc91e",
+                "shasum": ""
+            },
+            "require": {
+                "bmatzner/jquery-bundle": "*",
+                "symfony/framework-bundle": ">=2.1"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Bmatzner\\JQueryUIBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT",
+                "GPLv2"
+            ],
+            "authors": [
+                {
+                    "name": "Bernd Matzner",
+                    "email": "bernd@matznermatzner.de",
+                    "homepage": "http://berndmatzner.de"
+                }
+            ],
+            "description": "jQuery UI Bundle for Symfony2",
+            "homepage": "http://jqueryui.com/",
+            "keywords": [
+                "javascript",
+                "jquery",
+                "symfony",
+                "ui"
+            ],
+            "time": "2013-05-19 14:34:24"
+        },
+        {
+            "name": "components/jquery",
+            "version": "1.9.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/components/jquery.git",
+                "reference": "0e94233e6a4ab678d8fc04312241b2f840717b0c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/components/jquery/zipball/0e94233e6a4ab678d8fc04312241b2f840717b0c",
+                "reference": "0e94233e6a4ab678d8fc04312241b2f840717b0c",
+                "shasum": ""
+            },
+            "require": {
+                "robloach/component-installer": "*"
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "scripts": [
+                        "jquery.js"
+                    ],
+                    "files": [
+                        "jquery.min.js",
+                        "jquery-migrate.js",
+                        "jquery-migrate.min.js"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "John Resig",
+                    "email": "jeresig@gmail.com",
+                    "homepage": "http://ejohn.org/"
+                }
+            ],
+            "description": "jQuery JavaScript Library",
+            "homepage": "http://jquery.com",
+            "time": "2013-07-16 10:41:05"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.1.2",
@@ -1162,12 +1299,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/JMSSecurityExtraBundle.git",
-                "reference": "66d9c79607a7261e4ce1423b9d6fdc78256a911e"
+                "reference": "2d84e414d7abfa6cf7d0372d21507b8062947d2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/JMSSecurityExtraBundle/zipball/66d9c79607a7261e4ce1423b9d6fdc78256a911e",
-                "reference": "66d9c79607a7261e4ce1423b9d6fdc78256a911e",
+                "url": "https://api.github.com/repos/schmittjoh/JMSSecurityExtraBundle/zipball/2d84e414d7abfa6cf7d0372d21507b8062947d2a",
+                "reference": "2d84e414d7abfa6cf7d0372d21507b8062947d2a",
                 "shasum": ""
             },
             "require": {
@@ -1224,7 +1361,7 @@
                 "secure",
                 "security"
             ],
-            "time": "2014-02-11 15:23:43"
+            "time": "2014-03-25 09:11:01"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -1451,6 +1588,50 @@
                 "psr-3"
             ],
             "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "robloach/component-installer",
+            "version": "0.0.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RobLoach/component-installer.git",
+                "reference": "1864f25db21fc173e02a359f646acd596c1b0460"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/1864f25db21fc173e02a359f646acd596c1b0460",
+                "reference": "1864f25db21fc173e02a359f646acd596c1b0460",
+                "shasum": ""
+            },
+            "require": {
+                "kriswallsmith/assetic": "1.*",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "composer/composer": "1.*"
+            },
+            "type": "composer-installer",
+            "extra": {
+                "class": "ComponentInstaller\\Installer"
+            },
+            "autoload": {
+                "psr-0": {
+                    "ComponentInstaller": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rob Loach",
+                    "email": "robloach@gmail.com",
+                    "homepage": "http://robloach.net"
+                }
+            ],
+            "description": "Allows installation of Components via Composer.",
+            "time": "2013-08-31 23:46:48"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -2120,7 +2301,8 @@
     "stability-flags": {
         "doctrine/doctrine-fixtures-bundle": 20,
         "jms/security-extra-bundle": 20,
-        "friendsofsymfony/user-bundle": 20
+        "friendsofsymfony/user-bundle": 20,
+        "bmatzner/jquery-ui-bundle": 20
     },
     "platform": {
         "php": ">=5.3.3"
