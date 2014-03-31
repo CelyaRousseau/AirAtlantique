@@ -126,9 +126,10 @@ class UtilFlight
 
                 
                 $this->em->persist($plane);
-                $this->em->flush();
+                
             }
         }
+        $this->em->flush();
     }
 
     public function persistAirports(){
@@ -148,8 +149,9 @@ class UtilFlight
             $airport->setNumrunway($runwayNumber);
 
             $this->em->persist($airport);
-            $this->em->flush();
+            
         }
+        $this->em->flush();
     }
     public function persistsFlight()
     {
@@ -194,8 +196,9 @@ class UtilFlight
             $flight->setPlaneId($planeId);
 
             $this->em->persist($flight);
-            $this->em->flush();
+            
         }   
+        $this->em->flush();
 
     }
 
@@ -310,7 +313,7 @@ class UtilFlight
     {
         $count=0;
         $city=$airport->{"city"};
-        $dateTime = \DateTime::createFromFormat("Y-m-d H:ie ",$time);
+        $dateTime = \DateTime::createFromFormat("Y-m-d H:i",$time);
         $dateTime->sub(new \DateInterval('PT30M'));
 
         for($i=0;$i<=60;++$i)
