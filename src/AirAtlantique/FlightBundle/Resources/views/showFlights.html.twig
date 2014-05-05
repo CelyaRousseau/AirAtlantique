@@ -4,21 +4,40 @@
   {% endblock %}
 
   {% block body %}
-
+    {# {{ dump(flightList) }} #}
     <div class="well">
         <h3>Liste des vols disponibles</h3>
 
-        <ul>
+        <div class='unlisted'>
             {% for flight in flightList %}
-              {{ flight.flightName }}
-              {{ flight.duration }}
-              {{ flight.departureDate }}
-              {{ flight.returnDate }}
-          
+              <div>
+                <div>
+                  {{ flight.flightName }}
+                  <p>durée :{{ flight.duration|date("H:i")}} </p>
+                  <p>date départ :{{ flight.departureDate|date("m/d/Y H:i") }}</p>
+                  <p>date retour :{{ flight.returnDate|date("m/d/Y H:i") }}</p>
+                </div>
+                <div>
+                  <ul>
+                    {% if flight.planeId.first > 0 %}
+                      <li>{{ flight.planeId.first }}</li>
+                    {% endif %}
+                    {% if flight.planeId.business > 0 %}
+                      <li>{{ flight.planeId.business }}</li>
+                    {% endif %}
+                    {% if flight.planeId.premiumEconomy > 0 %}
+                      <li>{{ flight.planeId.premiumEconomy }}</li>
+                    {% endif %}
+                    {% if flight.planeId.economy > 0 %}
+                      <li>{{ flight.planeId.economy }}</li>
+                    {% endif %}
+                  </ul>
+                </div>
+              </div>
             {% else %}
                 <p>Désolé il n'y a, pour le moment, aucun vol correspondant à votre recherche.</p>
             {% endfor %}
-        </ul>
+        </div>
 
     </div>
   {% endblock %}
