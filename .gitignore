@@ -4,10 +4,11 @@
 */cache/*
 web/uploads/*
 web/bundles/*
+/bin/
+/components/
 
 # Configuration files
-app/config/parameters.ini
-app/config/parameters.yml
+app/config/*
 
 # Generated files
 src/AirAtlantique/GeneratorBundle/Ressources/public/json/flight.json

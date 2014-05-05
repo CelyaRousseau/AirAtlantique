@@ -1,6 +1,6 @@
 <?php
 
-namespace AirAtlantique\BasketBundle\Tests\Controller;
+namespace AirAtlantique\CartBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

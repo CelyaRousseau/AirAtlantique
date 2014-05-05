@@ -22,7 +22,7 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new AirAtlantique\UserBundle\UserBundle(),
             new AirAtlantique\PaymentBundle\PaymentBundle(),
-            new AirAtlantique\BasketBundle\BasketBundle(),
+            new AirAtlantique\CartBundle\CartBundle(),
             new AirAtlantique\FlightBundle\FlightBundle(),
             new AirAtlantique\AdminBundle\AdminBundle(),
             new AirAtlantique\MailingBundle\MailingBundle(),

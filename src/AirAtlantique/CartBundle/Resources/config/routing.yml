@@ -1,0 +1,3 @@
+Cart_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: CartBundle:Default:index }

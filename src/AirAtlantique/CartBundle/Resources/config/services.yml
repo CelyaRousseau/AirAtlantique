@@ -1,0 +1,7 @@
+parameters:
+#    Cart.example.class: AirAtlantique\CartBundle\Example
+
+services:
+#    Cart.example:
+#        class: %Cart.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

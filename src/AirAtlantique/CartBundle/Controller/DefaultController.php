@@ -1,6 +1,6 @@
 <?php
 
-namespace AirAtlantique\BasketBundle\Controller;
+namespace AirAtlantique\CartBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 

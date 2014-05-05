@@ -1,3 +1,0 @@
-basket_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: BasketBundle:Default:index }

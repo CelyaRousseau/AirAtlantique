@@ -11,8 +11,8 @@ flight:
     resource: "@FlightBundle/Resources/config/routing.yml"
     prefix:   /
 
-basket:
-    resource: "@BasketBundle/Resources/config/routing.yml"
+cart:
+    resource: "@CartBundle/Resources/config/routing.yml"
     prefix:   /
 
 payment:
