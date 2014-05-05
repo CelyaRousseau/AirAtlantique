@@ -7,9 +7,9 @@ web/bundles/*
 /bin/
 /components/
 
+
 # Configuration files
 app/config/*
 
 # Generated files
-src/AirAtlantique/GeneratorBundle/Ressources/public/json/flight.json
-src/AirAtlantique/GeneratorBundle/Ressources/public/json/rule.json
+src/AirAtlantique/GeneratorBundle/Ressources/public/json/*
