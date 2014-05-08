@@ -18,20 +18,8 @@
                   <p>date retour :{{ flight.returnDate|date("m/d/Y H:i") }}</p>
                 </div>
                 <div>
-                  <ul>
-                    {% if flight.planeId.first > 0 %}
-                      <li>{{ flight.planeId.first }}</li>
-                    {% endif %}
-                    {% if flight.planeId.business > 0 %}
-                      <li>{{ flight.planeId.business }}</li>
-                    {% endif %}
-                    {% if flight.planeId.premiumEconomy > 0 %}
-                      <li>{{ flight.planeId.premiumEconomy }}</li>
-                    {% endif %}
-                    {% if flight.planeId.economy > 0 %}
-                      <li>{{ flight.planeId.economy }}</li>
-                    {% endif %}
-                  </ul>
+                  {{ form(form) }}
+                  <input type="submit" />
                 </div>
               </div>
             {% else %}

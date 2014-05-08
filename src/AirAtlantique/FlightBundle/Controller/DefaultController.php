@@ -5,6 +5,8 @@ namespace AirAtlantique\FlightBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AirAtlantique\FlightBundle\Entity\Flight;
 use AirAtlantique\FlightBundle\Form\FlightType;
+use AirAtlantique\CartBundle\Entity\Seat;
+use AirAtlantique\CartBundle\Form\SeatType;
 
 class DefaultController extends Controller
 {
@@ -32,10 +34,10 @@ class DefaultController extends Controller
 
             //On va récupérer la méthode dans le repository afin de trouver toutes les annonces filtrées par les paramètres du formulaire
             $flightList = $em->getRepository('FlightBundle:Flight')->findFlightByParameters($data);
-
+            $formSeat = $this->createForm(new SeatType());
             //Puis on redirige vers la page de visualisation de cette liste d'annonces
             // return $this->redirect($this->generateUrl('flight_result', array('flightList'=>$flightList)));
-            return $this->render('FlightBundle::showFlights.html.twig', array('flightList'=>$flightList));
+            return $this->render('FlightBundle::showFlights.html.twig', array('flightList'=>$flightList, 'form'=>$formSeat->createView()));
         }
     }
 
