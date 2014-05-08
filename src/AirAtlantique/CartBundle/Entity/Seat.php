@@ -1,32 +1,39 @@
 <?php
-//src/AirAtlantique/PaymentBundle/Entity/Seat.php
-namespace AirAtlantique\PaymentBundle\Entity;
+
+namespace AirAtlantique\CartBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="Seat")
- * @ORM\Entity(repositoryClass="AirAtlantique\PaymentBundle\Entity\SeatRepository")
+ * Seat
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="AirAtlantique\CartBundle\Entity\SeatRepository")
  */
-
 class Seat
-{	
-         /**
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @var int
      */
     private $id;
-    
+
     /**
-	* @ORM\Column(type="string")
-    * @var string
-    */
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
     private $name;
 
- 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
     public function getId()
     {
         return $this->id;
