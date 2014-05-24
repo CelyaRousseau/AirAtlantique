@@ -3,7 +3,7 @@ static:
     path: /{slug}
     defaults: { _controller: FlightBundle:Static:index, slug: slug}
 
-# Flight routes
+# Flight Routes
 flight_index:
     pattern: /{_locale}/home
     defaults: { _controller: FlightBundle:Default:index }

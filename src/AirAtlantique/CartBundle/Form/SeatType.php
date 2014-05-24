@@ -46,8 +46,7 @@ class SeatType extends AbstractType
           'label'         => ''
         );
 
-        $form->add('seat', 'entity', $formOptions)
-        ->add('valider', 'submit', array('attr'  => array('class' => 'btn btn-success')));
+        $form->add('seat', 'entity', $formOptions);
       });
 
       

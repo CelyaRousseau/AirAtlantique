@@ -32,7 +32,6 @@ class DefaultController extends Controller
             //On récupère les données entrées dans le formulaire par l'utilisateur
             $data = $this->getRequest()->request->get('airatlantique_flightbundle_flighttype');
 
-            //On va récupérer la méthode dans le repository afin de trouver toutes les annonces filtrées par les paramètres du formulaire
             $forms = array();
             $flightList = $em->getRepository('FlightBundle:Flight')->findFlightByParameters($data);
 

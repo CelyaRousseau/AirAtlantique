@@ -1,3 +1,6 @@
 Cart_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: CartBundle:Default:index }
+    pattern: /{_locale}/cart
+    defaults: { _controller: CartBundle:Default:Add }
+    requirements:
+        _locale: en|fr
+
