@@ -4,28 +4,25 @@
   {% endblock %}
 
   {% block body %}
-    {# {{ dump(flightList) }} #}
     <div class="well">
         <h3>Liste des vols disponibles</h3>
-
         <div class='unlisted'>
-            {% for flight in flightList %}
+            {% for key, flight in flightList %}
               <div>
                 <div>
                   {{ flight.flightName }}
                   <p>durée :{{ flight.duration|date("H:i")}} </p>
                   <p>date départ :{{ flight.departureDate|date("m/d/Y H:i") }}</p>
-                  <p>date retour :{{ flight.returnDate|date("m/d/Y H:i") }}</p>
+                  <p>date d'arrivée :{{ flight.returnDate|date("m/d/Y H:i") }}</p>
                 </div>
                 <div>
-                  {{ form(form) }}
-                  <input type="submit" />
+                  {{ form(forms[key]) }}
                 </div>
               </div>
-            {% else %}
+              {% else %}
                 <p>Désolé il n'y a, pour le moment, aucun vol correspondant à votre recherche.</p>
+
             {% endfor %}
         </div>
-
     </div>
   {% endblock %}

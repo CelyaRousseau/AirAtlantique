@@ -33,11 +33,15 @@ class DefaultController extends Controller
             $data = $this->getRequest()->request->get('airatlantique_flightbundle_flighttype');
 
             //On va récupérer la méthode dans le repository afin de trouver toutes les annonces filtrées par les paramètres du formulaire
+            $forms = array();
             $flightList = $em->getRepository('FlightBundle:Flight')->findFlightByParameters($data);
-            $formSeat = $this->createForm(new SeatType());
+
+            foreach ($flightList as $flight) {
+                $forms[] = $this->createForm(new SeatType($flight))->createView();
+            }
             //Puis on redirige vers la page de visualisation de cette liste d'annonces
             // return $this->redirect($this->generateUrl('flight_result', array('flightList'=>$flightList)));
-            return $this->render('FlightBundle::showFlights.html.twig', array('flightList'=>$flightList, 'form'=>$formSeat->createView()));
+            return $this->render('FlightBundle::showFlights.html.twig', array('flightList'=>$flightList, 'forms' =>$forms ));
         }
     }
 

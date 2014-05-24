@@ -2,29 +2,55 @@
 
 namespace AirAtlantique\CartBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
+use AirAtlantique\FlightBundle\Entity\Flight;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+
 class SeatType extends AbstractType
 {
+
+    public $flight;
+
+    public function __construct(Flight $flight)
+    {
+        $this->flight = $flight;
+    }
         /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-             ->add('seatType','entity', 
-          array(
-            'class'         => 'CartBundle:Seat',
-            'property'      => 'name',
-            'required'      => true,
-            'expanded'      => true,
-            'multiple'      => false,
-            'label'         => ''
-          ))
-        ;
+
+      $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event){
+
+        $form   = $event->getForm();
+        $flight = $this->flight;
+
+        $formOptions = array(
+          'class'         => 'CartBundle:Seat',
+          'property'      => 'name',
+          'query_builder' => function(EntityRepository $er) use ($flight){
+              
+            return $er->getSeatAvailable($flight);
+
+          },
+          'required'      => true,
+          'expanded'      => true,
+          'multiple'      => false,
+          'label'         => ''
+        );
+
+        $form->add('seat', 'entity', $formOptions)
+        ->add('valider', 'submit', array('attr'  => array('class' => 'btn btn-success')));
+      });
+
+      
     }
     
     /**
@@ -32,9 +58,9 @@ class SeatType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AirAtlantique\CartBundle\Entity\Seat'
-        ));
+      $resolver->setDefaults(array(
+        'translation_domain' => 'messages'
+      ));
     }
 
     /**
@@ -42,6 +68,6 @@ class SeatType extends AbstractType
      */
     public function getName()
     {
-        return 'airatlantique_cartbundle_seat';
+      return 'airatlantique_cartbundle_seat';
     }
 }

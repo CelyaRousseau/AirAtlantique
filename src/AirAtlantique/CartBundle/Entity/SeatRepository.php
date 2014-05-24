@@ -12,28 +12,27 @@ use Doctrine\ORM\EntityRepository;
  */
 class SeatRepository extends EntityRepository
 {
-  // public function getSeatAvailable($flightList){
-  //   foreach ($flight as $key => $flightList) {
-  //     if($flight.isAvailable()){
-  //       return
-  //     }
-  //     return;
-  //   }
-  // }
+  public function getSeatAvailable($flight){
 
-  // public function isAvailable($flight){
+    $seatAvailable = array();
 
-  //   if ($flight->planeId->first > 0){
+    if ($flight->getPlaneId()->getFirst() > 0){
+      array_push($seatAvailable, "First");
+    }
+    if ($flight->getPlaneId()->getBusiness() > 0){
+      array_push($seatAvailable, "business");
+    } 
+    if ($flight->getPlaneId()->getPremiumEconomy() > 0){
+      array_push($seatAvailable, "Premium economy");
+    }
+    if ($flight->getPlaneId()->getEconomy() > 0){
+      array_push($seatAvailable, "Economy");
+    }
 
-  //   }
-  //   if ($flight->planeId->business > 0){
+    $query = $this->createQueryBuilder('seat');
 
-  //   } 
-  //   if ($flight->planeId->premiumEconomy > 0){
-
-  //   }
-  //   if ($flight->planeId->economy > 0){
-
-  //   }     
-  // }
+    return $query->where("seat.name IN(:available)")
+    ->setParameter('available', $seatAvailable);
+  }
 }
+
