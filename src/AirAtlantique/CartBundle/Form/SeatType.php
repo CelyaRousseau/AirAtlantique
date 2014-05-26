@@ -46,7 +46,9 @@ class SeatType extends AbstractType
           'label'         => ''
         );
 
-        $form->add('seat', 'entity', $formOptions);
+        $form->add('seat', 'entity', $formOptions)
+              ->add('id', 'hidden',
+                array('data'=>$flight->getId()));
       });
 
       
