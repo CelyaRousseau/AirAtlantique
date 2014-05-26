@@ -14,10 +14,13 @@
                   <p>durée :{{ flight.duration|date("H:i")}} </p>
                   <p>date départ :{{ flight.departureDate|date("m/d/Y H:i") }}</p>
                   <p>date d'arrivée :{{ flight.returnDate|date("m/d/Y H:i") }}</p>
+
                 </div>
                 <div>
-                  {{ form(forms[key]) }}
-                  <a class='btn btn-primary' href="{{ path('Cart_homepage') }}">{{ 'form.search.submit'|trans }}</a>
+                  {{ form_start(forms[key], {'action': path('Cart_homepage_post'), 'method' : 'POST'}) }}
+                    {{ form_row(forms[key].seat) }}
+                    <input type="submit" class='btn btn-primary' value="{{'form.search.submit'|trans }}" />
+                  {{ form_end(forms[key]) }}
                 </div>
               </div>
               {% else %}

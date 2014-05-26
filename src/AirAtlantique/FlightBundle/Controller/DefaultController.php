@@ -9,6 +9,7 @@ use AirAtlantique\CartBundle\Entity\Seat;
 use AirAtlantique\CartBundle\Form\SeatType;
 use AirAtlantique\CartBundle\Entity\PlaneTicket;
 use Symfony\Component\HttpFoundation\Session\Session;
+use AirAtlantique\CartBundle\Resources\utils\UtilSession as UtilSession;
 
 class DefaultController extends Controller 
 {
@@ -43,17 +44,20 @@ class DefaultController extends Controller
           $forms[] = $this->createForm(new SeatType($flight))->createView();
         }
 
-        $session      = new Session();
+        $session = new Session();
         $planeTicket  = new PlaneTicket();
         $ticketNumber = $data['ticketNumber'];
 
         $planeTicket->setTicketNumber($ticketNumber);   
 
         if($session->has('panier')){
-
+          UtilSession::deletePlaneTicketWithoutFlight();
+          $panier = UtilSession::getPanier();
+          array_push($panier,$planeTicket->serialize());
+          UtilSession::storeSession("panier",$panier);
         }
         else{
-          $session->set("panier",array($planeTicket->serialize()));    
+          UtilSession::storeSession("panier",array($planeTicket->serialize()));    
         }
         
 

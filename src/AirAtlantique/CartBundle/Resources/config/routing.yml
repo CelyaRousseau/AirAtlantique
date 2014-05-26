@@ -1,6 +1,15 @@
-Cart_homepage:
+Cart_homepage_get:
     pattern: /{_locale}/cart
-    defaults: { _controller: CartBundle:Default:Add }
+    defaults: { _controller: CartBundle:Default:index }
     requirements:
         _locale: en|fr
+        _method: get
+
+Cart_homepage_post:
+    pattern: /{_locale}/cart
+    defaults: { _controller: CartBundle:Default:add }
+    requirements:
+        _locale: en|fr
+        _method: post
+
 
