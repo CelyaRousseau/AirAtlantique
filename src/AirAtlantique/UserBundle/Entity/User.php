@@ -11,7 +11,7 @@ use FOS\UserBundle\Model\User as BaseUser;
  * @ORM\Entity(repositoryClass="AirAtlantique\UserBundle\Entity\UserRepository")
  */
 
-class User extends BaseUser
+class User extends BaseUser implements \Serializable
 {
         /**
      * @ORM\Id
@@ -234,5 +234,33 @@ class User extends BaseUser
     public function getCountry()
     {
         return $this->country;
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->name,
+            $this->lastName,
+            $this->firstName,
+            $this->gender,
+            $this->phoneNumber,
+            $this->address,
+            $this->city,
+            $this->country
+            ));
+    }
+
+    public function unserialize($serialized)
+    {
+        list(
+            $this->name,
+            $this->lastName,
+            $this->firstName,
+            $this->gender,
+            $this->phoneNumber,
+            $this->address,
+            $this->city,
+            $this->country) 
+        = unserialize($serialized);
     }
 }

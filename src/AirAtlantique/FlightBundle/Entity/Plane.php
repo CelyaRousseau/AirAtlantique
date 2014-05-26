@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="Plane")
  * @ORM\Entity(repositoryClass="AirAtlantique\FlightBundle\Entity\PlaneRepository")
  */
-class Plane{
+class Plane implements \Serializable{
 	/**
      * @ORM\Id
      * @ORM\Column(type="string")
@@ -185,5 +185,29 @@ class Plane{
     public function getEconomy()
     {
         return $this->economy;
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->name,
+            $this->number,
+            $this->first,
+            $this->business,
+            $this->premiumEconomy,
+            $this->economy
+            ));
+    }
+
+    public function unserialize($serialized)
+    {
+        list(
+            $this->name,
+            $this->number,
+            $this->first,
+            $this->business,
+            $this->premiumEconomy,
+            $this->economy) 
+        = unserialize($serialized);
     }
 }

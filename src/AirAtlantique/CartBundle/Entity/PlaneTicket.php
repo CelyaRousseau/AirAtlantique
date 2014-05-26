@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AirAtlantique\CartBundle\Entity\PlaneTicketRepository")
  */
-class PlaneTicket
+class PlaneTicket implements \Serializable
 {
     /**
      * @var integer
@@ -41,10 +41,11 @@ class PlaneTicket
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AirAtlantique\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="AirAtlantique\CartBundle\Entity\Seat")
      * @ORM\JoinColumn(name="id", referencedColumnName="id")
      */
     private $seat;
+
 
 
     /**
@@ -83,10 +84,10 @@ class PlaneTicket
     /**
      * Set flight
      *
-     * @param \stdClass $flight
+     * @param \AirAtlantique\FlightBundle\Entity\Flight $flight
      * @return PlaneTicket
      */
-    public function setFlight($flight)
+    public function setFlight(\AirAtlantique\FlightBundle\Entity\Flight $flight = null)
     {
         $this->flight = $flight;
 
@@ -96,7 +97,7 @@ class PlaneTicket
     /**
      * Get flight
      *
-     * @return \stdClass 
+     * @return \AirAtlantique\FlightBundle\Entity\Flight 
      */
     public function getFlight()
     {
@@ -106,10 +107,10 @@ class PlaneTicket
     /**
      * Set user
      *
-     * @param \stdClass $user
+     * @param \AirAtlantique\UserBundle\Entity\User $user
      * @return PlaneTicket
      */
-    public function setUser($user)
+    public function setUser(\AirAtlantique\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -119,7 +120,7 @@ class PlaneTicket
     /**
      * Get user
      *
-     * @return \stdClass 
+     * @return \AirAtlantique\UserBundle\Entity\User 
      */
     public function getUser()
     {
@@ -127,25 +128,46 @@ class PlaneTicket
     }
 
     /**
-     * Set classtype
+     * Set seat
      *
-     * @param \stdClass $classtype
+     * @param \AirAtlantique\CartBundle\Entity\Seat $seat
      * @return PlaneTicket
      */
-    public function setClasstype($classtype)
+    public function setSeat(\AirAtlantique\CartBundle\Entity\Seat $seat = null)
     {
-        $this->classtype = $classtype;
+        $this->seat = $seat;
 
         return $this;
     }
 
     /**
-     * Get classtype
+     * Get seat
      *
-     * @return \stdClass 
+     * @return \AirAtlantique\CartBundle\Entity\Seat 
      */
-    public function getClasstype()
+    public function getSeat()
     {
-        return $this->classtype;
+        return $this->seat;
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->ticketnumber,
+            $this->flight,
+            $this->user,
+            $this->seat));
+    }
+
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->ticketnumber,
+            $this->flight,
+            $this->user,
+            $this->seat) 
+        = unserialize($serialized);
     }
 }

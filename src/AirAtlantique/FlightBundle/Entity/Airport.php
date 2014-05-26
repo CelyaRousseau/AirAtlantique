@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="AirAtlantique\FlightBundle\Entity\AirportRepository")
  */
 
-class Airport
+class Airport implements \Serializable
 {
 	/**
      * @ORM\Id
@@ -143,5 +143,27 @@ class Airport
     public function getNumrunway()
     {
         return $this->numrunway;
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->city,
+            $this->abbreviation,
+            $this->nameAirport,
+            $this->numrunway
+            ));
+    }
+
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->city,
+            $this->abbreviation,
+            $this->nameAirport,
+            $this->numrunway) 
+        = unserialize($serialized);
     }
 }

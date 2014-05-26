@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AirAtlantique\FlightBundle\Entity\FlightRepository")
  */
-class Flight
+class Flight implements \Serializable
 {
     /**
      * @var integer
@@ -78,6 +78,19 @@ class Flight
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set id
+     *
+     * @param number $id
+     * @return Flight
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     /**
@@ -262,5 +275,34 @@ class Flight
     public function getPlaneId()
     {
         return $this->planeId;
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->departureDate,
+            $this->returnDate,
+            $this->departureCity,
+            $this->destinationCity,
+            $this->flightName,
+            $this->duration,
+            $this->reference,
+            $this->planeId));
+    }
+
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->departureDate,
+            $this->returnDate,
+            $this->departureCity,
+            $this->destinationCity,
+            $this->flightName,
+            $this->duration,
+            $this->reference,
+            $this->planeId) 
+        = unserialize($serialized);
     }
 }
