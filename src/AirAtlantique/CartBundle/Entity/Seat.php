@@ -28,6 +28,13 @@ class Seat
      */
     private $name;
 
+    /**
+     * @var decimal
+     *
+     * @ORM\Column(name="coefficient", type="decimal", precision=2, scale=1)
+     */
+    private $coefficient;
+
 
     /**
      * Set name
@@ -73,5 +80,28 @@ class Seat
     public function getName()
     {
         return $this->name;
+    }
+
+     /**
+     * Set coefficient
+     *
+     * @param decimal $coefficient
+     * @return Seat
+     */
+    public function setCoefficient($coefficient)
+    {
+        $this->coefficient = $coefficient;
+
+        return $this;
+    }
+
+    /**
+     * Get coefficient
+     *
+     * @return decimal 
+     */
+    public function getCoefficient()
+    {
+        return $this->coefficient;
     }
 }
