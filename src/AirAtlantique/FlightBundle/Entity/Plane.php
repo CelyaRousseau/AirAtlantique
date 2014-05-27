@@ -9,7 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="Plane")
  * @ORM\Entity(repositoryClass="AirAtlantique\FlightBundle\Entity\PlaneRepository")
  */
-class Plane implements \Serializable{
+class Plane 
+{
 	/**
      * @ORM\Id
      * @ORM\Column(type="string")

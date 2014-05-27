@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AirAtlantique\CartBundle\Entity\SeatRepository")
  */
-class Seat implements \Serializable
+class Seat
 {
     /**
      * @var integer
@@ -73,20 +73,5 @@ class Seat implements \Serializable
     public function getName()
     {
         return $this->name;
-    }
-
-    public function serialize()
-    {
-        return serialize(array(
-            $this->id,
-            $this->name));
-    }
-
-    public function unserialize($serialized)
-    {
-        list(
-            $this->id,
-            $this->name) 
-        = unserialize($serialized);
     }
 }
