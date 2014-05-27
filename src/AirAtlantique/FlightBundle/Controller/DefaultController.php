@@ -44,23 +44,28 @@ class DefaultController extends Controller
           $forms[] = $this->createForm(new SeatType($flight))->createView();
         }
 
-        $session = new Session();
+        $session      = new Session();
         $planeTicket  = new PlaneTicket();
         $ticketNumber = $data['ticketNumber'];
 
+        // J'ajoute la recherche de vol en session
+        $search  = $data;
+        $session->set('search', $search);
+
+
         $planeTicket->setTicketNumber($ticketNumber);   
+        $planeTicketSerialized = serialize($planeTicket);
 
         if($session->has('panier')){
           UtilSession::deletePlaneTicketWithoutFlight();
           $panier = UtilSession::getPanier();
-          array_push($panier,$planeTicket->serialize());
+          array_push($panier,$planeTicketSerialized);
           UtilSession::storeSession("panier",$panier);
         }
         else{
-          UtilSession::storeSession("panier",array($planeTicket->serialize()));    
+          UtilSession::storeSession("panier",array($planeTicketSerialized));    
         }
         
-
         //Puis on redirige vers la page de visualisation de cette liste d'annonces
         // return $this->redirect($this->generateUrl('flight_result', array('flightList'=>$flightList)));
         return $this->render('FlightBundle::showFlights.html.twig', array('flightList'=>$flightList, 'forms' =>$forms ));

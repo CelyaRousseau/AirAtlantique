@@ -4,7 +4,8 @@
   {% endblock %}
 
   {% block body %}
-    <div class="well">
+    <div class="container">
+      <div class="well">
         <h3>Liste des vols disponibles</h3>
         <div class='unlisted'>
             {% for key, flight in flightList %}
@@ -23,10 +24,10 @@
                   {{ form_end(forms[key]) }}
                 </div>
               </div>
-              {% else %}
-                <p>Désolé il n'y a, pour le moment, aucun vol correspondant à votre recherche.</p>
-
+            {% else %}
+              <p>Désolé il n'y a, pour le moment, aucun vol correspondant à votre recherche.</p>
             {% endfor %}
         </div>
-    </div>
+      </div>
+     </div>
   {% endblock %}

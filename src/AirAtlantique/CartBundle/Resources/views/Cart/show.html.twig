@@ -1,10 +1,12 @@
 {% extends '::base.html.twig' %}
   {% block body %}
-    {% for planeTicket in planeTickets %}
-      {{ planeTicket.ticketnumber }}
-      {{ planeTicket.flight.flightName }}
-      {{ planeTicket.seat.name }}
-    {% else %}
-      vous n'avez actuellement aucun vol dans votre panier
-    {% endfor %}
+    <div class="container">
+      {% for planeTicket in planeTickets %}
+        {{ planeTicket.ticketnumber }}
+        {{ planeTicket.flight.flightName }}
+        {{ planeTicket.seat.name }}
+      {% else %}
+        vous n'avez actuellement aucun vol dans votre panier
+      {% endfor %}
+    </div>
   {% endblock %}

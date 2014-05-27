@@ -8,6 +8,7 @@ use AirAtlantique\FlightBundle\Entity\Flight;
 use AirAtlantique\CartBundle\Entity\Seat;
 use AirAtlantique\CartBundle\Form\SeatType;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Request;
 use AirAtlantique\CartBundle\Resources\utils\UtilSession as UtilSession;
 
 class DefaultController extends Controller
@@ -20,7 +21,7 @@ class DefaultController extends Controller
   public function addAction(){
      //On récupère la requête
     $request  = $this->getRequest();
-    $data     = $this->getRequest()->request->get('airatlantique_cartbundle_seat');
+    $data     = $request->request->get('airatlantique_cartbundle_seat');
 
     $flightId = $data['id'];
     $em       = $this->getDoctrine()->getManager();
@@ -37,10 +38,26 @@ class DefaultController extends Controller
 
           UtilSession::storeFlightAndSeat($flight, $seat);
           $planeTickets = UtilSession::getAllPlaneTicket();
-  
-          // prévoir un foreach... pour plusieurs billets
+          $search = UtilSession::getCurrentSearch();
+          $tripChoices = $search['tripChoices'];
+          
+          if($tripChoices == 'ar'){
 
-          return $this->render('CartBundle:Cart:show.html.twig', array('planeTickets'=> $planeTickets));
+            $newSearch = UtilSession::getReturnSearch();
+            $isNotSearched = UtilSession::isNotSearched($newSearch);
+            if($isNotSearched){
+              $request->request->set('airatlantique_flightbundle_flighttype', $newSearch);
+              $request->request->set('REQUEST_METHOD','POST');
+              return $this->forward('FlightBundle:Default:index');
+            }
+
+            return $this->render('CartBundle:Cart:show.html.twig', array('planeTickets'=> $planeTickets));
+          
+          } 
+          else{
+            return $this->render('CartBundle:Cart:show.html.twig', array('planeTickets'=> $planeTickets));
+          }
+
       } 
 
       return $this->render('CartBundle:Cart:show.html.twig');

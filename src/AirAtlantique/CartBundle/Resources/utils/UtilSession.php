@@ -16,10 +16,28 @@ class UtilSession
     $currentPlaneTicket = $panier[$nbticket-1];
 
     // Récuperer le planeTicket courant pour y mettre à jour les données
-    $planeTicket = new PlaneTicket();
-    $planeTicket->unserialize($currentPlaneTicket);
+    $planeTicket = unserialize($currentPlaneTicket);
 
     return $planeTicket;
+  }
+
+  public static function getBeforeTheLastPlaneTicket(){
+     // Récupère la session courante
+    $nbticket = UtilSession::countCart();
+
+    if($nbticket > 1){
+
+    $panier = UtilSession::getPanier();
+    $currentPlaneTicket = $panier[$nbticket-1];
+
+    // Récuperer le planeTicket courant pour y mettre à jour les données
+    $planeTicket = unserialize($currentPlaneTicket);
+
+    return $planeTicket;      
+    }
+    else{
+      return false;
+    }
   }
 
   public static function getAllPlaneTicket()
@@ -29,8 +47,7 @@ class UtilSession
     $planeTickets = array();
 
     foreach ($panier as $planeTicket) {
-      $unserializePlaneTicket = new PlaneTicket();
-      $unserializePlaneTicket->unserialize($planeTicket);
+      $unserializePlaneTicket = unserialize($planeTicket);
       array_push($planeTickets,$unserializePlaneTicket); 
     }
 
@@ -47,7 +64,7 @@ class UtilSession
     
     $nbticket = UtilSession::countCart();
     $panier = UtilSession::getPanier();
-    $panier[$nbticket-1] = $planeTicket->serialize();
+    $panier[$nbticket-1] = serialize($planeTicket);
 
     UtilSession::storeSession('panier',$panier);
   }
@@ -62,6 +79,12 @@ class UtilSession
   {
     $session = new Session();
     return $session->get('panier');
+  }
+
+   public static function getCurrentSearch()
+  {
+    $session = new Session();
+    return $session->get('search');
   }
 
   public static function deletePlaneTicketWithoutFlight()
@@ -80,5 +103,51 @@ class UtilSession
   {
     $session = new Session();
     $session->set($name,$value);
+  }
+
+  public static function getReturnSearch(){
+
+    $data = UtilSession::getCurrentSearch();
+
+    $departureCity   = $data['departureCity'];
+    $destinationCity = $data['destinationCity'];
+
+    $departureDate   = $data['departureDate'];
+    $returnDate      = $data['returnDate'];
+
+    $data['departureCity']   = $destinationCity;
+    $data['destinationCity'] = $departureCity;
+
+    $data['departureDate']   = $returnDate;
+    $data['returnDate']      = $departureDate;
+
+    return $data;
+  }
+
+  public static function isNotSearched($newSearch){
+
+    $BeforeTheLastPlaneTicket = UtilSession::getBeforeTheLastPlaneTicket();
+
+    if($BeforeTheLastPlaneTicket){
+
+      $lastDepartureDate = $BeforeTheLastPlaneTicket->getFlight()->getDepartureDate();
+      $lastDepartureCity = $BeforeTheLastPlaneTicket->getFlight()->getDepartureCity();
+      $lastReturnDate    = $BeforeTheLastPlaneTicket->getFlight()->getReturnDate();
+      $lastReturnCity    = $BeforeTheLastPlaneTicket->getFlight()->getDestinationCity();
+
+      array_push($planeTicket, $lastDepartureDate, $lastDepartureCity, $lastReturnDate, $lastReturnCity);
+      array_push($search, $newSearch['DepartureDate'], $newSearch['DepartureCity'], $newSearch['ReturnDate'], $newSearch['ReturnCity']);
+
+      if($planeTicket == $search){
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
+    else{
+      return true;
+    }
+
   }
 }
