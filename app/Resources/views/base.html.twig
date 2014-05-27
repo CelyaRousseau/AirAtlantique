@@ -12,8 +12,8 @@
 			<script src='{{ asset_url }}' type="text/javascript"></script>
 		{% endjavascripts %}
 		{% stylesheets 
-			'bundles/AirAtlantique/css/*'
 			'bootstrap/css/*'
+			'bundles/AirAtlantique/css/*'
 	  	filter='cssrewrite' 
 	  %}
 			<link rel="stylesheet" type="text/css" href="{{ asset_url }}">
@@ -28,18 +28,10 @@
 	</head>
 
 	<body>
-		<div class='container-fluid'>
-			<div class='row-fluid span12'>
+		{% include '::header.html.twig' %}
+		{% block body %}{% endblock %}
+		{% include '::footer.html.twig' %}
 
-				{% include '::header.html.twig' %}
-				{% block body %}{% endblock %}
-				{% include '::footer.html.twig' %}
-				
-
-				
-
-				{% block script %}{% endblock %}
-			</div>
-		</div>
+		{% block script %}{% endblock %}
 	</body>
 </html>
