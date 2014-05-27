@@ -188,27 +188,8 @@ class Plane
         return $this->economy;
     }
 
-    public function serialize()
-    {
-        return serialize(array(
-            $this->name,
-            $this->number,
-            $this->first,
-            $this->business,
-            $this->premiumEconomy,
-            $this->economy
-            ));
-    }
-
-    public function unserialize($serialized)
-    {
-        list(
-            $this->name,
-            $this->number,
-            $this->first,
-            $this->business,
-            $this->premiumEconomy,
-            $this->economy) 
-        = unserialize($serialized);
-    }
+   public function GetTotalSeatAvailable(){
+    $sum = $this->first + $this->business + $this->premiumEconomy + $this->economy;
+    return $sum;
+   }
 }
