@@ -195,6 +195,9 @@ class UtilFlight
             $flight->setReference($reference);
             $flight->setPlaneId($planeId);
 
+            $basePrice = $this->calculatePricing($flight);
+            $flight->setPrice($basePrice);
+
             $this->em->persist($flight);
             
         }   
@@ -298,8 +301,8 @@ class UtilFlight
         $this->store("rule.json",$validFlight);
         //new PdfGenerator("name");
 
-        $this->persistAirports();
-        $this->persistPlanes();
+        // $this->persistAirports();
+        // $this->persistPlanes();
         $this->persistsFlight();
     }
 
@@ -365,6 +368,46 @@ class UtilFlight
             }
         }
 
+    }
+
+    /*
+    *   Calcul du pricing de base
+    */
+    private function calculatePricing($flight){
+      // marge prise par la compagnie
+      $marge = 1.30;
+      // prix du carburant
+      $fuel                 = $this->getFuelPrice($flight);
+      // Taxe des aéroports
+      $departAirportTaxes   = mt_rand(2,12);
+      $arrivalAirportTaxes  = mt_rand(2,12);
+      // Redevance des aéroport
+      $departChargeAirport  = mt_rand(4,22);
+      $arrivalChargeAirport = mt_rand(4,22);
+
+      $params = array($departAirportTaxes, $arrivalAirportTaxes, $departChargeAirport, $arrivalChargeAirport, $fuel);
+
+      $price  = array_sum($params) + array_sum($params) * $marge;
+
+      return $price;
+    }
+
+    private function getFuelPrice($flight){
+      // 900km/h -> 0,25km/s
+      // Baril de fuel -> 75.88 euros environ
+      // Baril = 159L
+      // 1L = 75.88/159 = 0.48
+      // l’A 380 consomme 2,9 litres de carburant pour 100 km par passager
+      // D=V×t  où  V= Vitesse , D= Distance parcourue et t=temps mis à la parcourir
+      $duration  = $flight->getDuration();
+      $now = new \DateTime();
+      $durationInSeconds = $now->format('U') - $duration->format('U');
+
+      $distance  = 0.25 * $durationInSeconds;
+
+      $fuelPrice =  0.48 * 2.9 * ($distance/100);
+
+      return $fuelPrice;
     }
 
     private function store($file,$datas)
