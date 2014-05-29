@@ -1,1 +1,49 @@
-Hello {{ name }}!
+{% extends '::base.html.twig' %}
+{% block body %}
+  <div class='container'>
+    <div class='row-fluid'>
+      <form action="{{path('generate_flights')}}" method="POST">
+        <div class='span3'>
+          <input type="submit" value="Générer des vols">
+        </div>
+      </form>
+      <form action="{{path('generate_airports')}}" method="POST">
+        <div class='span3'>
+          <input type="submit" value="Générer des aéroports">
+        </div>
+      </form>
+      <form action="{{path('generate_planes')}}" method="POST">
+        <div class='span3'>
+          <input type="submit" value="Générer des avions">
+        </div>
+      </form>
+      <form action="{{path('generate_users')}}" method="POST">
+        <div class='span3'>
+          <input type="submit" value="Générer des utilisateurs">
+        </div>
+      </form>
+    </div>
+    <div class='row-fluid'>
+      <form action="{{path('delete_flights')}}" method="POST">
+        <div class='span3'>
+          <input type="submit" value="Supprimer des vols">
+        </div>
+      </form>
+      <form action="{{path('delete_airports')}}" method="POST">
+        <div class='span3'>
+          <input type="submit" value="Supprimer des aéroports">
+        </div>
+      </form>
+      <form action="{{path('delete_planes')}}" method="POST">
+        <div class='span3'>
+          <input type="submit" value="Supprimer des avions">
+        </div>
+      </form>
+      <form action="{{path('delete_users')}}" method="POST">
+        <div class='span3'>
+          <input type="submit" value="Supprimer des utilisateurs">
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
