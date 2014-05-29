@@ -8,3 +8,8 @@ services:
 #    service.example:
 #        class: %service.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+services:
+    utilUser:
+        class: AirAtlantique\GeneratorBundle\Service\UtilUser
+        arguments: ["@kernel", '@doctrine.orm.entity_manager',"@security.encoder_factory"]
