@@ -3,6 +3,7 @@
 namespace AirAtlantique\FlightBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use \DateTime;
 
 /**
  * FlightRepository
@@ -22,12 +23,14 @@ class FlightRepository extends EntityRepository
               'departureCity'   => $data['departureCity'],
               'destinationCity' => $data['destinationCity'],            
           ));
+     
+      $date = date_format($data['departureDate'], 'd/m/Y H:i:s');
+      echo $date;
 
-      if($data['departureDate'])
-      {
-          $query->andWhere('myflights.departureDate = :departureDate')
-              ->setParameter('departureDate', $data['departureDate'], \Doctrine\DBAL\Types\Type::DATETIME);
-      } 
+      if($date !== null){
+        $query->andWhere('myflights.departureDate >= :departureDate')
+              ->setParameter('departureDate', new \DateTime($date), \Doctrine\DBAL\Types\Type::DATETIME);
+      }
 
       return $query->getQuery()->getResult();
     }
