@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class PlaneRepository extends EntityRepository
 {
+  public function deleteAll()
+    {
+      $query = $this->createQueryBuilder('deleteAll');
+
+      $query->delete();
+
+      $query->getQuery()->execute();
+    }
 }
