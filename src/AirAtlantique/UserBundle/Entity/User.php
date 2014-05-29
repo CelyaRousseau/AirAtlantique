@@ -64,9 +64,15 @@ class User extends BaseUser
     private $country;
 
     /**
-    * @ORM\OneToOne(targetEntity="AirAtlantique\UserBundle\Entity\MembershipCard", mappedBy="id")
+    * @ORM\OneToOne(targetEntity="AirAtlantique\UserBundle\Entity\MembershipCard", mappedBy="user")
     */
     private $membershipCard;
+
+    /**
+    * @ORM\Column(type="string", length=16, nullable=true)
+    * @var string
+    */
+    private $creditCard;
 
     /**
      * Get id
@@ -260,5 +266,28 @@ class User extends BaseUser
     public function getMembershipCard()
     {
         return $this->membershipCard;
+    }
+
+    /**
+     * Set creditCard
+     *
+     * @param \AirAtlantique\UserBundle\Entity\CreditCard $creditCard
+     * @return User
+     */
+    public function setCreditCard($creditCard = null)
+    {
+        $this->creditCard = $creditCard;
+
+        return $this;
+    }
+
+    /**
+     * Get creditCard
+     *
+     * @return \AirAtlantique\UserBundle\Entity\CreditCard 
+     */
+    public function getCreditCard()
+    {
+        return $this->creditCard;
     }
 }
