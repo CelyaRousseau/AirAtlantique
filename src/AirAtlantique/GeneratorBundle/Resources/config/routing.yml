@@ -1,3 +1,44 @@
 generator_homepage:
-    pattern:  /hello/{name}
+    pattern:  /admin
     defaults: { _controller: GeneratorBundle:Default:index }
+
+generate_flights:
+    pattern:  /generate/flights
+    defaults: {_controller: GeneratorBundle:Default:generateFlights}
+    methods:  [POST]
+
+delete_flights:
+    pattern:  /delete/flights
+    defaults: {_controller: GeneratorBundle:Default:deleteFlights}
+    methods:  [POST]
+
+generate_airports:
+    pattern:  /generate/airports
+    defaults: {_controller: GeneratorBundle:Default:generateAirports}
+    methods:  [POST]
+
+delete_airports:
+    pattern:  /delete/airports
+    defaults: {_controller: GeneratorBundle:Default:deleteAirports}
+    methods:  [POST]
+
+generate_planes:
+    pattern:  /generate/planes
+    defaults: {_controller: GeneratorBundle:Default:generatePlanes}
+    methods:  [POST]
+
+delete_planes:
+    pattern:  /delete/planes
+    defaults: {_controller: GeneratorBundle:Default:deletePlanes}
+    methods:  [POST]
+
+generate_users:
+    pattern:  /generate/users
+    defaults: {_controller: GeneratorBundle:Default:generateUsers}
+    methods:  [POST]
+
+delete_users:
+    pattern:  /delete/users
+    defaults: {_controller: GeneratorBundle:Default:deleteUsers}
+    methods:  [POST]
+
