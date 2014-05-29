@@ -306,40 +306,6 @@ class Flight
         return $this->planeId;
     }
 
-    public function CalculatePricing(){
-      // marge prise par la compagnie
-      $marge = 0.30;
-      // prix du carburant
-      $fuel = getFuelPrice();
-      // Taxe des aéroports
-      $departAirportTaxes = mt_rand(2,12);
-      $arrivalAirportTaxes = mt_rand(2,12);
-      // Redevance des aéroport
-      $departChargeAirport = mt_rand(4,22);
-      $arrivalChargeAirport = mt_rand(4,22);
-
-      $params = array($departAirportTaxes, $arrivalAirportTaxes, $departChargeAirport, $arrivalChargeAirport, $fuel);
-
-      $price = array_sum($params) + array_sum($params) * $marge;
-    }
-
-    public function getFuelPrice(){
-      // 900km/h -> 0,25km/s
-      // Baril de fuel -> 58,75 euros environ
-      // l’A 380 consomme 2,9 litres de carburant pour 100 km par passager
-      // D=V×t  où  V= Vitesse , D= Distance parcourue et t=temps mis à la parcourir
-      $duration = getDuration();
-      $durationInSeconds = strtotime("1970-01-01 $duration UTC");
-
-      $planeSeat = getPlaneId()->GetTotalSeatAvailable();
-      $distance = 0.25 * $durationInSeconds;
-
-      $fuelPrice =  58.75 * 2.9 * $distance;
-
-      echo $fuelPrice;
-      return $fuelPrice;
-    }
-
     public function getPricePerSeatType($seat){
       // Flight Price
       $initialPrice = $this->getPrice();
