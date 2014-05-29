@@ -25,7 +25,7 @@ user:
 
 generator:
     resource: "@GeneratorBundle/Resources/config/routing.yml"
-    prefix:  /
+    prefix:  /generator
 
 # Routing of FOSUserBundle
 fos_user_security:
