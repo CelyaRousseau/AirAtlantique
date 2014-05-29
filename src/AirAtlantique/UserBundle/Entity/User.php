@@ -39,31 +39,34 @@ class User extends BaseUser
      */
     private $gender;
 
-        /**
+    /**
      * @ORM\Column(type="string", length=10)
      * @var string
      */
     private $phoneNumber;
 
-        /**
+    /**
      * @ORM\Column(type="string", length=100, nullable=false)
      * @var string
      */
     private $address;
 
-        /**
+    /**
      * @ORM\Column(type="string", length=100, nullable=false)
      * @var string
      */
     private $city;
 
-        /**
+    /**
      * @ORM\Column(type="string", length=100, nullable=false)
      * @var string
      */
     private $country;
 
-
+    /**
+    * @ORM\OneToOne(targetEntity="AirAtlantique\UserBundle\Entity\MembershipCard", mappedBy="id")
+    */
+    private $membershipCard;
 
     /**
      * Get id
@@ -234,5 +237,28 @@ class User extends BaseUser
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Set membershipCard
+     *
+     * @param \AirAtlantique\UserBundle\Entity\MembershipCard $membershipCard
+     * @return User
+     */
+    public function setMembershipCard(\AirAtlantique\UserBundle\Entity\MembershipCard $membershipCard = null)
+    {
+        $this->membershipCard = $membershipCard;
+
+        return $this;
+    }
+
+    /**
+     * Get membershipCard
+     *
+     * @return \AirAtlantique\UserBundle\Entity\MembershipCard 
+     */
+    public function getMembershipCard()
+    {
+        return $this->membershipCard;
     }
 }

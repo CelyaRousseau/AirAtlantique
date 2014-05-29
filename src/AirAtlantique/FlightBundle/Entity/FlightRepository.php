@@ -14,20 +14,21 @@ class FlightRepository extends EntityRepository
 {
   public function findFlightByParameters($data)
     {
-        $query = $this->createQueryBuilder('myflights');
+      $query = $this->createQueryBuilder('myflights');
 
-        $query->where('myflights.departureCity = :departureCity ')
+      $query->where('myflights.departureCity = :departureCity ')
             ->andWhere('myflights.destinationCity = :destinationCity')
             ->setParameters(array(
-                'departureCity'   => $data['departureCity'],
-                'destinationCity' => $data['destinationCity'],            
-            ));
+              'departureCity'   => $data['departureCity'],
+              'destinationCity' => $data['destinationCity'],            
+          ));
 
-        // if($data['tripChoices'] = 'ar')
-        // {
-        //     $query->andWhere('myflights.returnDate = :returnDate')
-        //         ->setParameter('returnDate', $data['returnDate']);
-        // }   
-        return $query->getQuery()->getResult();
+      if($data['departureDate'])
+      {
+          $query->andWhere('myflights.departureDate = :departureDate')
+              ->setParameter('departureDate', $data['departureDate'], \Doctrine\DBAL\Types\Type::DATETIME);
+      } 
+
+      return $query->getQuery()->getResult();
     }
 }

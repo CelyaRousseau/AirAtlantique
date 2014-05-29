@@ -1,13 +1,13 @@
 <?php
-//src/AirAtlantique/UserBundle/Entity/MembershiCard.php
+//src/AirAtlantique/UserBundle/Entity/MembershipCard.php
 namespace AirAtlantique\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="MembershiCard")
- * @ORM\Entity(repositoryClass="AirAtlantique\UserBundle\Entity\MembershiCardRepository")
+ * @ORM\Table(name="MembershipCard")
+ * @ORM\Entity(repositoryClass="AirAtlantique\UserBundle\Entity\MembershipCardRepository")
  */
 
 class MembershipCard
@@ -26,7 +26,7 @@ class MembershipCard
 
     /**
     * @ORM\Id
-    * @ORM\ManyToOne(targetEntity="AirAtlantique\UserBundle\Entity\User")
+    * @ORM\OneToOne(targetEntity="AirAtlantique\UserBundle\Entity\User")
      */
     private $user;
 

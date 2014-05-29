@@ -64,8 +64,8 @@ class Flight
     private $reference;
 
     /**
-    * @ORM\Column(name="price", type="decimal", precision=2, scale=1)
-    * @var string
+    * @ORM\Column(name="price", type="decimal", precision=5, scale=2)
+    * @var decimal
     */
     private $price;
 
@@ -328,7 +328,6 @@ class Flight
       // Baril de fuel -> 58,75 euros environ
       // l’A 380 consomme 2,9 litres de carburant pour 100 km par passager
       // D=V×t  où  V= Vitesse , D= Distance parcourue et t=temps mis à la parcourir
-
       $duration = getDuration();
       $durationInSeconds = strtotime("1970-01-01 $duration UTC");
 
@@ -340,11 +339,6 @@ class Flight
       echo $fuelPrice;
       return $fuelPrice;
     }
-
-    // public function CalculatePricing($seat){
-    //   $Seat = GetTotalSeatAvailable();
-
-    // }
 
     public function getPricePerSeatType($seat){
       // Flight Price

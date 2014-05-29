@@ -31,7 +31,7 @@ class Seat
     /**
      * @var decimal
      *
-     * @ORM\Column(name="coefficient", type="decimal", precision=2, scale=1)
+     * @ORM\Column(name="coefficient", type="decimal", precision=2, scale=2)
      */
     private $coefficient;
 

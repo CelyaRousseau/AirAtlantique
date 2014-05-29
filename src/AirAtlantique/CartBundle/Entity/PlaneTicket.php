@@ -46,6 +46,13 @@ class PlaneTicket
      */
     private $seat;
 
+    /**
+    * @ORM\Column(name="price", type="decimal", precision=5, scale=2)
+    * @var decimal
+    */
+    private $price;
+
+
 
 
     /**
@@ -149,4 +156,39 @@ class PlaneTicket
     {
         return $this->seat;
     }
+
+     /**
+     * Set price
+     *
+     * @param decimal $price
+     * @return PlaneTicket
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return decimal 
+     */
+    public function getPrice()
+    {
+      $flight       = $this->flight;
+      $seat         = $this->seat;
+      $ticketnumber = $this->ticketnumber;
+      
+      $initialPrice = $flight->getPrice();
+      $coef         = $seat->getCoefficient();
+
+      $price        = ($initialPrice + $initialPrice * $coef) * $ticketnumber;
+      $this->price  = $price;
+
+      return $this->price;
+    }
+
+
 }
