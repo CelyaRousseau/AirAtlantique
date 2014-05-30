@@ -23,13 +23,11 @@ class FlightRepository extends EntityRepository
               'departureCity'   => $data['departureCity'],
               'destinationCity' => $data['destinationCity'],            
           ));
-     
-      $date = date_format($data['departureDate'], 'd/m/Y H:i:s');
-      echo $date;
+      $date = DateTime::createFromFormat('d/m/Y', $data['departureDate']);
 
       if($date !== null){
         $query->andWhere('myflights.departureDate >= :departureDate')
-              ->setParameter('departureDate', new \DateTime($date), \Doctrine\DBAL\Types\Type::DATETIME);
+              ->setParameter('departureDate', $date);
       }
 
       return $query->getQuery()->getResult();
