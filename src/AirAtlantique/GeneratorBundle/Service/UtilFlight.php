@@ -413,7 +413,7 @@ class UtilFlight
     private function store($file,$datas)
     {
         file_put_contents($this->path."/".$file,json_encode($datas));
-        chmod($this->path."/".$file,0775);
+        // chmod($this->path."/".$file,0775);
     }
 
     private function unstore($file)
