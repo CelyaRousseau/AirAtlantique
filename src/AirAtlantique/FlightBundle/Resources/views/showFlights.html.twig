@@ -15,12 +15,11 @@
                   <p>durée :{{ flight.duration|date("H:i")}} </p>
                   <p>date départ :{{ flight.departureDate|date("d/m/Y H:i") }}</p>
                   <p>date d'arrivée :{{ flight.returnDate|date("d/m/Y H:i") }}</p>
-                  <p>{{ flight.price }} euros</p>
 
                 </div>
                 <div>
                   {{ form_start(forms[key], {'action': path('Cart_homepage_post'), 'method' : 'POST'}) }}
-                    {{ form_row(forms[key].seat) }}
+                    {{ form_widget(forms[key].seat) }}
                     <input type="submit" class='btn btn-primary' value="{{'form.search.submit'|trans }}" />
                   {{ form_end(forms[key]) }}
                 </div>

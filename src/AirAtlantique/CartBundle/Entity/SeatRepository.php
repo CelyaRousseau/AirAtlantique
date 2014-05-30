@@ -30,9 +30,19 @@ class SeatRepository extends EntityRepository
     }
 
     $query = $this->createQueryBuilder('seat');
+    $query->where("seat.name IN(:available)")
+                 ->setParameter('available', $seatAvailable);
 
+    $seatArray = array();
+    $seatArray = $query->getQuery()->getResult();
+
+    foreach ($seatArray as $seat) {
+      $seat->setPrice($flight);
+    }
+
+    $query = $this->createQueryBuilder('seat');
     return $query->where("seat.name IN(:available)")
-    ->setParameter('available', $seatAvailable);
+                 ->setParameter('available', $seatAvailable);
   }
 }
 

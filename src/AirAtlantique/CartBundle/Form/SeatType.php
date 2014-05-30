@@ -34,7 +34,6 @@ class SeatType extends AbstractType
 
         $formOptions = array(
           'class'         => 'CartBundle:Seat',
-          'property'      => 'name',
           'query_builder' => function(EntityRepository $er) use ($flight){
               
             return $er->getSeatAvailable($flight);
@@ -47,11 +46,9 @@ class SeatType extends AbstractType
         );
 
         $form->add('seat', 'entity', $formOptions)
-              ->add('id', 'hidden',
-                array('data'=>$flight->getId()));
+             ->add('id', 'hidden', array('data'=>$flight->getId()));
       });
 
-      
     }
     
     /**

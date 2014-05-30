@@ -305,12 +305,4 @@ class Flight
     {
         return $this->planeId;
     }
-
-    public function getPricePerSeatType($seat){
-      // Flight Price
-      $initialPrice = $this->getPrice();
-      $coef = $seat->getCoefficient();
-      $price   = $initialPrice + $initialPrice * $coef;
-      return $price;
-    }
 }
