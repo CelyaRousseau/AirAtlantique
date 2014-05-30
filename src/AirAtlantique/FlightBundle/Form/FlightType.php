@@ -57,7 +57,7 @@ class FlightType extends AbstractType {
             'required' => true, 
             'widget'   => 'single_text',
             'input'    => 'datetime',
-            'format'   => 'dd-MM-yyyy',
+            'format'   => 'dd/MM/yyyy',
             'attr'     => array('class' => 'datepicker'),
             'label'    => 'form.search.returnDate'
             ))
