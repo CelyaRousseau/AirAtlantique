@@ -39,7 +39,7 @@ class UtilUser
     */
     private function generateUserWithoutMemberShipCard($parsed_firstname,$parsed_lastname)
     {
-      for($i=0;$i<100;$i++)
+      for($i=0;$i<50;$i++)
       {
         $user      = $this->generateBaseInfo($parsed_firstname,$parsed_lastname);
         $users[$i] = $user;
@@ -54,7 +54,7 @@ class UtilUser
     */
     private function generateUserWithMemberShipCard($parsed_firstname,$parsed_lastname)
     {
-      for($i=0;$i<100;$i++)
+      for($i=0;$i<50;$i++)
       {
         $user = $this->generateBaseInfo($parsed_firstname,$parsed_lastname);
         $this->em->persist($user);
@@ -62,7 +62,7 @@ class UtilUser
         
         $repoSub      = $this->em->getRepository('UserBundle:Subscription');
         
-        $subscription = $repoSub->findOneBy(array('subscriptionName' => "premium"));
+        $subscription = $repoSub->findOneById(mt_rand(1,3));
 
         $membershipCard = new MembershipCard();
         $membershipCard->setCardNumber($this->generatePassword());
