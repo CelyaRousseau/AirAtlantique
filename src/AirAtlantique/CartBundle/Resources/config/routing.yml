@@ -13,7 +13,7 @@ Cart_homepage_post:
         _method: post
 
 Cart_delete:
-    pattern: /{_locale}/cart/delete/{planeTicket}
+    pattern: /{_locale}/cart/delete/{planeTicketKey}
     defaults: { _controller: CartBundle:Default:delete }
     requirements:
         _locale: en|fr

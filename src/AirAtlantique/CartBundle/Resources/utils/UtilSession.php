@@ -81,7 +81,7 @@ class UtilSession
     return $session->get('panier');
   }
 
-   public static function getCurrentSearch()
+  public static function getCurrentSearch()
   {
     $session = new Session();
     return $session->get('search');

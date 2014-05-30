@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
   {% block body %}
     <div class="container">
-      {% for planeTicket in planeTickets %}
+      {% for key, planeTicket in planeTickets %}
         {{ planeTicket.ticketnumber }}
         {{ planeTicket.flight.flightName }}
         {{ planeTicket.seat.name }}
@@ -17,7 +17,7 @@
           <option value="8">8
           <option value="9">9
         </select>
-        {#  <a class='btn ' href="{{ path('Cart_delete', {'planeTicket': planeTicket.ticketnumber }) }}"><i class='icon-trash'></i></a> #}
+         <a class='btn ' href="{{ path('Cart_delete', {'planeTicketKey': key }) }}"><i class='icon-trash'></i></a>
       {% else %}
         vous n'avez actuellement aucun vol dans votre panier
       {% endfor %}

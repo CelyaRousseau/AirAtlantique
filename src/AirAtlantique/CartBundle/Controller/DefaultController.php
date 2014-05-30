@@ -63,22 +63,18 @@ class DefaultController extends Controller
       return $this->render('CartBundle:Cart:show.html.twig');
   }
 
-   public function deleteAction($id_question){
-      //Je récupère mon Entity manager
-      $em = $this->getDoctrine() ->getManager();
-      
-      //je récupère le sondage dans la BDD
-      $question = $em->getRepository("SondageBundle:Question")->find($id_question);
+   public function deleteAction($planeTicketKey){
 
-      $id_sondage = $question->getSondage()->getId();    
-
-      //Je le marque pour la suppression
-      $em->remove($question);
-      //Pousse vers la base de donnée (génère le delete)
-      $em->flush();
+      $planeTickets = UtilSession::getAllPlaneTicket();
+      unset($planeTickets[$planeTicketKey]);
+      UtilSession::storeSession('panier',$panier);
           
-      return $this->redirect($this->generateUrl("question_admin_homepage", array("id_sondage"=> $id_sondage)));
-    }
+      return $this->render('CartBundle:Cart:show.html.twig', array('planeTickets'=> $planeTickets));
+  }
+
+  // public function modifyAction($planeTicketKey){
+
+  // }
 
 
 }
