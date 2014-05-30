@@ -12,4 +12,11 @@ Cart_homepage_post:
         _locale: en|fr
         _method: post
 
+Cart_delete:
+    pattern: /{_locale}/cart/delete/{planeTicket}
+    defaults: { _controller: CartBundle:Default:delete }
+    requirements:
+        _locale: en|fr
+        id: \d+
+
 

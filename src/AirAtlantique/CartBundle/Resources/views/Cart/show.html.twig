@@ -6,6 +6,18 @@
         {{ planeTicket.flight.flightName }}
         {{ planeTicket.seat.name }}
         {{ planeTicket.price }}
+        <select name=''>
+          <option value="1">1
+          <option value="2">2
+          <option value="3">3
+          <option value="4">4
+          <option value="5">5
+          <option value="6">6
+          <option value="7">7
+          <option value="8">8
+          <option value="9">9
+        </select>
+        {#  <a class='btn ' href="{{ path('Cart_delete', {'planeTicket': planeTicket.ticketnumber }) }}"><i class='icon-trash'></i></a> #}
       {% else %}
         vous n'avez actuellement aucun vol dans votre panier
       {% endfor %}
