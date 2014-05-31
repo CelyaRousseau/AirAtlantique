@@ -46,14 +46,14 @@ class DefaultController extends Controller
 
         $session      = new Session();
         $planeTicket  = new PlaneTicket();
-        $ticketNumber = $data['ticketNumber'];
+        $ticketNumber = $data['ticketnumber'];
 
         // J'ajoute la recherche de vol en session
         $search  = $data;
         $session->set('search', $search);
 
 
-        $planeTicket->setTicketNumber($ticketNumber);   
+        $planeTicket->setTicketnumber($ticketNumber);   
         $planeTicketSerialized = serialize($planeTicket);
 
         if($session->has('panier')){

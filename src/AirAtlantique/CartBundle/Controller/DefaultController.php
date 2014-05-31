@@ -10,6 +10,8 @@ use AirAtlantique\CartBundle\Form\SeatType;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use AirAtlantique\CartBundle\Resources\utils\UtilSession as UtilSession;
+use AirAtlantique\UserBundle\Form\Type\RegistrationFormType;
+use AirAtlantique\UserBundle\Form\UserAnonymousType;
 
 class DefaultController extends Controller
 {
@@ -39,25 +41,21 @@ class DefaultController extends Controller
 
           UtilSession::storeFlightAndSeat($flight, $seat);
           $planeTickets = UtilSession::getAllPlaneTicket();
-          $search = UtilSession::getCurrentSearch();
-          $tripChoices = $search['tripChoices'];
+          $search       = UtilSession::getCurrentSearch();
+          $tripChoices  = $search['tripChoices'];
           
           if($tripChoices == 'ar'){
 
-            $newSearch = UtilSession::getReturnSearch();
+            $newSearch     = UtilSession::getReturnSearch();
             $isNotSearched = UtilSession::isNotSearched($newSearch);
             if($isNotSearched){
               $request->request->set('airatlantique_flightbundle_flighttype', $newSearch);
               $request->request->set('REQUEST_METHOD','POST');
               return $this->forward('FlightBundle:Default:index');
             }
-
-            return $this->render('CartBundle:Cart:show.html.twig', array('planeTickets'=> $planeTickets));
           
           } 
-          else{
             return $this->render('CartBundle:Cart:show.html.twig', array('planeTickets'=> $planeTickets));
-          }
 
       } 
 
@@ -68,14 +66,40 @@ class DefaultController extends Controller
 
       $planeTickets = UtilSession::getAllPlaneTicket();
       $panier       = array_splice($planeTickets, $planeTicketKey,1);
-      UtilSession::storeSession('panier',$panier);
+      UtilSession::storeSession('panier',$planeTickets);
           
-      return $this->redirect($this->generateUrl('Cart_homepage_get'));;
+      return $this->redirect($this->generateUrl('Cart_homepage_get'));
   }
 
-  // public function modifyAction($planeTicketKey){
+  public function modifyAction($planeTicketKey, $ticketNumber){
+      $planeTickets = UtilSession::getAllPlaneTicket();
+      $planeTickets[$planeTicketKey]->setTicketnumber($ticketNumber);
+      $panier = array();
 
-  // }
+      foreach ($planeTickets as $planeTicket) {
+        $planetTicketSerialized = serialize($planeTicket);
+        array_push($panier,$planetTicketSerialized);
+      }
+      
+      UtilSession::storeSession('panier',$panier);
+
+      return $this->redirect($this->generateUrl('Cart_homepage_get'));
+  }
+
+  public function validateAction(){
+
+    if($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')){
+      // return $this->redirect($this->generateUrl('blop'));
+    }
+
+    $formAnonymous   = $this->createForm(new UserAnonymousType());
+    $formInscription = $this->createForm(new RegistrationFormType());
+
+    // $form = $this->container->get('airatlantique_user.registration.form.type');
+
+
+    return $this->render('CartBundle:Cart:validate.html.twig', array('formAnonymous'=> $formAnonymous->createView(),'formInscription'=> $formInscription->createView()));
+  }
 
 
 }

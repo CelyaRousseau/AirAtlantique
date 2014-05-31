@@ -19,4 +19,17 @@ Cart_delete:
         _locale: en|fr
         id: \d+
 
+Cart_modify:
+    pattern: /{_locale}/cart/modify/{planeTicketKey}/{ticketNumber}
+    defaults: { _controller: CartBundle:Default:modify }
+    requirements:
+        _locale: en|fr
+        id: \d+
+
+Cart_validate:
+    pattern: /{_locale}/cart/validate
+    defaults: { _controller: CartBundle:Default:validate }
+    requirements:
+        _locale: en|fr
+
 

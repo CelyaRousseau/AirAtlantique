@@ -61,7 +61,7 @@ class FlightType extends AbstractType {
             'attr'     => array('class' => 'datepicker'),
             'label'    => 'form.search.returnDate'
             ))
-      ->add('ticketNumber', 'choice',
+      ->add('ticketnumber', 'choice',
           array(
             'choices'  => array(1=>1,2=>2,3=>3,4=>4,5=>5,6=>6,7=>7,8=>8,9=>9,10=>10),
             'required' => true,
