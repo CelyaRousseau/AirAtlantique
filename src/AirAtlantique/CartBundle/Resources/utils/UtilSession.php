@@ -12,7 +12,7 @@ class UtilSession
   public static function getCurrentPlaneTicket(){
      // Récupère la session courante
     $nbticket = UtilSession::countCart();
-    $panier = UtilSession::getPanier();
+    $panier   = UtilSession::getPanier();
     $currentPlaneTicket = $panier[$nbticket-1];
 
     // Récuperer le planeTicket courant pour y mettre à jour les données
@@ -27,7 +27,7 @@ class UtilSession
 
     if($nbticket > 1){
 
-    $panier = UtilSession::getPanier();
+    $panier             = UtilSession::getPanier();
     $currentPlaneTicket = $panier[$nbticket-1];
 
     // Récuperer le planeTicket courant pour y mettre à jour les données
@@ -62,8 +62,8 @@ class UtilSession
     $planeTicket->setFlight($flight);
     $planeTicket->setSeat($seat);
     
-    $nbticket = UtilSession::countCart();
-    $panier = UtilSession::getPanier();
+    $nbticket            = UtilSession::countCart();
+    $panier              = UtilSession::getPanier();
     $panier[$nbticket-1] = serialize($planeTicket);
 
     UtilSession::storeSession('panier',$panier);
@@ -81,7 +81,7 @@ class UtilSession
     return $session->get('panier');
   }
 
-  public static function getCurrentSearch()
+   public static function getCurrentSearch()
   {
     $session = new Session();
     return $session->get('search');
@@ -90,7 +90,7 @@ class UtilSession
   public static function deletePlaneTicketWithoutFlight()
   {
     $planeTicket = UtilSession::getCurrentPlaneTicket();
-    $flight = $planeTicket->getFlight();
+    $flight      = $planeTicket->getFlight();
     if(!isset($flight))
     {
       $panier = UtilSession::getPanier();

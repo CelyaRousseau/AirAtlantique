@@ -15,7 +15,8 @@ class DefaultController extends Controller
 {
   /*----------------------Actions spécifiques au Panier-------------------------*/
   public function indexAction(){
-
+    $planeTickets = UtilSession::getAllPlaneTicket();
+    return $this->render('CartBundle:Cart:show.html.twig', array('planeTickets'=> $planeTickets));
   }
 
   public function addAction(){
@@ -66,10 +67,10 @@ class DefaultController extends Controller
    public function deleteAction($planeTicketKey){
 
       $planeTickets = UtilSession::getAllPlaneTicket();
-      unset($planeTickets[$planeTicketKey]);
+      $panier       = array_splice($planeTickets, $planeTicketKey,1);
       UtilSession::storeSession('panier',$panier);
           
-      return $this->render('CartBundle:Cart:show.html.twig', array('planeTickets'=> $planeTickets));
+      return $this->redirect($this->generateUrl('Cart_homepage_get'));;
   }
 
   // public function modifyAction($planeTicketKey){
