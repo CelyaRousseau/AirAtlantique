@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AirAtlantique\UserBundle\Entity\User;
 use AirAtlantique\UserBundle\Form\UserType;
+use AirAtlantique\UserBundle\Form\Type\RegistrationFormType;
 
 /**
  * User controller.
@@ -45,22 +46,22 @@ class UserController extends Controller
     public function createAction(Request $request)
     {
         // // On récupère le service
-        $utilFlight = $this->container->get('utilFlight');
-        $utilFlight->flightConstruct();
-        $utilFlight->ruleEngine();
+        // $utilFlight = $this->container->get('utilFlight');
+        // $utilFlight->flightConstruct();
+        // $utilFlight->ruleEngine();
 
         // Je pars du principe que $text contient le texte d'un message quelconque
         
         $entity = new User();
         $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
+        // $form->handleRequest($request);
+        $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity->setUsername($entity->getLastName().$entity->getFirstName());
             $encoder = $this->container->get('security.encoder_factory')->getEncoder($entity);
-            $entity->setPassword($encoder->encodePassword('blopblop', $entity->getSalt()));
-            $entity->setGender("M");
+            $entity->setPassword($encoder->encodePassword($entity->getPassword(), $entity->getSalt()));
             $em->persist($entity);
             $em->flush();
 
@@ -81,7 +82,7 @@ class UserController extends Controller
     */
     private function createCreateForm(User $entity)
     {
-        $form = $this->createForm(new UserType(), $entity, array(
+        $form = $this->createForm(new RegistrationFormType(), $entity, array(
             'action' => $this->generateUrl('user_create'),
             'method' => 'POST',
         ));

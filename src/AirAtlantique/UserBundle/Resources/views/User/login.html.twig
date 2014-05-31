@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+<form action='{{ path('fos_user_security_check') }}' method='post'>
+
+	    <div class='container'>
+	        <ul>
+	        	
+	    			<label>Identifiant : </label>
+		    		<input type='text' id='identifiant' name='_username' class='input-small' style='height:10px;'/>
+			    	<label >Mot de passe :</label>
+			    	<input type='password' id='password' name='_password' style='height:10px;' class='input-small'/>
+			    	<br/>
+			    	<input type='submit' name='valider' value='Connexion' class='btn btn-small pull-left'> 
+			</ul>
+	   </div>
+</form>
+{% endblock body %}

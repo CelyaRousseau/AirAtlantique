@@ -2,6 +2,8 @@ parameters:
 #    user.example.class: AirAtlantique\UserBundle\Example
 
 services:
-#    user.example:
-#        class: %user.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    airatlantique_user.registration.form.type:
+        class: AirAtlantique\UserBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: airatlantique_user_registration }

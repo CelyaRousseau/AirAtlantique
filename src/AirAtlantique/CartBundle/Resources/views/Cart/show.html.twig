@@ -1,19 +1,33 @@
 {% extends '::base.html.twig' %}
   {% block body %}
     <div class="container">
+
       {% for key, planeTicket in planeTickets %}
         {{ planeTicket.ticketnumber }}
         {{ planeTicket.flight.flightName }}
         {{ planeTicket.seat.name }}
         {{ planeTicket.price }}
-        <select name='number'>
+        <select name='number' id='ticketNumber'>
           {% for i in 1..9 %}           
-            <option value={{ i }}>{{ i }}</option>
+            <option data-url="{{ path('Cart_modify', {'ticketNumber':i,'planeTicketKey': key})}}" value={{ i }}>{{ i }}</option>
           {% endfor %}
         </select>
          <a class='btn ' href="{{ path('Cart_delete', {'planeTicketKey': key }) }}"><i class='icon-trash'></i></a>
       {% else %}
         vous n'avez actuellement aucun vol dans votre panier
       {% endfor %}
+
+       <a class='btn btn-primary ' href="{{ path('Cart_validate') }}">Valider <i class='icon-ok'></i></a>
     </div>
+  {% endblock %}
+
+  {% block script %}
+    <script type="text/javascript">
+      $( '#ticketNumber' ).change(function() {
+        var url = $('#ticketNumber').find('option:selected').data('url');
+        // url = window.location.host + url;
+        window.location.pathname = url;
+      });
+    </script>
+    
   {% endblock %}

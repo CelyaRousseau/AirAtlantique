@@ -1,0 +1,29 @@
+{% extends '::base.html.twig' %}
+  {% block body %}
+    <div class="container">
+      <div class='well form-actions span10'>
+        {{ form_start(formAnonymous) }}
+          {{ form_errors(formAnonymous) }}
+            {{ form_row(formAnonymous.email) }}
+            {{ form_row(formAnonymous.lastName) }}
+            {{ form_row(formAnonymous.firstName) }}
+            <input type="submit" class='btn btn-primary' value="{{'form.search.submit'|trans }}" />
+        {{ form_end(formAnonymous) }}
+      </div>
+      <div class='well form-actions span10'>
+          {{ form_start(formInscription, {'action': path('user_create'), 'method' : 'POST'}) }}
+          {{ form_errors(formInscription) }}
+            {{ form_row(formInscription.email) }}
+            {{ form_row(formInscription.lastName) }}
+            {{ form_row(formInscription.firstName) }}
+            {{ form_row(formInscription.gender) }}
+            {{ form_row(formInscription.phoneNumber) }}
+            {{ form_row(formInscription.address) }}
+            {{ form_row(formInscription.city) }}
+            {{ form_row(formInscription.country) }}
+            {{ form_row(formInscription.password) }}
+            <input type="submit" class='btn btn-primary' value="{{'form.search.submit'|trans }}" />
+        {{ form_end(formInscription) }}
+      </div>
+    </div>
+  {% endblock %}
