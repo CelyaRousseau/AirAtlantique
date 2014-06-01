@@ -20,7 +20,6 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            new AirAtlantique\UserBundle\UserBundle(),
             new AirAtlantique\PaymentBundle\PaymentBundle(),
             new AirAtlantique\CartBundle\CartBundle(),
             new AirAtlantique\FlightBundle\FlightBundle(),
@@ -28,6 +27,7 @@ class AppKernel extends Kernel
             new AirAtlantique\MailingBundle\MailingBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new AirAtlantique\GeneratorBundle\GeneratorBundle(),
+            new AirAtlantique\UserBundle\UserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
