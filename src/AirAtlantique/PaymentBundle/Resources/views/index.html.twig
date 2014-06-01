@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+  {% block body %}
+  blop
+  {% include 'PaymentBundle::planetickets.html.twig' with { 'planeTickets':planeTickets, 'user':user } %}
+
+  <div>
+    <form action="{{path('payment_verify')}}" method="POST">
+      <div>
+        <label>Numéro de carte bancaire</label>
+        <input type="number" name="number" maxlength="16"/>
+        <input type="number" name="CVV" maxlength="4"class="input-mini"/>
+      </div>
+      <div>
+        <input type="submit">
+      </div>
+    </form>
+  </div>
+  {% endblock %}

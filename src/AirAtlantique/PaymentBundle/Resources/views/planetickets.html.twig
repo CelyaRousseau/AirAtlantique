@@ -1,0 +1,10 @@
+<div>
+    {% for planeTicket in planeTickets %}
+      {{ user.email }}
+      {{ user.firstName }}
+      {{ planeTicket.ticketnumber }}
+      {{ planeTicket.flight.flightName }}
+      {{ planeTicket.seat.name }}
+      {{ planeTicket.price }}
+    {% endfor %}
+</div>
