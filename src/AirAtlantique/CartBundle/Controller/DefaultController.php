@@ -89,7 +89,7 @@ class DefaultController extends Controller
   public function validateAction(){
 
     if($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')){
-      // return $this->redirect($this->generateUrl('blop'));
+      return $this->redirect($this->generateUrl('payment_homepage'));
     }
 
     $formAnonymous   = $this->createForm(new UserAnonymousType());
@@ -100,6 +100,5 @@ class DefaultController extends Controller
 
     return $this->render('CartBundle:Cart:validate.html.twig', array('formAnonymous'=> $formAnonymous->createView(),'formInscription'=> $formInscription->createView()));
   }
-
 
 }
