@@ -24,7 +24,7 @@ class RegistrationFormType extends BaseType
                 'choices'  =>array( 'M'=>'homme', 'F'=>'femme' ),
                 'required' => false
                 ))
-            ->add('phoneNumber', 'number', array('label'=>'', 'required'=>false))
+            ->add('phoneNumber', 'number', array('label'=>'', 'required'=>true))
             ->add('address', 'text', array('label'=>'', 'required'=>true))
             ->add('city', 'text', array('label'=>'', 'required'=>true))
             ->add('country', 'text', array('label'=>'', 'required'=>true))
