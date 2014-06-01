@@ -1,25 +1,29 @@
 user:
     pattern: /
-    defaults: {_controller: UserBundle:User:index}
+    defaults: {_controller: UserBundle:Security:index}
 
 user_new:
     pattern: /new
-    defaults: {_controller: UserBundle:User:new}
+    defaults: {_controller: UserBundle:Security:new}
 
 user_create:
     pattern: /create
-    defaults: {_controller: UserBundle:User:create}
+    defaults: {_controller: UserBundle:Security:create}
     requirements:
         _method: POST
 
 user_show:
     pattern: /show/{id}
-    defaults: {_controller: UserBundle:User:show}
+    defaults: {_controller: UserBundle:Security:show}
 
 user_edit:
     pattern: /edit
-    defaults: {_controller: UserBundle:User:edit}
+    defaults: {_controller: UserBundle:Security:edit}
 
 user_delete:
     pattern: /delete/{id}
-    defaults: {_controller: UserBundle:User:delete}
+    defaults: {_controller: UserBundle:Security:delete}
+
+user_login:
+    pattern: /login
+    defaults: {_controller: UserBundle:Security:login}

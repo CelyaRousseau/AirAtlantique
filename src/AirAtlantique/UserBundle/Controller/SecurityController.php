@@ -2,7 +2,6 @@
 
 namespace AirAtlantique\UserBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -10,13 +9,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AirAtlantique\UserBundle\Entity\User;
 use AirAtlantique\UserBundle\Form\UserType;
 use AirAtlantique\UserBundle\Form\Type\RegistrationFormType;
-
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use FOS\UserBundle\Controller\SecurityController as BaseController;
+use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 /**
  * User controller.
  *
  * @Route("/user")
  */
-class UserController extends Controller
+class SecurityController extends BaseController
 {
 
     /**
@@ -59,9 +63,10 @@ class UserController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity->setUsername($entity->getLastName().$entity->getFirstName());
+            $entity->setUsername($entity->getLastName().".".$entity->getFirstName());
             $encoder = $this->container->get('security.encoder_factory')->getEncoder($entity);
             $entity->setPassword($encoder->encodePassword($entity->getPassword(), $entity->getSalt()));
+            $entity->setEnabled(true);
             $em->persist($entity);
             $em->flush();
 
@@ -254,5 +259,14 @@ class UserController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+    public function loginAction(Request $request)
+    {
+        parent::loginAction($request);
+
+        $url = $request->server->get('HTTP_REFERER');
+
+        return new RedirectResponse($url);
     }
 }
