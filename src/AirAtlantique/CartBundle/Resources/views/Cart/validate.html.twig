@@ -2,7 +2,7 @@
   {% block body %}
     <div class="container">
       <div class='well form-actions span10'>
-        {{ form_start(formAnonymous) }}
+        {{ form_start(formAnonymous, {'action': path('payment_homepage'), 'method' : 'POST'}) }}
           {{ form_errors(formAnonymous) }}
             {{ form_row(formAnonymous.email) }}
             {{ form_row(formAnonymous.lastName) }}
@@ -10,20 +10,45 @@
             <input type="submit" class='btn btn-primary' value="{{'form.search.submit'|trans }}" />
         {{ form_end(formAnonymous) }}
       </div>
-      <div class='well form-actions span10'>
-          {{ form_start(formInscription, {'action': path('user_create'), 'method' : 'POST'}) }}
-          {{ form_errors(formInscription) }}
-            {{ form_row(formInscription.email) }}
-            {{ form_row(formInscription.lastName) }}
-            {{ form_row(formInscription.firstName) }}
-            {{ form_row(formInscription.gender) }}
-            {{ form_row(formInscription.phoneNumber) }}
-            {{ form_row(formInscription.address) }}
-            {{ form_row(formInscription.city) }}
-            {{ form_row(formInscription.country) }}
-            {{ form_row(formInscription.password) }}
+     
+      <!-- Button to trigger modal -->
+      <a href="#myModal" role="button" class="btn" data-toggle="modal">Register now !</a>
+      <a href="#myModal1" role="button" class="btn" data-toggle="modal">Login</a>
+       
+      <!-- Modal -->
+      <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="myModalLabel">Register</h3>
+        </div>
+        {{ form_start(formInscription, {'action': path('user_create'), 'method' : 'POST'}) }}
+          <div class="modal-body">
+            {{ form_errors(formInscription) }}
+              {{ form_row(formInscription.email) }}
+              {{ form_row(formInscription.lastName) }}
+              {{ form_row(formInscription.firstName) }}
+              {{ form_row(formInscription.gender) }}
+              {{ form_row(formInscription.phoneNumber) }}
+              {{ form_row(formInscription.address) }}
+              {{ form_row(formInscription.city) }}
+              {{ form_row(formInscription.country) }}
+              {{ form_row(formInscription.password) }}           
+          </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
             <input type="submit" class='btn btn-primary' value="{{'form.search.submit'|trans }}" />
+          </div>
         {{ form_end(formInscription) }}
       </div>
+
+      {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        {{ app.user.username }}
+      {% endif %}
+
+      {% include 'UserBundle:User:login.html.twig' %}
+
     </div>
   {% endblock %}
+
+
+  
