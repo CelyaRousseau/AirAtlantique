@@ -18,39 +18,43 @@ security:
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
         main:
             id:  fos_user.user_provider.username
+        fos_userbundle:
+            id:  fos_user.user_provider.username
 
     firewalls:
         main:
             pattern:  ^/
-            anonymous: true
+            anonymous:  true
             provider:  main
             form_login:
-                login_path:  for_user_security_login
-                check_path:  for_user_security_check
+                provider:  fos_userbundle
+                remember_me:  true
+
             logout:
                 path:  for_user_security_logout
             remember_me:
                 key:  %secret%
+            logout:  true
 
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
-            security: false
+            security:  false
 
         login:
-            pattern:  ^/demo/secured/login$
-            security: false
+            pattern:  ^/(login$|register|resetting)
+            anonymous:  true
 
-        secured_area:
-            pattern:    ^/demo/secured/
-            form_login:
-                check_path: _security_check
-                login_path: _demo_login
-            logout:
-                path:   _demo_logout
-                target: _demo
+        # secured_area:
+        #     pattern:    ^/demo/secured/
+        #     form_login:
+        #         check_path: _security_check
+        #         login_path: _demo_login
+        #     logout:
+        #         path:   _demo_logout
+        #         target: _demo
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
 
     access_control:
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
