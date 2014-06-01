@@ -149,7 +149,7 @@ class UtilUser
     */
     private function creditCardControl($creditCard)
     {
-      $creditCard = intval(strrev($creditCard));
+      $creditCard = strrev(intval($creditCard));
       $creditCardArray  = array_map('intval', str_split($creditCard));
       $nbArray = array();
       $size = count($creditCardArray);
