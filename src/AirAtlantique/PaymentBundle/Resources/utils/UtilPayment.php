@@ -13,7 +13,7 @@ class UtilPayment
       $creditCard = strrev(intval($creditCard));
       $creditCardArray  = array_map('intval', str_split($creditCard));
 
-      // $controlNumber = array_splice($creditCardArray,0,1);
+      $controlNumber = array_splice($creditCardArray,0,1);
 
       $nbArray = array();
       $size = count($creditCardArray);
@@ -34,6 +34,8 @@ class UtilPayment
 
       $sum = array_sum($nbArray);
 
-      return ($sum%10);
+      $mod = $sum%10;
+
+      return ($mod==$controlNumber[0]);
     }
 }
