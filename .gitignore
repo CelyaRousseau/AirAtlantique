@@ -1,8 +1,6 @@
 # Symfony directories
 */logs/*
 */cache/*
-# web/uploads/*
-# web/bundles/*
 /bin/
 /components/
 
