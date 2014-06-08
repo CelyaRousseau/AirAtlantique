@@ -15,8 +15,8 @@ class DefaultController extends Controller
 
   public function indexAction(){
     $request  = $this->getRequest();
-    $entity = new User();
-    $form = $this->createForm(new UserAnonymousType(), $entity);
+    $user = new User();
+    $form = $this->createForm(new UserAnonymousType(), $user);
     $form->bind($request);
 
     if($form->isValid()){
@@ -25,14 +25,14 @@ class DefaultController extends Controller
         $user = $this->container->get('security.context')->getToken()->getUser();
       }
       else{
-        $user = $entity;
-        $entitySerialized = serialize($entity);
+        $entitySerialized = $user->serialize();
         UtilSession::storeSession('user',$entitySerialized);
+
       }
 
       $planeTickets = UtilSession::getAllPlaneTicket();
 
-      return $this->render('PaymentBundle::index.html.twig', array('planeTickets'=> $planeTickets, 'user' => $user));
+      return $this->render('PaymentBundle::index.html.twig', array('planeTickets'=> $planeTickets, 'user' => $user, 'message'=>''));
     }
 
     return $this->redirect($this->generateUrl('Cart_validate'));
@@ -46,6 +46,33 @@ class DefaultController extends Controller
 
       $control = UtilPayment::creditCardControl($number);
 
-      return $this->render('PaymentBundle::index.html.twig', array('planeTickets'=>'', 'user' => ''));
+      $user = UtilSession::getUser();
+
+      if($control)
+      {
+        $planeTickets = UtilSession::getAllPlaneTicket();
+        $message = "Un email vous a été envoyé";
+
+        $html         = $this->renderView('PaymentBundle::planetickets.html.twig', array('planeTickets'=> $planeTickets, 'user' => $user));
+        $pdfGenerator = $this->get('spraed.pdf.generator');
+        $pdf          = $pdfGenerator->generatePDF($html, 'UTF-8');
+
+        $mail = \Swift_Message::newInstance()
+            ->setFrom("admin@airatlantique.com")
+            ->setTo($user->getEmail())
+            ->setSubject('AirTlantique : Billet(s) d\'avion')
+            ->setBody('Bonjour,
+              Votre achat a bien été enregistré, vous trouverez ci-joint votre billet sous format pdf')
+            ->setContentType('text/html')
+            ->attach(\Swift_Attachment::newInstance($pdf, 'planetickets.pdf', 'application/pdf'));
+
+        $this->get('mailer')->send($mail);
+
+      } else
+      {
+        $message = "Votre numéro de carte est invalide";
+      }
+
+      return $this->render('PaymentBundle::index.html.twig', array('planeTickets'=>'', 'user' => $user,'message'=>$message));
   }
 }

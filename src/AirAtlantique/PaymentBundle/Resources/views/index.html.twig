@@ -3,12 +3,30 @@
   blop
   {% include 'PaymentBundle::planetickets.html.twig' with { 'planeTickets':planeTickets, 'user':user } %}
 
+  {{ message }}
+
   <div>
     <form action="{{path('payment_verify')}}" method="POST">
       <div>
-        <label>Numéro de carte bancaire</label>
-        <input type="number" name="number" maxlength="16"/>
-        <input type="number" name="CVV" maxlength="4"class="input-mini"/>
+        <span class="help-inline span3">Numéro de carte bancaire</span>
+        <input type="number" name="number" maxlength="16" required/>
+      </div>
+      <div>
+        <span class="help-inline span3">Date de validité</span>
+        <select>
+          {% for i in 1..12 %}
+            <option value={{i}}>{{i}}</option>
+          {% endfor %}
+        </select>
+        <select>
+          {% for i in 2014..2020 %}
+            <option value={{i}}>{{i}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <span class="help-inline span3">Cryptogramme de validation</span>
+        <input type="number" name="CVV" maxlength="4"class="input-mini" required/>
       </div>
       <div>
         <input type="submit">
