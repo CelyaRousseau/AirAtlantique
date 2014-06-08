@@ -32,7 +32,7 @@ class DefaultController extends Controller
 
       $planeTickets = UtilSession::getAllPlaneTicket();
 
-      return $this->render('PaymentBundle::index.html.twig', array('planeTickets'=> $planeTickets, 'user' => $user,'control'=>''));
+      return $this->render('PaymentBundle::index.html.twig', array('planeTickets'=> $planeTickets, 'user' => $user));
     }
 
     return $this->redirect($this->generateUrl('Cart_validate'));
@@ -46,14 +46,6 @@ class DefaultController extends Controller
 
       $control = UtilPayment::creditCardControl($number);
 
-      // if($control)
-      // {
-      //   $retour = 'ok';
-      // }else
-      //  {
-      //   $retour = 'ko';
-      //  }
-
-      return $this->render('PaymentBundle::index.html.twig', array('planeTickets'=>'', 'user' => '','control'=>$control));
+      return $this->render('PaymentBundle::index.html.twig', array('planeTickets'=>'', 'user' => ''));
   }
 }

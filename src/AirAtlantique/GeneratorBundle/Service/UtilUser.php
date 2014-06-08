@@ -145,7 +145,7 @@ class UtilUser
 
     /*
     * Méthode de vérification de carte bancaire avec algorithme de Luhn
-    * @return complétino du modulo 10
+    * @return complétion du modulo 10
     */
     private function creditCardControl($creditCard)
     {
@@ -179,7 +179,7 @@ class UtilUser
     private function generateRandomSeries($size)
     {
       $series = "";
-      for ($i=0; $i < $size+1; $i++) { 
+      for ($i=0; $i < $size; $i++) { 
         $series = $series."".mt_rand(0,9);
       }
 
