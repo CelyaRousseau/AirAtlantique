@@ -1,11 +1,11 @@
 # Symfony directories
 */logs/*
 */cache/*
-# web/uploads/*
-# web/bundles/*
+ web/uploads/*
+ web/bundles/*
 /bin/
 /components/
-
+/vendor/*
 
 # Configuration files
 app/config/*
