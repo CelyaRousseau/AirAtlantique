@@ -4,6 +4,7 @@ namespace AirAtlantique\CartBundle\Resources\utils;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 use AirAtlantique\CartBundle\Entity\PlaneTicket;
+use AirAtlantique\UserBundle\Entity\User;
 
 
 class UtilSession
@@ -149,5 +150,15 @@ class UtilSession
       return true;
     }
 
+  }
+
+  public static function getUser()
+  {
+    $session = new Session();
+    $userSerialized = $session->get('user');
+
+    $user = new User();
+    $user->unserialize($userSerialized);
+     return $user; 
   }
 }

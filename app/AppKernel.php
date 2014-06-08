@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new AirAtlantique\GeneratorBundle\GeneratorBundle(),
             new AirAtlantique\UserBundle\UserBundle(),
+            new Spraed\PDFGeneratorBundle\SpraedPDFGeneratorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

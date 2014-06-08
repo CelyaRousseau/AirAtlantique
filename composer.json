@@ -4,7 +4,9 @@
     "type": "project",
     "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-0": {
+            "": "src/"
+        }
     },
     "require": {
         "php": ">=5.3.3",
@@ -24,7 +26,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "dev-master",
         "components/jquery": "1.9.*",
-        "bmatzner/jquery-ui-bundle": "dev-master"
+        "bmatzner/jquery-ui-bundle": "dev-master",
+        "spraed/pdf-generator-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
