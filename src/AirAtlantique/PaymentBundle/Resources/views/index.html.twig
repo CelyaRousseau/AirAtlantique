@@ -9,7 +9,7 @@
     <form action="{{path('payment_verify')}}" method="POST">
       <div>
         <span class="help-inline span3">Numéro de carte bancaire</span>
-        <input type="number" name="number" maxlength="16" required/>
+        <input type="number" name="number" maxlength="16" required value="{{user.creditCard}}"/>
       </div>
       <div>
         <span class="help-inline span3">Date de validité</span>
