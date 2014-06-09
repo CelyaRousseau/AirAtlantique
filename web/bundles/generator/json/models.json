@@ -1,0 +1,266 @@
+{
+  "moyen_courrier": [
+    {
+      "name": "Airbus A318-100",
+      "number":"18",
+      "organisation": 
+        {
+          "first": "0",
+          "business": "0",
+          "premium_economy": "0",
+          "economy": "131"
+        }
+      
+    },
+    {
+      "name": "Airbus A319-100",
+      "number":"41",
+      "organisation": 
+        {
+          "first": "0",
+          "business": "26",
+          "premium_economy": "36",
+          "economy": "63"
+        }
+
+      
+    },
+    {
+      "name": "Airbus A320-200",
+      "number":"54",
+      "organisation": 
+        {
+          "first": "0",
+          "business": "26",
+          "premium_economy": "0",
+          "economy": "120"
+        }
+
+      
+    },
+    {
+      "name": "Airbus A321-100",
+      "number":"5",
+      "organisation": 
+        {
+          "first": "0",
+          "business": "0",
+          "premium_economy": "0",
+          "economy": "212"
+        }
+      
+    },
+    {
+      "name": "Airbus A321-200",
+      "number":"20",
+      "organisation": 
+        {
+          "first": "0",
+          "business": "39",
+          "premium_economy": "48",
+          "economy": "93"
+        }
+
+      
+    }
+  ],
+  "long_courrier": [
+    {
+      "name": "Airbus A330-200",
+      "number":"15",
+      "organisation": 
+        {
+          "first": "0",
+          "business": "40",
+          "premium_economy": "21",
+          "economy": "147"
+        }
+      
+    },
+    {
+      "name": "Airbus A340-300",
+      "number":"13",
+      "organisation": 
+        {
+          "first": "0",
+          "business": "30",
+          "premium_economy": "21",
+          "economy": "224"
+        }
+      
+    },
+    {
+      "name": "Airbus A380-800",
+      "number":"8",
+      "organisation": 
+        {
+          "first": "9",
+          "business": "80",
+          "premium_economy": "38",
+          "economy": "389"
+        }
+      
+    },
+    {
+      "name": "Boeing B747-400",
+      "number":"7",
+      "organisation": 
+        {
+          "first": "9",
+          "business": "36",
+          "premium_economy": "0",
+          "economy": "396"
+        }
+      
+    },
+    {
+      "name": "Boeing B777-200ER",
+      "number":"25",
+      "organisation": 
+        {
+          "first": "4",
+          "business": "49",
+          "premium_economy": "24",
+          "economy": "170"
+        }
+
+      
+    },
+    {
+      "name": "Boeing B777-300ER",
+      "number":"37",
+      "organisation": 
+        {
+          "first": "8",
+          "business": "67",
+          "premium_economy": "28",
+          "economy": "200"
+        }
+
+      
+    }
+  ],
+  "court_courrier": [
+    {
+      "name": "ATR 42",
+      "number":"21",
+      "organisation": 
+        {
+          "first": "0",
+          "business": "0",
+          "premium_economy": "0",
+          "economy": "48"
+        }
+      
+    },
+    {
+      "name": "ATR 72",
+      "number":"21",
+      "organisation": 
+        {
+          "first": "0",
+          "business": "0",
+          "premium_economy": "0",
+          "economy": "70"
+        }
+      
+    },
+    {
+      "name": "Bombardier CRJ 100",
+      "number":"30",
+      "organisation": 
+        {
+          "first": "0",
+          "business": "0",
+          "premium_economy": "0",
+          "economy": "50"
+        }
+      
+    },
+    {
+      "name": "Bombardier CRJ 700",
+      "number":"30",
+      "organisation": 
+        {
+          "first": "0",
+          "business": "0",
+          "premium_economy": "0",
+          "economy": "72"
+        }
+      
+    },
+    {
+      "name": "Bombardier CRJ 1000",
+      "number":"30",
+      "organisation": 
+        {
+          "first": "0",
+          "business": "0",
+          "premium_economy": "0",
+          "economy": "98"
+        }
+      
+    },
+    {
+      "name": "Embraer ERJ 145",
+      "number":"7",
+      "organisation": 
+        {
+          "first": "0",
+          "business": "0",
+          "premium_economy": "0",
+          "economy": "37"
+        }
+
+      
+    },
+    {
+      "name": "Embraer 170",
+      "number":"25",
+      "organisation": 
+        {
+          "first": "0",
+          "business": "0",
+          "premium_economy": "0",
+          "economy": "76"
+        }
+      
+    },
+    {
+      "name": "Embraer 190",
+      "number":"25",
+      "organisation": 
+        {
+          "first": "0",
+          "business": "0",
+          "premium_economy": "0",
+          "economy": "100"
+        }
+      
+    },
+    {
+      "name": "Avro RJ-85",
+      "number":"18",
+      "organisation": 
+        {
+          "first": "0",
+          "business": "0",
+          "premium_economy": "0",
+          "economy": "95"
+        }
+      
+    },
+    {
+      "name": "Fokker 50",
+      "number":"15",
+      "organisation": 
+        {
+          "first": "0",
+          "business": "0",
+          "premium_economy": "0",
+          "economy": "50"
+        }
+      
+    }
+  ]
+}

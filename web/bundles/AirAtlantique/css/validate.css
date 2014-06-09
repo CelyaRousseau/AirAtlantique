@@ -1,0 +1,20 @@
+.validate-form{
+  margin-top:10px;
+  padding-left: 50px;
+}
+
+.modalLink{
+  margin-top:20px;
+  border-left: solid 1px;
+  height: 280px;
+  text-align: center;
+}
+
+.modalLink h4{
+  padding-top: 100px;
+}
+
+.modalLink a:hover{
+  color: #f1433f;
+  text-decoration: none;
+}

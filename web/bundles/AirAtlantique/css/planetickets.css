@@ -1,0 +1,19 @@
+.planeticket{
+  padding-top: 10px;
+  background-color: Menu;
+}
+
+.user{
+  background-color: #3d4c53;
+  color: white;
+  text-align: left;
+  font-weight: bold;
+}
+
+.general{
+  text-align: center;
+}
+
+.detail{
+  text-align: left;
+}
