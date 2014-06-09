@@ -3,30 +3,30 @@
     <div class="row-fluid span12">
       <div class="container body cart">       
         <h3>Votre panier</h3>
-        <table class='span12'>
-          <thead class="table table-striped">
-            <th>Nom du vol</th>
-            <th>Type de place souhaité</th>
-            <th>Nombre de place</th>
-            <th>Prix du billet</th>
-            <th>Modifier</th>
-            <th>Supprimer</th>
-          </thead>
-        {% if planeTickets is defined %}
+        {% if planeTickets %}
+          <table class='span12'>
+            <thead class="table table-striped">
+              <th>Nom du vol</th>
+              <th>Type de place souhaité</th>
+              <th>Nombre de place</th>
+              <th>Prix du billet</th>
+              <th>Modifier</th>
+              <th>Supprimer</th>
+            </thead>
             <tbody>        
             {% for key, planeTicket in planeTickets %}
-                  <tr>
-                    <td>{{ planeTicket.flight.flightName }}</td>
-                    <td>{{ planeTicket.seat.name }}</td>
-                    <td>{{ planeTicket.ticketnumber }}</td>
-                    <td>{{ planeTicket.price }}</td>
-                    <td><select name='number' id='ticketNumber'>
-                      {% for i in 1..9 %}           
-                        <option data-url="{{ path('Cart_modify', {'ticketNumber':i,'planeTicketKey': key})}}" value={{ i }}>{{ i }}</option>
-                      {% endfor %}
-                    </select></td>
-                    <td><a class='btn' href="{{ path('Cart_delete', {'planeTicketKey': key }) }}"><i class='icon-trash'></i></a></td>
-                  </tr>
+              <tr>
+                <td>{{ planeTicket.flight.flightName }}</td>
+                <td>{{ planeTicket.seat.name }}</td>
+                <td>{{ planeTicket.ticketnumber }}</td>
+                <td>{{ planeTicket.price }}</td>
+                <td><select name='number' id='ticketNumber'>
+                  {% for i in 1..9 %}           
+                    <option data-url="{{ path('Cart_modify', {'ticketNumber':i,'planeTicketKey': key})}}" value={{ i }}>{{ i }}</option>
+                  {% endfor %}
+                </select></td>
+                <td><a class='btn' href="{{ path('Cart_delete', {'planeTicketKey': key }) }}"><i class='icon-trash'></i></a></td>
+              </tr>
             {% endfor %}
             </tbody>
           </table>
@@ -42,7 +42,6 @@
     <script type="text/javascript">
       $( 'tr' ).change(function() {
         var url = $(this).find('#ticketNumber').find('option:selected').data('url');
-        // url = window.location.host + url;
         window.location.pathname = url;
       });
     </script>
