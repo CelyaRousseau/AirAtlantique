@@ -1,0 +1,16 @@
+.cart table{
+  margin: 0;
+}
+
+.cart thead{
+  background-color: #3d4c53;
+  color: White;
+}
+
+.cart select{
+  margin-top: 10px;
+}
+
+.cart .btn-success{
+  margin-top: 20px;
+}

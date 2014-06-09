@@ -1,12 +1,10 @@
 {% block footer %}
-<footer>
-  <div class='row'>
-    <div class="span24">
-      <p>AirAtlantique Copyright © 2013</p>
-    </div>
+<footer class="row-fluid span12 footer">
+  <div class="row span12 title">
+    <p>AirAtlantique Copyright © 2013</p>
   </div>
-  <div class='row'>
-    <div class="footer_column span8">
+  <div class='row span12'>
+    <div class="footer_column span4">
       <h5>{{'footer.about'|trans }}</h5>
       <ul class="unstyled">
         <li><a href="{{ url('static', {'slug': 'news'}) }}">{{'footer.news'|trans }}</a></li>
@@ -14,7 +12,7 @@
         <li><a href="{{ url('static', {'slug': 'photo'}) }}">{{'footer.photo'|trans }}</a></li>
       </ul>
     </div>
-    <div class="footer_column span8">
+    <div class="footer_column span4">
       <h5>{{'footer.legal_disclaimer'|trans }}</h5>
       <ul class='unstyled'>
         <li><a href="{{ url('static', {'slug': 'contact'}) }}">{{'footer.contact_us'|trans }}</a></li>
@@ -22,7 +20,7 @@
         <li><a href="{{ url('static', {'slug': 'terms'}) }}">{{'footer.terms'|trans }}</a></li>
       </ul>
     </div>
-    <div class="footer_column span8">
+    <div class="footer_column span4">
       <h5>{{'footer.service'|trans }}</h5>
       <ul class='unstyled'>
         <li><a href="{{ url('static', {'slug': 'engage'}) }}">{{'footer.engage'|trans }}</a></li>

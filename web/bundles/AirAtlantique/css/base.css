@@ -1,7 +1,9 @@
 html {
-  font-size: 1.25em;
+  font-size: 2em;
   font: 400 1.3125em/1.5 cambria, georgia, sans-serif;
   height: 100%;
+  width: 100%;
+
 }
 
 body {
@@ -18,6 +20,7 @@ p {margin-bottom: 1.3em;}
 
 h1, h2, h3, h4 {
   margin: 1.414em 0 0.5em;
+  padding-left: 10px;
  /* font-family: 'Libre Baskerville', serif;;
   font-weight: inherit;*/
   line-height: 1.2;
@@ -36,7 +39,19 @@ h4 {font-size: 1.414em;}
 
 small, .font_small {font-size: 0.707em;}
 
-.container{
-  background-color: white; /*beige*/
+a{
+  color:White;
+}
+a:hover{
+  text-decoration: none;
+  color: #70b7ba;
+}
+
+.body{
+  min-height: 1000px;
+  background-color: #e7e1d4; /*beige*/
   position: center;
+  margin: auto;
+  opacity: 0.9;
+  z-index: -1;
 }
