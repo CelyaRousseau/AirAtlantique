@@ -1,23 +1,38 @@
 {% extends '::base.html.twig' %}
   {% block body %}
-    <div class="container">
-
-      {% for key, planeTicket in planeTickets %}
-        {{ planeTicket.ticketnumber }}
-        {{ planeTicket.flight.flightName }}
-        {{ planeTicket.seat.name }}
-        {{ planeTicket.price }}
-        <select name='number' id='ticketNumber'>
-          {% for i in 1..9 %}           
-            <option data-url="{{ path('Cart_modify', {'ticketNumber':i,'planeTicketKey': key})}}" value={{ i }}>{{ i }}</option>
+    <div class="row-fluid span12">
+      <div class="container body cart">       
+        <h3>Votre panier</h3>
+        {% for key, planeTicket in planeTickets %}
+          <table class='span12'>
+            <thead class="table table-striped">
+              <th>Nom du vol</th>
+              <th>Type de place souhaité</th>
+              <th>Nombre de place</th>
+              <th>Prix du billet</th>
+              <th>Modifier</th>
+              <th>Supprimer</th>
+            </thead>
+            <tbody>        
+              <tr>
+                <td>{{ planeTicket.flight.flightName }}</td>
+                <td>{{ planeTicket.seat.name }}</td>
+                <td>{{ planeTicket.ticketnumber }}</td>
+                <td>{{ planeTicket.price }}</td>
+                <td><select name='number' id='ticketNumber'>
+                  {% for i in 1..9 %}           
+                    <option data-url="{{ path('Cart_modify', {'ticketNumber':i,'planeTicketKey': key})}}" value={{ i }}>{{ i }}</option>
+                  {% endfor %}
+                </select></td>
+                 <td><a class='btn' href="{{ path('Cart_delete', {'planeTicketKey': key }) }}"><i class='icon-trash'></i></a></td>
+              </tr>
+            </tbody>
+          </table>
+          <a class='btn btn-success pull-right' href="{{ path('Cart_validate') }}">Valider</i></a>
+          {% else %}
+            <p>vous n'avez actuellement aucun vol dans votre panier</p>
           {% endfor %}
-        </select>
-         <a class='btn ' href="{{ path('Cart_delete', {'planeTicketKey': key }) }}"><i class='icon-trash'></i></a>
-      {% else %}
-        vous n'avez actuellement aucun vol dans votre panier
-      {% endfor %}
-
-       <a class='btn btn-primary ' href="{{ path('Cart_validate') }}">Valider <i class='icon-ok'></i></a>
+      </div>
     </div>
   {% endblock %}
 

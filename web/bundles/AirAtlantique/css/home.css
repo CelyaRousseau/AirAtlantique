@@ -2,9 +2,14 @@
   float: right;
   width: 310px;
   height: 300px;
-  border-radius: 150px;
-  background: white url(../img/logoAA.png) center center;
-  margin-top: -320px;
+  margin-top: -310px;
   margin-right: 25px;
-  border:solid;
+  border-radius: 150px;
+  background: url(../img/globe.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.home{
+  opacity: 0.8;
 }
