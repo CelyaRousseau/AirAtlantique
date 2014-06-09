@@ -3,7 +3,7 @@
 Namespace AirAtlantique\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use FOS\UserBundle\Entity\User as BaseUser;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * @ORM\Entity
@@ -304,6 +304,15 @@ class User extends BaseUser
             $this->email,
             $this->lastName,
             $this->firstName,
+            $this->password,
+            $this->salt,
+            $this->usernameCanonical,
+            $this->username,
+            $this->expired,
+            $this->locked,
+            $this->credentialsExpired,
+            $this->enabled,
+            $this->id,
         ));
     }
 
@@ -317,12 +326,20 @@ class User extends BaseUser
         $data = unserialize($serialized);
         // add a few extra elements in the array to ensure that we have enough keys when unserializing
         // older data which does not include all properties.
-        $data = array_merge($data, array_fill(0, 2, null));
 
         list(
             $this->email,
             $this->lastName,
             $this->firstName,
+            $this->password,
+            $this->salt,
+            $this->usernameCanonical,
+            $this->username,
+            $this->expired,
+            $this->locked,
+            $this->credentialsExpired,
+            $this->enabled,
+            $this->id,
         ) = $data;
     }
 }

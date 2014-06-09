@@ -11,30 +11,29 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        in_memory:
-            memory:
-                users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
-        main:
-            id:  fos_user.user_provider.username
         fos_userbundle:
-            id:  fos_user.user_provider.username
+            id:  fos_user.user_provider.username_email
 
     firewalls:
         main:
             pattern:  ^/
             anonymous:  true
-            provider:  main
+            provider:  fos_userbundle
             form_login:
                 provider:  fos_userbundle
                 remember_me:  true
+                use_forward:  false
+                success_handler: airatlantique_user.authentication.handler.login_success_handler
+                failure_handler: airatlantique_user.authentication.handler.login_failure_handler
+                check_path: fos_user_security_check
+                login_path: fos_user_security_login
+                csrf_provider: form.csrf_provider
 
             logout:
-                path:  for_user_security_logout
+                path:  fos_user_security_logout
+                target: /fr/home
             remember_me:
                 key:  %secret%
-            logout:  true
 
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
@@ -56,5 +55,5 @@ security:
             #http_basic:
             #    realm: "Secured Demo Area"
 
-    access_control:
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+    #access_control:
+    #    - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY}

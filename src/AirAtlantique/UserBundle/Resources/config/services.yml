@@ -1,5 +1,7 @@
 parameters:
-#    user.example.class: AirAtlantique\UserBundle\Example
+  airatlantique_user.authentication.handler.login_success_handler.class: AirAtlantique\UserBundle\Authentication\Handler\LoginSuccessHandler
+  airatlantique_user.authentication.handler.login_failure_handler.class: AirAtlantique\UserBundle\Authentication\Handler\LoginFailureHandler
+  airatlantique_user.authentication.handler.logout_success_handler.class: AirAtlantique\UserBundle\Authentication\Handler\LogoutSuccessHandler
 
 services:
     airatlantique_user.registration.form.type:
@@ -7,3 +9,24 @@ services:
         arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: airatlantique_user_registration }
+
+    airatlantique_user.authentication.handler.login_success_handler:
+        class: %airatlantique_user.authentication.handler.login_success_handler.class%
+        arguments:
+            - @router
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }
+
+    airatlantique_user.authentication.handler.login_failure_handler:
+        class: %airatlantique_user.authentication.handler.login_failure_handler.class%
+        arguments:
+            - @router
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }
+
+    airatlantique_user.authentication.handler.logout_success_handler:
+        class: %airatlantique_user.authentication.handler.logout_success_handler.class%
+        arguments:
+            - @router
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }
