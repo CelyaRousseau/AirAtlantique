@@ -1,7 +1,7 @@
 <?php
 
 namespace AirAtlantique\GeneratorBundle\Controller;
-
+use AirAtlantique\UserBundle\Form\Type\RegistrationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller

@@ -55,10 +55,10 @@ class DefaultController extends Controller
             }
           
           } 
-            return $this->render('CartBundle:Cart:show.html.twig', array('planeTickets'=> $planeTickets));
+            return $this->render('CartBundle:Cart:show.html.twig', array('planeTickets'=>$planeTickets));
 
       } 
-
+      $formInscription = $this->createForm(new RegistrationFormType());
       return $this->render('CartBundle:Cart:show.html.twig');
   }
 
@@ -93,7 +93,7 @@ class DefaultController extends Controller
     }
 
     $formAnonymous   = $this->createForm(new UserAnonymousType());
-    $formInscription = $this->createForm(new RegistrationFormType());
+    $formInscription = $this->createForm(new RegistrationFormType("AirAtlantique\UserBundle\Entity\User"));
 
     // $form = $this->container->get('airatlantique_user.registration.form.type');
 
