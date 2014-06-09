@@ -1,36 +1,37 @@
 {% extends '::base.html.twig' %}
   {% block body %}
-  blop
-  {% include 'PaymentBundle::planetickets.html.twig' with { 'planeTickets':planeTickets, 'user':user } %}
-
-  {{ message }}
-
-  <div>
-    <form action="{{path('payment_verify')}}" method="POST">
-      <div>
-        <span class="help-inline span3">Numéro de carte bancaire</span>
-        <input type="number" name="number" maxlength="16" required value="{{user.creditCard}}"/>
+  {% include 'PaymentBundle::planetickets.html.twig' with { 'planeTickets':planeTickets, 'user':user } %} 
+     <div class='row-fluid span12'>
+        <div class="container body payment">
+        <h5>{{ message }}</h5>
+          <div class='well form-actions span10'>
+            <form action="{{path('payment_verify')}}" method="POST">
+              <div>
+                <span class="help-inline span3">Numéro de carte bancaire</span>
+                <input type="number" name="number" maxlength="16" required value="{{user.creditCard}}"/>
+              </div>
+              <div>
+                <span class="help-inline span3">Date de validité</span>
+                <select>
+                  {% for i in 1..12 %}
+                    <option value={{i}}>{{i}}</option>
+                  {% endfor %}
+                </select>
+                <select>
+                  {% for i in 2014..2020 %}
+                    <option value={{i}}>{{i}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div>
+                <span class="help-inline span3">Cryptogramme de validation</span>
+                <input type="number" name="CVV" maxlength="4"class="input-mini" required/>
+              </div>
+              <div>
+                <input class='btn btn-primary pull-right' type="submit">
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
-      <div>
-        <span class="help-inline span3">Date de validité</span>
-        <select>
-          {% for i in 1..12 %}
-            <option value={{i}}>{{i}}</option>
-          {% endfor %}
-        </select>
-        <select>
-          {% for i in 2014..2020 %}
-            <option value={{i}}>{{i}}</option>
-          {% endfor %}
-        </select>
-      </div>
-      <div>
-        <span class="help-inline span3">Cryptogramme de validation</span>
-        <input type="number" name="CVV" maxlength="4"class="input-mini" required/>
-      </div>
-      <div>
-        <input type="submit">
-      </div>
-    </form>
-  </div>
-  {% endblock %}
+    {% endblock %}

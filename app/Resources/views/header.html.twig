@@ -1,10 +1,9 @@
 {% block header %}
   <div class='header row-fluid span12'>
-    <div class='header-left span4'>
-      <a href="#"><img src='/bundles/AirAtlantique/img/logoAA.png'></a>
+    <div class='span3 header-left '>
+      <a href="{{ path('flight_home') }}"><img src='/bundles/AirAtlantique/img/logoAA.png'></a>
     </div>
     {% include '::menu.html.twig' %}
-
     {% include '::module.html.twig' %}
   </div>
 {% endblock %}

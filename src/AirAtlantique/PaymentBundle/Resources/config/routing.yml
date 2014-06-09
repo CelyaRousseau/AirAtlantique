@@ -3,5 +3,5 @@ payment_homepage:
     defaults: { _controller: PaymentBundle:Default:index }
 
 payment_verify:
-    pattern: /verify
+    pattern:  /verify
     defaults: { _controller: PaymentBundle:Default:verify}

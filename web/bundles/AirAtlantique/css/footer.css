@@ -3,6 +3,28 @@ footer{
   height: 150px;
   margin: 0;
   bottom:0;
+  font-size: 1.2em;
+  font-weight : bold;
 }
-/*footer a {
-}*/
+.footer{
+  margin: 0;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.footer p{
+  padding-top: 10px;
+  text-align: center;
+  color: White;
+}
+
+.footer h5{
+  color: #f1433f;
+}
+
+footer a{
+  color: #70b7ba;
+}
+footer a:hover {
+  color: white;
+}

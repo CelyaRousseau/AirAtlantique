@@ -1,10 +1,39 @@
-<div>
-    {% for planeTicket in planeTickets %}
+{% for planeTicket in planeTickets %}
+  <div class='container'>
+    <div class='row-fluid span12'>
       {{ user.email }}
       {{ user.firstName }}
-      {{ planeTicket.ticketnumber }}
-      {{ planeTicket.flight.flightName }}
-      {{ planeTicket.seat.name }}
-      {{ planeTicket.price }}
+      {{ user.lastName }}
+    </div>
+    {% for i in 1..planeTicket.ticketnumber %}
+      <div class='row-fluid span12'>
+        <div class='span6'>          
+          {{ planeTicket.flight.flightName }}
+        </div>
+        <div class='span6'>        
+          {{ planeTicket.flight.departureDate | date("d/m/Y") }}
+        </div>
+      </div>
+
+      <div class='row-fluid span12'>
+        <div class='span4'>
+        {{ planeTicket.flight.departureCity.nameAirport }}
+        {{ planeTicket.flight.departureCity.city }}
+        </div>
+        <div class='span4'>
+        {{ planeTicket.flight.destinationCity.nameAirport }}
+        {{ planeTicket.flight.destinationCity.city }}   
+        </div>
+        <div class='span4'>
+        {{ planeTicket.flight.duration | date("H:i") }}
+        {{ planeTicket.flight.planeId.name }}
+        </div>
+      </div>
+
+      <div class='row-fluid span12'>
+        {{ planeTicket.seat.name }}
+        {{ planeTicket.price }}
+      </div>
     {% endfor %}
-</div>
+  </div>
+{% endfor %}
