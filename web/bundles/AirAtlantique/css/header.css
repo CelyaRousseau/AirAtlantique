@@ -13,21 +13,31 @@
 
 .header-center{
   height: 100%;
-  margin:auto;
-  padding: 0;
+  margin-left: 0
 }
 
 .header-right{
-  margin:0;
   text-align: center;
   height: 100%;
-  padding:0;
+  color: #70b7ba;
 }
 .header-left img{
   padding-left: 10px;
   width: 120px;
   height: 120px;
 }
+.header-right img{
+  padding-top: 10px;
+  padding-left: 10px;
+  width: 75px;
+  height: 75px;
+}
+
+.header-right a:hover{
+  text-decoration: none;
+  color: #f1433f
+}
+
 
 .menu{
   margin-top: 50px;
@@ -50,5 +60,5 @@
 
 }
 .menu a:hover{
-  color: White;
+  color: #f1433f;
 }

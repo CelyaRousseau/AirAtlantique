@@ -1,13 +1,16 @@
-<div class='header-right span4'>
-  <img src="/bundles/AirAtlantique/img/panier.png" class="img-rounded"><a href="Cart_homepage_get"></a></img>
-
+<div class='span2 header-right'>
+  <a href="{{ path('Cart_homepage_get') }}">
+    <img src="/bundles/AirAtlantique/img/panier.png" class="img-rounded">
+  </a>
+  <br>
   {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
     <form action='{{ path('fos_user_security_logout') }}' method='post'>
       <input type='submit' class='btn btn-primary' name='valider' value='Déconnexion' >
     </form>
   {% else %}
-    <a href="#myModal" role="button" class="btn" data-toggle="modal">Register now !</a>
-    <a href="#login" role="button" class="btn" data-toggle="modal">Login</a>
+    <a href="#myModal" role="button" class="btn-link" data-toggle="modal">Register now </a>
+    or
+    <a href="#login" role="button" class="btn-link" data-toggle="modal">Login</a>
     {% render controller('UserBundle:Security:renderLogin') %}
     {% render controller('UserBundle:Security:login') %}
   {% endif %}

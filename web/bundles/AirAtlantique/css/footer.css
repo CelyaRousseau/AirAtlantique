@@ -15,7 +15,16 @@ footer{
 .footer p{
   padding-top: 10px;
   text-align: center;
+  color: White;
+}
+
+.footer h5{
+  color: #f1433f;
+}
+
+footer a{
   color: #70b7ba;
 }
-/*footer a {
-}*/
+footer a:hover {
+  color: white;
+}
