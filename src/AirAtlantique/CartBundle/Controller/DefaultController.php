@@ -65,8 +65,23 @@ class DefaultController extends Controller
    public function deleteAction($planeTicketKey){
 
       $planeTickets = UtilSession::getAllPlaneTicket();
-      $panier       = array_splice($planeTickets, $planeTicketKey,1);
-      UtilSession::storeSession('panier',$planeTickets);
+      array_splice($planeTickets, $planeTicketKey,1);
+
+      if(count($planeTickets)==0)
+      {
+        UtilSession::remove('panier');
+      }else
+      {
+        $panier = array();
+
+        foreach($planeTickets as $planeTicket)
+        {
+          $planetTicketSerialized = serialize($planeTicket);
+          array_push($panier, $planetTicketSerialized);
+        }
+        UtilSession::storeSession('panier',$panier);
+      }
+      
           
       return $this->redirect($this->generateUrl('Cart_homepage_get'));
   }

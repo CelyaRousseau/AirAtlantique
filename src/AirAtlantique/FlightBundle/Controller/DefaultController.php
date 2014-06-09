@@ -57,7 +57,7 @@ class DefaultController extends Controller
         $planeTicket->setTicketnumber($ticketNumber);   
         $planeTicketSerialized = serialize($planeTicket);
 
-        if($session->has('panier')){
+        if($session->has('panier') && count(UtilSession::getPanier())>0){
           UtilSession::deletePlaneTicketWithoutFlight();
           $panier = UtilSession::getPanier();
           array_push($panier,$planeTicketSerialized);
