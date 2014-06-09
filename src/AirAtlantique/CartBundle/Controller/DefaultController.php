@@ -19,7 +19,7 @@ class DefaultController extends Controller
   public function indexAction(){
     $planeTickets = UtilSession::getAllPlaneTicket();
     $total = $this->getTotal($planeTickets);
-    return $this->render('CartBundle:Cart:show.html.twig', array('planeTickets'=> $planeTickets,'total'=>$total));
+    return $this->render('CartBundle:Cart:show.html.twig', array('planeTickets'=> $planeTickets,'advantage'=>$this->getAdvantage(), 'total'=>$total));
   }
 
   public function addAction(){
@@ -59,7 +59,7 @@ class DefaultController extends Controller
           $planeTickets = UtilSession::getAllPlaneTicket();
           $total = $this->getTotal($planeTickets);
 
-            return $this->render('CartBundle:Cart:show.html.twig', array('planeTickets'=>$planeTickets,'total'=>$total));
+            return $this->render('CartBundle:Cart:show.html.twig', array('planeTickets'=>$planeTickets,'advantage'=>$this->getAdvantage(),'total'=>$total));
 
       } 
       $formInscription = $this->createForm(new RegistrationFormType());
@@ -130,14 +130,36 @@ class DefaultController extends Controller
       $total = $total + $planeTicket->getPrice();
     }
 
-    $membershipCard = $user->getMembershipCard();
-
-    if($membershipCard != null && $this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+    if($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
     {
-      $total = $total * (1-$membershipCard->getSubscription()->getAdvantage());
+      $membershipCard = $user->getMembershipCard();
+
+      if($membershipCard != null)
+      {
+        $total = $total * (1-$membershipCard->getSubscription()->getAdvantage());
+      }
     }
 
     return $total;
+  }
+
+  private function getAdvantage()
+  {
+    $advantage = "";
+
+    $user = $this->container->get('security.context')->getToken()->getUser();
+
+    if($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+    {
+      $membershipCard = $user->getMembershipCard();
+
+      if($membershipCard != null)
+      {
+        $advantage = ($membershipCard->getSubscription()->getAdvantage()*100)."%";
+      }
+    }
+
+    return $advantage;
   }
 
 }
