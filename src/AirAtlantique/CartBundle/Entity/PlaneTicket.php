@@ -30,19 +30,16 @@ class PlaneTicket
 
     /**
      * @ORM\ManyToOne(targetEntity="AirAtlantique\FlightBundle\Entity\Flight")
-     * @ORM\JoinColumn(name="id", referencedColumnName="id")
      */
     private $flight;
 
     /**
      * @ORM\ManyToOne(targetEntity="AirAtlantique\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="id", referencedColumnName="id")
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="AirAtlantique\CartBundle\Entity\Seat")
-     * @ORM\JoinColumn(name="id", referencedColumnName="id")
      */
     private $seat;
 
