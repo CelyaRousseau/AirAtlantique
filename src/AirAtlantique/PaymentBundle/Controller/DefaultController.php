@@ -19,19 +19,16 @@ class DefaultController extends Controller
     $form = $this->createForm(new UserAnonymousType(), $user);
     $form->bind($request);
 
-    if($form->isValid()){
-      if($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')){
-        // $em = $this->getDoctrine()->getManager();
-        $user = $this->container->get('security.context')->getToken()->getUser();
-      }
-      else{
-        $entitySerialized = $user->serialize();
-        UtilSession::storeSession('user',$entitySerialized);
+    if($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')){
+      // $em = $this->getDoctrine()->getManager();
+      $user = $this->container->get('security.context')->getToken()->getUser();
+    }
 
-      }
-
+    if($user->getUsername() !='')
+    {
+      $entitySerialized = $user->serialize();
+      UtilSession::storeSession('user',$entitySerialized);
       $planeTickets = UtilSession::getAllPlaneTicket();
-
       return $this->render('PaymentBundle::index.html.twig', array('planeTickets'=> $planeTickets, 'user' => $user, 'message'=>''));
     }
 
@@ -46,7 +43,13 @@ class DefaultController extends Controller
 
       $control = UtilPayment::creditCardControl($number);
 
-      $user = UtilSession::getUser();
+      if($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')){
+        // $em = $this->getDoctrine()->getManager();
+        $user = $this->container->get('security.context')->getToken()->getUser();
+      }else
+      {
+        $user = UtilSession::getUser();
+      }
 
       if($control)
       {
@@ -73,6 +76,6 @@ class DefaultController extends Controller
         $message = "Votre numéro de carte est invalide";
       }
 
-      return $this->render('PaymentBundle::index.html.twig', array('planeTickets'=>'', 'user' => $user,'message'=>$message));
+      return $this->render('PaymentBundle::index.html.twig', array('planeTickets'=>$planeTickets, 'user'=>$user,'message'=>$message));
   }
 }
