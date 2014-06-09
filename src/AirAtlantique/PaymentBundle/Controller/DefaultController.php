@@ -54,7 +54,28 @@ class DefaultController extends Controller
       if($control)
       {
         $planeTickets = UtilSession::getAllPlaneTicket();
-        $message = "Un email vous a été envoyé";
+
+        $em = $this->getDoctrine()->getManager();
+
+        foreach($planeTickets as $planeTicket)
+        {
+          if($user->getUsername() != '')
+          {
+            $planeTicket->setUser($user);
+          }
+
+          $flight = $em->getRepository('FlightBundle:Flight')->find($planeTicket->getFlight());
+          $planeTicket->setFlight($flight);
+
+          $seat = $em->getRepository('CartBundle:Seat')->find($planeTicket->getSeat());
+          $planeTicket->setSeat($seat);
+          $planeTicket->getPrice();
+
+          $em->persist($planeTicket);
+        }
+        $em->flush();
+
+        $message = "Votre commande vous a été envoyé sur votre boite mail";
 
         $html         = $this->renderView('PaymentBundle::planetickets.html.twig', array('planeTickets'=> $planeTickets, 'user' => $user));
         $pdfGenerator = $this->get('spraed.pdf.generator');
@@ -71,24 +92,6 @@ class DefaultController extends Controller
 
         $this->get('mailer')->send($mail);
         UtilSession::remove('panier');
-        $em = $this->getDoctrine()->getManager();
-
-        foreach($planeTickets as $planeTicket)
-        {
-          if($user->getUsername() != '')
-          {
-            $planeTicket->setUser($user);
-          }
-
-          $flight = $em->getRepository('FlightBundle:Flight')->find($planeTicket->getFlight());
-          $planeTicket->setFlight($flight);
-
-          $seat = $em->getRepository('CartBundle:Seat')->find($planeTicket->getSeat());
-          $planeTicket->setSeat($seat);
-
-          $em->persist($planeTicket);
-        }
-        $em->flush();
 
       } else
       {

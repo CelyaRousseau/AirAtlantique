@@ -40,8 +40,8 @@
 
   {% block script %}
     <script type="text/javascript">
-      $( '#ticketNumber' ).change(function() {
-        var url = $('#ticketNumber').find('option:selected').data('url');
+      $( 'tr' ).change(function() {
+        var url = $(this).find('#ticketNumber').find('option:selected').data('url');
         // url = window.location.host + url;
         window.location.pathname = url;
       });
