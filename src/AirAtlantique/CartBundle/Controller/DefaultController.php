@@ -18,7 +18,8 @@ class DefaultController extends Controller
   /*----------------------Actions spécifiques au Panier-------------------------*/
   public function indexAction(){
     $planeTickets = UtilSession::getAllPlaneTicket();
-    return $this->render('CartBundle:Cart:show.html.twig', array('planeTickets'=> $planeTickets));
+    $total = $this->getTotal($planeTickets);
+    return $this->render('CartBundle:Cart:show.html.twig', array('planeTickets'=> $planeTickets,'total'=>$total));
   }
 
   public function addAction(){
@@ -40,7 +41,6 @@ class DefaultController extends Controller
           $seat   = $em->getRepository('CartBundle:Seat')->find($seatId);
 
           UtilSession::storeFlightAndSeat($flight, $seat);
-          $planeTickets = UtilSession::getAllPlaneTicket();
           $search       = UtilSession::getCurrentSearch();
           $tripChoices  = $search['tripChoices'];
           
@@ -55,7 +55,11 @@ class DefaultController extends Controller
             }
           
           } 
-            return $this->render('CartBundle:Cart:show.html.twig', array('planeTickets'=>$planeTickets));
+
+          $planeTickets = UtilSession::getAllPlaneTicket();
+          $total = $this->getTotal($planeTickets);
+
+            return $this->render('CartBundle:Cart:show.html.twig', array('planeTickets'=>$planeTickets,'total'=>$total));
 
       } 
       $formInscription = $this->createForm(new RegistrationFormType());
@@ -114,6 +118,26 @@ class DefaultController extends Controller
 
 
     return $this->render('CartBundle:Cart:validate.html.twig', array('formAnonymous'=> $formAnonymous->createView(),'formInscription'=> $formInscription->createView()));
+  }
+
+  private function getTotal($planeTickets)
+  {
+    $user = $this->container->get('security.context')->getToken()->getUser();
+
+    $total = 0;
+
+    foreach ($planeTickets as $planeTicket) {
+      $total = $total + $planeTicket->getPrice();
+    }
+
+    $membershipCard = $user->getMembershipCard();
+
+    if($membershipCard != null && $this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED'))
+    {
+      $total = $total * (1-$membershipCard->getSubscription()->getAdvantage());
+    }
+
+    return $total;
   }
 
 }
