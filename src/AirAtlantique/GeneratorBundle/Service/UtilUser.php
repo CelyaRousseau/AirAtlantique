@@ -111,6 +111,7 @@ class UtilUser
         $encoder = $this->encoder->getEncoder($user);
         $user->setPassword($encoder->encodePassword($this->generatePassword(), $user->getSalt()));
         $user->setGender($gender);
+        $user->setEnabled(true);
 
         $phoneNumber = "06";
         $user->setPhoneNumber($phoneNumber.$this->generateRandomSeries(8));
