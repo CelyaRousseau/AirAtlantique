@@ -24,7 +24,7 @@ class DefaultController extends Controller
       $user = $this->container->get('security.context')->getToken()->getUser();
     }
 
-    if($user->getUsername() !='')
+    if($user->getEmail() !='')
     {
       $entitySerialized = $user->serialize();
       UtilSession::storeSession('user',$entitySerialized);
@@ -70,6 +70,25 @@ class DefaultController extends Controller
             ->attach(\Swift_Attachment::newInstance($pdf, 'planetickets.pdf', 'application/pdf'));
 
         $this->get('mailer')->send($mail);
+        UtilSession::remove('panier');
+        $em = $this->getDoctrine()->getManager();
+
+        foreach($planeTickets as $planeTicket)
+        {
+          if($user->getUsername() != '')
+          {
+            $planeTicket->setUser($user);
+          }
+
+          $flight = $em->getRepository('FlightBundle:Flight')->find($planeTicket->getFlight());
+          $planeTicket->setFlight($flight);
+
+          $seat = $em->getRepository('CartBundle:Seat')->find($planeTicket->getSeat());
+          $planeTicket->setSeat($seat);
+
+          $em->persist($planeTicket);
+        }
+        $em->flush();
 
       } else
       {
