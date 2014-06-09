@@ -1,4 +1,8 @@
 # Static Routes
+flight_home:
+    pattern: /
+    defaults: { _controller: FlightBundle:Default:index }
+
 static:
     path: /{slug}
     defaults: { _controller: FlightBundle:Static:index, slug: slug}
