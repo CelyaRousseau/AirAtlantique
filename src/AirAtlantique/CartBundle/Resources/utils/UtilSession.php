@@ -152,6 +152,12 @@ class UtilSession
 
   }
 
+  public static function remove($attribute)
+  {
+    $session = new Session();
+    $session->remove($attribute);
+  }
+
   public static function getUser()
   {
     $session = new Session();

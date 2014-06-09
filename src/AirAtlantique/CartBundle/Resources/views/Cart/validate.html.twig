@@ -22,7 +22,7 @@
 
       {% include 'UserBundle:User:subscribe.html.twig' with {formInscription: formInscription} %}
 
-      {% include 'UserBundle:User:login.html.twig' %}
+      {% render controller('UserBundle:Security:login') %}
 
     </div>
   {% endblock %}
