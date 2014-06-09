@@ -10,7 +10,7 @@ class UtilPayment
 {
   public static function creditCardControl($creditCard)
     {
-      $creditCard = strrev(intval($creditCard));
+      $creditCard = strrev($creditCard);
       $creditCardArray  = array_map('intval', str_split($creditCard));
 
       $controlNumber = array_splice($creditCardArray,0,1);
