@@ -5,7 +5,7 @@
   <br>
   {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
     <form action='{{ path('fos_user_security_logout') }}' method='post'>
-      <input type='submit' class='btn btn-primary' name='valider' value='Déconnexion' >
+      <input type='submit' class='btn-link' name='valider' value='Déconnexion' >
     </form>
   {% else %}
     <a href="#myModal" role="button" class="btn-link" data-toggle="modal">Register now </a>
