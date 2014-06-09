@@ -4,14 +4,14 @@
       <div class="container body cart">       
         <h3>Votre panier</h3>
         {% if planeTickets %}
-          <table class='span12'>
+          <table class='span12 tableau'>
             <thead class="table table-striped">
-              <th>Nom du vol</th>
-              <th>Type de place souhaité</th>
-              <th>Nombre de place</th>
-              <th>Prix du billet</th>
-              <th>Modifier</th>
-              <th>Supprimer</th>
+              <th class="span2">Nom du vol</th>
+              <th class="span3">Type de place souhaité</th>
+              <th class="span2">Nombre de place</th>
+              <th class="span2">Prix du billet</th>
+              <th class="span2">Modifier</th>
+              <th class="span1">Supprimer</th>
             </thead>
             <tbody>        
             {% for key, planeTicket in planeTickets %}
@@ -28,6 +28,10 @@
                 <td><a class='btn' href="{{ path('Cart_delete', {'planeTicketKey': key }) }}"><i class='icon-trash'></i></a></td>
               </tr>
             {% endfor %}
+              {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+              <tr><td colspan="6" class="span11"><h5 class="pull-right">Réduction : {{ advantage }}</h5></td></tr>
+              {% endif %}
+              <tr><td colspan="6" class="span11"><h5 class="pull-right">Prix total : {{ total }}</h5></td></tr>
             </tbody>
           </table>
           <a class='btn btn-success pull-right' href="{{ path('Cart_validate') }}">Valider</i></a>
