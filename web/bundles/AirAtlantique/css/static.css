@@ -1,0 +1,31 @@
+.static p{
+  text-align: justify;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.static h3{
+  text-align: left;
+  padding-left: 50px;
+}
+.static h4{
+  text-align: left;
+  padding-left: 30px;
+}
+.static h5{
+  text-align: left;
+  padding-left: 15px;
+}
+.static h6{
+  text-align: left;
+  padding-left: 15px;
+}
+.static address{
+  text-align: left;
+  font-style: italic;
+  padding-left: 25px;
+}
+
+.static img{
+  float:left;
+}

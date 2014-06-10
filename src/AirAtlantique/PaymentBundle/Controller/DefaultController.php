@@ -84,7 +84,7 @@ class DefaultController extends Controller
         $mail = \Swift_Message::newInstance()
             ->setFrom("admin@airatlantique.com")
             ->setTo($user->getEmail())
-            ->setSubject('AirTlantique : Billet(s) d\'avion')
+            ->setSubject('AirAtlantique : Billet(s) d\'avion')
             ->setBody('Bonjour,
               Votre achat a bien été enregistré, vous trouverez ci-joint votre billet sous format pdf')
             ->setContentType('text/html')
